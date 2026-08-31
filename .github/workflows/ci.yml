@@ -7,13 +7,13 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    name: Test & Lint
+  test-node:
+    name: Test Node.js & Nuxt
     runs-on: ubuntu-latest
     
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [18, 20, 22]
     
     steps:
       - name: Checkout code
@@ -28,21 +28,87 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Run linter
+      - name: Check Node.js version
+        run: |
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+
+      - name: Lint code
         run: npm run lint --if-present
         continue-on-error: true
 
-      - name: Build application
+      - name: Build Nuxt application
         run: npm run build
 
-      - name: Run tests
-        run: npm test --if-present
-        continue-on-error: true
+      - name: Check build output
+        run: |
+          echo "Checking build output..."
+          ls -la .output/
+          ls -la .output/server/
+          echo "✅ Build successful!"
+
+      - name: Test SSR rendering
+        run: |
+          echo "Testing SSR rendering..."
+          npm run preview &
+          sleep 5
+          curl -f http://localhost:3000/ || exit 1
+          curl -f http://localhost:3000/blog || exit 1
+          curl -f http://localhost:3000/about || exit 1
+          curl -f http://localhost:3000/projects || exit 1
+          curl -f http://localhost:3000/contact || exit 1
+          pkill -f "node .output/server/index.mjs" || true
+          echo "✅ SSR tests passed!"
+
+      - name: Test static generation
+        run: |
+          echo "Testing static generation..."
+          npm run generate
+          ls -la .output/public/
+          echo "✅ Static generation successful!"
+
+  test-content:
+    name: Test Content & i18n
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Check content files
+        run: |
+          echo "Checking content structure..."
+          echo "English posts: $(ls content/en/*.md 2>/dev/null | wc -l)"
+          echo "Farsi posts: $(ls content/fa/*.md 2>/dev/null | wc -l)"
+          echo "i18n files: $(ls i18n/*.json 2>/dev/null | wc -l)"
+          
+          # Check for required files
+          test -f i18n/en.json || (echo "❌ Missing en.json" && exit 1)
+          test -f i18n/fa.json || (echo "❌ Missing fa.json" && exit 1)
+          echo "✅ Content structure valid!"
+
+      - name: Validate frontmatter
+        run: |
+          echo "Validating post frontmatter..."
+          for file in content/en/*.md; do
+            head -10 "$file" | grep -q "^title:" || (echo "❌ Missing title in $file" && exit 1)
+            head -10 "$file" | grep -q "^date:" || (echo "❌ Missing date in $file" && exit 1)
+          done
+          echo "✅ All posts have valid frontmatter!"
 
   docker:
-    name: Docker Build & Push
+    name: Docker Build & Test
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test-node, test-content]
     if: github.ref == 'refs/heads/main'
     
     steps:
@@ -64,12 +130,13 @@ jobs:
 
       - name: Test Docker container
         run: |
+          echo "Starting Docker container..."
           docker run -d --name test-container -p 3002:3000 movtigroup-web:latest
-          sleep 10
+          sleep 15
           
           # Health check
           echo "Testing health endpoint..."
-          curl -f http://localhost:3002/api/health || exit 1
+          curl -f http://localhost:3002/api/health || (docker logs test-container && exit 1)
           
           # Test homepage
           echo "Testing homepage..."
@@ -78,6 +145,10 @@ jobs:
           # Test blog page
           echo "Testing blog page..."
           curl -f http://localhost:3002/blog || exit 1
+          
+          # Test projects page
+          echo "Testing projects page..."
+          curl -f http://localhost:3002/projects || exit 1
           
           echo "✅ All Docker tests passed!"
           

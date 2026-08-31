@@ -6,14 +6,15 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "${PORT:-3002}:${NUXT_PORT:-3000}"
     environment:
-      - NODE_ENV=production
-      - NUXT_HOST=0.0.0.0
-      - NUXT_PORT=3000
+      - NODE_ENV=${NODE_ENV:-production}
+      - NUXT_HOST=${NUXT_HOST:-0.0.0.0}
+      - NUXT_PORT=${NUXT_PORT:-3000}
+      - SITE_URL=${SITE_URL:-https://movtigroup.me}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:${NUXT_PORT:-3000}/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
