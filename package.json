@@ -1,0 +1,22 @@
+{
+  "name": "movtigroup-web",
+  "version": "1.0.0",
+  "description": "MovtiGroup Official Website - Nuxt 3 + Content + i18n + SEO",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.13.0",
+    "@nuxtjs/i18n": "^8.5.0",
+    "nuxt": "^3.13.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.4.0"
+  }
+}

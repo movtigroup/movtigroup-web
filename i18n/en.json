@@ -1,0 +1,72 @@
+{
+  "site": {
+    "title": "MovtiGroup",
+    "description": "Innovative Software Solutions & Open Source Tools for Developers"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "collaborations": "Collaborations"
+  },
+  "hero": {
+    "slide1": {
+      "title": "Welcome to MovtiGroup",
+      "subtitle": "Leading the way in innovative software solutions and specialized open-source tools for developers worldwide.",
+      "cta": "Read Blog"
+    },
+    "slide2": {
+      "title": "Technical Blog",
+      "subtitle": "131+ in-depth articles on AI, DevOps, security, and software engineering. Bilingual content in English and Farsi.",
+      "cta": "Explore Articles"
+    },
+    "slide3": {
+      "title": "Open Source Projects",
+      "subtitle": "Powerful tools and frameworks built with passion. From AI coding agents to infrastructure solutions — all open source.",
+      "cta": "Browse Projects"
+    }
+  },
+  "stats": {
+    "totalPosts": "Total Posts",
+    "englishPosts": "English Posts",
+    "farsiPosts": "Farsi Posts",
+    "categories": "Categories",
+    "collaborations": "Collaborations"
+  },
+  "features": {
+    "title": "Why MovtiGroup?",
+    "subtitle": "We craft tools with a focus on quality, security, and developer experience.",
+    "speed": {
+      "title": "Speed & Stability",
+      "description": "All our tools are designed with a focus on high performance and reliability in production environments."
+    },
+    "security": {
+      "title": "Security & Trust",
+      "description": "Adherence to high security standards in coding and providing trustworthy open-source products."
+    },
+    "support": {
+      "title": "Active Support",
+      "description": "We are here to ensure you have the best experience using MovtiGroup products."
+    }
+  },
+  "brands": {
+    "title": "Our Brands",
+    "subtitle": "Exclusive products and projects by MovtiGroup"
+  },
+  "collaborations": {
+    "title": "Key Collaborations",
+    "subtitle": "We partner with leading open-source projects and teams."
+  },
+  "cta": {
+    "title": "Join the MovtiGroup Community",
+    "subtitle": "Explore our projects, read our articles, and become part of an innovative open-source community.",
+    "github": "GitHub",
+    "contact": "Get in Touch"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Made with ❤️ by MovtiGroup"
+  }
+}

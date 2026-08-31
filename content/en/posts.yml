@@ -1,0 +1,16 @@
+content:
+  - name: title
+    type: string
+    required: true
+  - name: description
+    type: string
+  - name: date
+    type: date
+  - name: lang
+    type: string
+  - name: category
+    type: string
+  - name: author
+    type: string
+  - name: tags
+    type: list
