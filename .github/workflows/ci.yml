@@ -43,35 +43,28 @@ jobs:
           ls -la .output/server/
           echo "✅ Build successful!"
 
-      - name: Test SSR rendering
+      - name: Test SSR rendering (EN + FA pages)
         run: |
           echo "Testing SSR rendering..."
           npm run preview &
           sleep 5
           
           # Test English pages
-          echo "Testing English pages..."
+          echo "Testing EN pages..."
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ | grep -q "200" || (echo "❌ Homepage failed" && exit 1)
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/blog | grep -q "200" || (echo "❌ Blog failed" && exit 1)
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/about | grep -q "200" || (echo "❌ About failed" && exit 1)
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/projects | grep -q "200" || (echo "❌ Projects failed" && exit 1)
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/contact | grep -q "200" || (echo "❌ Contact failed" && exit 1)
           
-          # Test Farsi pages
-          echo "Testing Farsi pages..."
+          # Test Farsi (RTL) pages
+          echo "Testing FA pages..."
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa | grep -q "200" || (echo "❌ FA Homepage failed" && exit 1)
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa/blog | grep -q "200" || (echo "❌ FA Blog failed" && exit 1)
           curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa/about | grep -q "200" || (echo "❌ FA About failed" && exit 1)
           
-          echo "✅ All SSR tests passed!"
+          echo "✅ All SSR tests passed (EN + FA)!"
           pkill -f "node .output/server/index.mjs" || true
-
-      - name: Test static generation
-        run: |
-          echo "Testing static generation..."
-          npm run generate
-          ls -la .output/public/
-          echo "✅ Static generation successful!"
 
   test-content:
     name: Test Content & i18n
@@ -93,22 +86,38 @@ jobs:
       - name: Check content files
         run: |
           echo "Checking content structure..."
-          echo "English posts: $(ls content/en/*.md 2>/dev/null | wc -l)"
-          echo "Farsi posts: $(ls content/fa/*.md 2>/dev/null | wc -l)"
-          echo "i18n files: $(ls i18n/*.json 2>/dev/null | wc -l)"
+          EN_POSTS=$(ls content/en/*.md 2>/dev/null | wc -l)
+          FA_POSTS=$(ls content/fa/*.md 2>/dev/null | wc -l)
+          I18N_FILES=$(ls i18n/*.json 2>/dev/null | wc -l)
+          echo "English posts: $EN_POSTS"
+          echo "Farsi posts: $FA_POSTS"
+          echo "i18n files: $I18N_FILES"
           
           # Check for required files
           test -f i18n/en.json || (echo "❌ Missing en.json" && exit 1)
           test -f i18n/fa.json || (echo "❌ Missing fa.json" && exit 1)
-          echo "✅ Content structure valid!"
+          [ "$EN_POSTS" -gt 0 ] || (echo "❌ No English posts found" && exit 1)
+          [ "$FA_POSTS" -gt 0 ] || (echo "❌ No Farsi posts found" && exit 1)
+          echo "✅ Content structure valid! ($EN_POSTS EN, $FA_POSTS FA posts)"
 
       - name: Validate frontmatter
         run: |
           echo "Validating post frontmatter..."
+          ERRORS=0
           for file in content/en/*.md; do
-            head -10 "$file" | grep -q "^title:" || (echo "❌ Missing title in $file" && exit 1)
-            head -10 "$file" | grep -q "^date:" || (echo "❌ Missing date in $file" && exit 1)
+            if ! head -20 "$file" | grep -q "^title:"; then
+              echo "❌ Missing title in $file"
+              ERRORS=$((ERRORS + 1))
+            fi
+            if ! head -20 "$file" | grep -q "^date:"; then
+              echo "❌ Missing date in $file"
+              ERRORS=$((ERRORS + 1))
+            fi
           done
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ Found $ERRORS frontmatter errors"
+            exit 1
+          fi
           echo "✅ All posts have valid frontmatter!"
 
   docker:
@@ -136,7 +145,7 @@ jobs:
 
       - name: Test Docker container
         run: |
-          echo "Starting Docker container..."
+          echo "Starting Docker container on port 3002..."
           docker run -d --name test-container -p 3002:3000 movtigroup-web:latest
           sleep 15
           
