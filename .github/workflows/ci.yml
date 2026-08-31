@@ -48,13 +48,23 @@ jobs:
           echo "Testing SSR rendering..."
           npm run preview &
           sleep 5
-          curl -f http://localhost:3000/ || exit 1
-          curl -f http://localhost:3000/blog || exit 1
-          curl -f http://localhost:3000/about || exit 1
-          curl -f http://localhost:3000/projects || exit 1
-          curl -f http://localhost:3000/contact || exit 1
+          
+          # Test English pages
+          echo "Testing English pages..."
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ | grep -q "200" || (echo "❌ Homepage failed" && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/blog | grep -q "200" || (echo "❌ Blog failed" && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/about | grep -q "200" || (echo "❌ About failed" && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/projects | grep -q "200" || (echo "❌ Projects failed" && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/contact | grep -q "200" || (echo "❌ Contact failed" && exit 1)
+          
+          # Test Farsi pages
+          echo "Testing Farsi pages..."
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa | grep -q "200" || (echo "❌ FA Homepage failed" && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa/blog | grep -q "200" || (echo "❌ FA Blog failed" && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa/about | grep -q "200" || (echo "❌ FA About failed" && exit 1)
+          
+          echo "✅ All SSR tests passed!"
           pkill -f "node .output/server/index.mjs" || true
-          echo "✅ SSR tests passed!"
 
       - name: Test static generation
         run: |
@@ -132,19 +142,13 @@ jobs:
           
           # Health check
           echo "Testing health endpoint..."
-          curl -f http://localhost:3002/api/health || (docker logs test-container && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/api/health | grep -q "200" || (docker logs test-container && exit 1)
           
-          # Test homepage
-          echo "Testing homepage..."
-          curl -f http://localhost:3002/ || exit 1
-          
-          # Test blog page
-          echo "Testing blog page..."
-          curl -f http://localhost:3002/blog || exit 1
-          
-          # Test projects page
-          echo "Testing projects page..."
-          curl -f http://localhost:3002/projects || exit 1
+          # Test pages
+          echo "Testing pages..."
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/ | grep -q "200" || exit 1
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/blog | grep -q "200" || exit 1
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/projects | grep -q "200" || exit 1
           
           echo "✅ All Docker tests passed!"
           
