@@ -1,32 +1,109 @@
-# قالب وب‌سایت MOVTIGROUP
+# MovtiGroup Official Website
 
-این مخزن شامل قالب اصلی وب‌سایت شرکت **MOVTIGROUP** است. هدف از ارائه این مخزن، نمایش و مستندسازی طراحی ظاهری و ساختار صفحات جهت ارائه‌ی هویت بصری شرکت می‌باشد. لازم به ذکر است که کدهای عملکردی و منطق پشت وب‌سایت به صورت خصوصی در مخزن مجزا نگهداری می‌شوند.
+Modern corporate website built with Nuxt 3, Vue 3, and Nuxt Content. Bilingual (English/Farsi) with full SEO optimization and Docker support.
 
-**لینک گیت هاب:** [https://github.com/movtigroup/movtigroup/](https://github.com/movtigroup/movtigroup/)
+## Tech Stack
 
-## معرفی
+- **Framework:** Nuxt 3 (Vue 3 + Node.js)
+- **Content:** Nuxt Content (Markdown-based)
+- **Internationalization:** @nuxtjs/i18n (EN/FA)
+- **SEO:** @nuxtjs/seo (Open Graph, JSON-LD, Sitemap)
+- **State Management:** Pinia
+- **Image Optimization:** @nuxt/image
+- **Deployment:** Docker
 
-این قالب به عنوان الگوی اصلی طراحی سایت شرکت MOVTIGROUP ارائه شده است. در اینجا تمرکز بر ایجاد یک تجربه کاربری مدرن، ساده و واکنش‌گرا قرار دارد. تمامی اجزا و ساختارهای بصری نمایانگر هویت برند، در‌باشند.
+## Features
 
-## ویژگی‌های قالب
+- 🌐 Bilingual (English/Farsi) with RTL support
+- 📝 160+ blog posts (Markdown-based)
+- 🔍 SEO optimized (JSON-LD, Open Graph, Sitemap, robots.txt)
+- 🎨 Modern dark theme with animations
+- 📱 Fully responsive design
+- 🐳 Docker multi-stage build
+- ⚡ Static site generation (SSG) support
 
-- **طراحی ریسپانسیو:** سازگار با تمامی دستگاه‌ها از جمله موبایل، تبلت و دسکتاپ.
-- **سفارشی‌سازی آسان:** امکان تغییر و تطبیق المان‌های طراحی مطابق با هویت بصری شرکت.
-- **سادگی و مستندسازی:** ساختار تمیز و مستند برای مرور و استفاده سریع.
-- **سهولت نگهداری:** به‌روزرسانی‌های منظم و ساختار سازمان‌یافته جهت حفظ انسجام طراحی.
+## Quick Start
 
-## نکات مهم
+### Development
 
-- این مخزن صرفاً جهت نمایش قالب و اجزای ظاهری وب‌سایت می‌باشد.
-- کدهای مربوط به منطق عملکردی و مدیریت ترافیک، در مخزن خصوصی جداگانه نگهداری می‌شوند.
-- تغییرات، بهبودها و به‌روزرسانی‌های طراحی از طریق این مخزن منتشر خواهند شد.
+```bash
+# Install dependencies
+npm install --legacy-peer-deps
 
-## استفاده از قالب
+# Start development server
+npm run dev
+```
 
-برای بررسی اجزای طراحی و ساختار صفحات، می‌توانید فایل‌های موجود در این مخزن را مرور نمایید. در صورت داشتن نظرات یا پیشنهادات جهت بهبود قالب، از طریق بخش **Issues** یا ارتباط مستقیم با تیم ما مشارکت فرمایید.
+Visit `http://localhost:3000`
 
-## ارتباط با ما
+### Production Build
 
-- **ایمیل:** [info@movtigroup.ir](mailto:info@movtigroup.ir)
-- **وب‌سایت:** [movtigroup.ir](https://movtigroup.ir)
-- **گیت هاب:** [https://github.com/movtigroup/movtigroup/](https://github.com/movtigroup/movtigroup/)
+```bash
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+### Static Generation
+
+```bash
+npm run generate
+```
+
+### Docker
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d --build
+
+# Or build Docker image only
+docker build -t movtigroup-web .
+
+# Run container
+docker run -p 3000:3000 movtigroup-web
+```
+
+## Project Structure
+
+```
+├── components/        # Vue components
+├── content/           # Markdown content
+│   ├── en/           # English posts
+│   └── fa/           # Farsi posts
+├── composables/       # Vue composables
+├── i18n/             # Translation files
+├── layouts/          # Page layouts
+├── pages/            # Route pages
+├── public/           # Static assets
+├── server/           # Server API routes
+├── stores/           # Pinia stores
+├── assets/           # CSS and images
+├── Dockerfile        # Docker build
+└── nuxt.config.ts    # Nuxt configuration
+```
+
+## Content Management
+
+All blog posts are stored as Markdown files in `content/en/` and `content/fa/`. Each post uses YAML frontmatter for metadata:
+
+```yaml
+---
+title: "Post Title"
+date: 2024-01-01
+lang: en
+category: "ai-agents"
+author: "MovtiGroup"
+description: "Post description"
+---
+```
+
+## Domain
+
+- **Production:** https://movtigroup.me
+- **GitHub:** https://github.com/movtigroup
+
+## License
+
+Copyright © 2024 MovtiGroup. All rights reserved.
