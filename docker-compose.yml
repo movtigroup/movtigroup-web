@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${PORT:-3002}:${NUXT_PORT:-3000}"
+      - "3003:3000"
     environment:
       - NODE_ENV=${NODE_ENV:-production}
       - NUXT_HOST=${NUXT_HOST:-0.0.0.0}

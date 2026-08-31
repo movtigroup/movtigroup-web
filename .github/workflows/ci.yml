@@ -145,19 +145,19 @@ jobs:
 
       - name: Test Docker container
         run: |
-          echo "Starting Docker container on port 3002..."
-          docker run -d --name test-container -p 3002:3000 movtigroup-web:latest
+          echo "Starting Docker container on port 3003..."
+          docker run -d --name test-container -p 3003:3000 movtigroup-web:latest
           sleep 15
           
           # Health check
           echo "Testing health endpoint..."
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/api/health | grep -q "200" || (docker logs test-container && exit 1)
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/api/health | grep -q "200" || (docker logs test-container && exit 1)
           
           # Test pages
           echo "Testing pages..."
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/ | grep -q "200" || exit 1
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/blog | grep -q "200" || exit 1
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/projects | grep -q "200" || exit 1
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/ | grep -q "200" || exit 1
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/blog | grep -q "200" || exit 1
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/projects | grep -q "200" || exit 1
           
           echo "✅ All Docker tests passed!"
           
