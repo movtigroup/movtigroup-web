@@ -86,8 +86,8 @@ jobs:
       - name: Check content files
         run: |
           echo "Checking content structure..."
-          EN_POSTS=$(ls content/en/*.md 2>/dev/null | wc -l)
-          FA_POSTS=$(ls content/fa/*.md 2>/dev/null | wc -l)
+          EN_POSTS=$(ls content/en/blog/*.md 2>/dev/null | wc -l)
+          FA_POSTS=$(ls content/fa/blog/*.md 2>/dev/null | wc -l)
           I18N_FILES=$(ls i18n/*.json 2>/dev/null | wc -l)
           echo "English posts: $EN_POSTS"
           echo "Farsi posts: $FA_POSTS"
@@ -104,7 +104,7 @@ jobs:
         run: |
           echo "Validating post frontmatter..."
           ERRORS=0
-          for file in content/en/*.md; do
+          for file in content/en/blog/*.md; do
             if ! head -20 "$file" | grep -q "^title:"; then
               echo "❌ Missing title in $file"
               ERRORS=$((ERRORS + 1))
