@@ -1,6 +1,6 @@
 # MovtiGroup Official Website
 
-[![CI/CD](https://github.com/tahatehran/movtigroup-web/actions/workflows/ci.yml/badge.svg)](https://github.com/tahatehran/movtigroup-web/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/movtigroup/movtigroup-web/actions/workflows/ci.yml/badge.svg)](https://github.com/movtigroup/movtigroup-web/actions/workflows/ci.yml)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)](https://docker.com)
 [![Nuxt 3](https://img.shields.io/badge/Nuxt-3-00dc82?logo=nuxt.js)](https://nuxt.com)
 [![Vue 3](https://img.shields.io/badge/Vue-3-4fc08d?logo=vue.js)](https://vuejs.org)
