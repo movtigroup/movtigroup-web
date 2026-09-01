@@ -3,25 +3,40 @@
     <section class="page-header">
       <div class="container">
         <h1>{{ $t('nav.blog') }}</h1>
-        <p>Technical articles on AI, DevOps, Security, and Software Engineering</p>
+        <p>{{ $t('blog.subtitle') }}</p>
       </div>
     </section>
 
     <section class="blog-content">
       <div class="container">
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input
+            v-model="searchQuery"
+            type="text"
+            :placeholder="$t('blog.searchPlaceholder')"
+            class="search-input"
+          />
+          <span v-if="searchQuery" class="search-count">
+            {{ filteredPosts.length }} {{ $t('blog.resultsFound') }}
+          </span>
+        </div>
+
+        <!-- Categories -->
         <div class="filters">
           <button 
-            v-for="cat in categories" 
-            :key="cat.slug"
+            v-for="cat in availableCategories" 
+            :key="cat"
             class="filter-btn"
-            :class="{ active: activeCategory === cat.slug }"
-            @click="activeCategory = cat.slug"
+            :class="{ active: activeCategory === cat }"
+            @click="activeCategory = cat"
           >
-            {{ cat.name }}
+            {{ cat === 'all' ? $t('blog.allCategories') : cat }}
           </button>
         </div>
 
-        <div class="card-grid">
+        <!-- Posts Grid -->
+        <div v-if="filteredPosts.length" class="card-grid">
           <article v-for="post in filteredPosts" :key="post._path" class="card post-card">
             <div class="post-card-top">
               <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
@@ -31,9 +46,19 @@
             <p class="post-card-desc">{{ post.description }}</p>
             <div class="post-card-footer">
               <span class="post-date">{{ formatDate(post.date) }}</span>
-              <NuxtLink :to="post._path" class="btn btn-primary btn-small">Read More</NuxtLink>
+              <NuxtLink :to="post._path" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
             </div>
           </article>
+        </div>
+
+        <!-- No Results -->
+        <div v-else class="no-results">
+          <p>{{ $t('blog.noResults') }}</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="blog-stats">
+          <span>{{ totalPosts }} {{ $t('blog.totalPosts') }}</span>
         </div>
       </div>
     </section>
@@ -41,32 +66,64 @@
 </template>
 
 <script setup>
+const { locale } = useI18n()
+const searchQuery = ref('')
 const activeCategory = ref('all')
 
-const { data: posts } = await useAsyncData('all-posts', () => 
-  queryContent('/')
+// Get all posts for current locale
+const { data: posts } = await useAsyncData(`blog-posts-${locale.value}`, () => 
+  queryContent(locale.value, 'blog')
+    .where({ _partial: false })
     .sort({ date: -1 })
     .find()
 )
 
-const categories = [
-  { slug: 'all', name: 'All' },
-  { slug: 'ai-agents', name: 'AI Agents' },
-  { slug: 'docker', name: 'Docker & DevOps' },
-  { slug: 'python', name: 'Python' },
-  { slug: 'security', name: 'Security' },
-  { slug: 'api', name: 'API' },
-  { slug: 'linux', name: 'Linux' }
-]
+// Get unique categories from posts
+const availableCategories = computed(() => {
+  const cats = new Set(['all'])
+  posts.value?.forEach(p => {
+    if (p.category) cats.add(p.category)
+  })
+  return Array.from(cats)
+})
 
+// Total posts count
+const totalPosts = computed(() => posts.value?.length || 0)
+
+// Filter posts by search and category
 const filteredPosts = computed(() => {
-  if (activeCategory.value === 'all') return posts.value
-  return posts.value?.filter(p => p.category === activeCategory.value)
+  let result = posts.value || []
+  
+  // Category filter
+  if (activeCategory.value !== 'all') {
+    result = result.filter(p => p.category === activeCategory.value)
+  }
+  
+  // Search filter
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.toLowerCase()
+    result = result.filter(p => 
+      p.title?.toLowerCase().includes(q) ||
+      p.description?.toLowerCase().includes(q) ||
+      p.category?.toLowerCase().includes(q)
+    )
+  }
+  
+  return result
 })
 
 const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+  if (!date) return ''
+  return new Date(date).toLocaleDateString(locale.value === 'fa' ? 'fa-IR' : 'en-US', { 
+    year: 'numeric', month: 'short', day: 'numeric' 
+  })
 }
+
+// Reset category when locale changes
+watch(locale, () => {
+  activeCategory.value = 'all'
+  searchQuery.value = ''
+})
 </script>
 
 <style scoped>
@@ -92,6 +149,37 @@ const formatDate = (date) => {
 
 .blog-content {
   padding: 3rem 0;
+}
+
+.search-bar {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-bright);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+.search-count {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 .filters {
@@ -122,5 +210,19 @@ const formatDate = (date) => {
   background: rgba(0, 206, 201, 0.1) !important;
   color: var(--accent) !important;
   border-color: rgba(0, 206, 201, 0.15) !important;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
+.blog-stats {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
 }
 </style>

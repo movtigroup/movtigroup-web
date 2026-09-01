@@ -65,6 +65,25 @@
     "github": "GitHub",
     "contact": "Get in Touch"
   },
+  "blog": {
+    "subtitle": "Technical articles on AI, DevOps, Security, and Software Engineering",
+    "searchPlaceholder": "Search posts...",
+    "readMore": "Read More",
+    "allCategories": "All",
+    "noResults": "No posts found matching your search.",
+    "postNotFound": "Post not found",
+    "backToBlog": "Back to Blog",
+    "resultsFound": "results found",
+    "totalPosts": "total posts"
+  },
+  "search": {
+    "title": "Search",
+    "subtitle": "Find posts by title, description, or category",
+    "placeholder": "Type to search...",
+    "resultsFound": "results found for",
+    "noResults": "No results found. Try a different query.",
+    "hint": "Start typing to search across all posts."
+  },
   "footer": {
     "rights": "All rights reserved.",
     "madeWith": "Made with ❤️ by MovtiGroup"
