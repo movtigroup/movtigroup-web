@@ -1,11 +1,10 @@
 <template>
   <div class="collaborations-page">
-    <section class="page-header" v-reveal>
-      <div class="container">
-        <h1>{{ $t('nav.collaborations') }}</h1>
-        <p>We partner with leading open-source projects and teams</p>
-      </div>
-    </section>
+    <PageHero
+      :title="$t('nav.collaborations')"
+      subtitle="We partner with leading open-source projects and teams — from AI agents to desktop and mobile apps."
+      badge="4 partner projects"
+    />
 
     <section class="collaborations-content">
       <div class="container">
@@ -86,7 +85,7 @@
 
 <style scoped>
 .collaborations-page {
-  padding-top: 100px;
+  padding-bottom: 2rem;
 }
 
 .page-header {

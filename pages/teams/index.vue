@@ -1,15 +1,10 @@
 <template>
   <div class="teams-page">
-    <section class="teams-hero" v-reveal>
-      <div class="teams-hero-glow" aria-hidden="true"></div>
-      <h1>{{ $t('teams.title') }}</h1>
-      <p>{{ $t('teams.subtitle') }}</p>
-      <div class="team-count-badge">
-        <UiIcon icon="users" :size="16" />
-        <span>{{ $t('teams.membersLabel') }}</span>
-        <span class="count-num">{{ members.length }}</span>
-      </div>
-    </section>
+    <PageHero
+      :title="$t('teams.title')"
+      :subtitle="$t('teams.subtitle')"
+      :badge="`${members.length} ${$t('teams.membersLabel')}`"
+    />
 
     <section class="team-grid-section">
       <div class="container">
@@ -116,75 +111,7 @@ useSeoMeta({
 
 <style scoped>
 .teams-page {
-  padding-top: 120px;
   padding-bottom: 4rem;
-}
-
-/* Hero */
-.teams-hero {
-  position: relative;
-  text-align: center;
-  padding: 4rem 1.5rem 3rem;
-  overflow: hidden;
-}
-
-.teams-hero-glow {
-  position: absolute;
-  inset: auto 0 -60% 0;
-  height: 300px;
-  background: radial-gradient(ellipse at center, rgba(108, 92, 231, 0.25), transparent 65%);
-  animation: heroGlow 7s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes heroGlow {
-  from { transform: translateY(0) scale(1); opacity: 0.7; }
-  to { transform: translateY(-24px) scale(1.12); opacity: 1; }
-}
-
-.teams-hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.75rem;
-}
-
-.teams-hero p {
-  color: var(--text-muted);
-  max-width: 640px;
-  margin: 0 auto 1.5rem;
-}
-
-.team-count-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 1.1rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--bg-card);
-  color: var(--text-primary);
-  font-size: 0.9rem;
-}
-
-.team-count-badge .count-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 999px;
-  background: var(--gradient);
-  color: #fff;
-  font-weight: 700;
-  animation: badgePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.35s;
-}
-
-@keyframes badgePop {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
 }
 
 /* Grid */

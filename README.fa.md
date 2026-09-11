@@ -143,6 +143,16 @@ description: "توضیح کوتاه مقاله"
 | `HOST` | `0.0.0.0` | آدرس bind |
 | `NUXT_PUBLIC_SITE_URL` | `https://movtigroup.me` | آدرس پایه برای canonical/OG/سایت‌مپ |
 
+## 🏗️ معماری
+
+معماری کامل، قراردادها و حافظه پروژه را در [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) ببینید.
+
+## 🙏 قدردانی
+
+- آیکون‌های برند: [icons.lobehub.com](https://icons.lobehub.com) (`@lobehub/icons-static-svg`) + [simple-icons](https://simpleicons.org)
+- زبان طراحی الهام‌گرفته از [ui.lobehub.com](https://ui.lobehub.com)
+- انیمیشن: [three.js](https://threejs.org)، [anime.js](https://animejs.com)، فونت‌های [Fontsource](https://fontsource.org) (وزیرمتن، Inter)
+
 ## 🏷️ ریلیز
 
 ورک‌فلو **Release** را اجرا کنید (Actions → Release → Run workflow). بدون ورودی از **v0.0.1** شروع می‌کند و هر بار یک patch جلو می‌رود؛ می‌توانید نسخه صریح هم بنویسید (مثل `0.1.0`).

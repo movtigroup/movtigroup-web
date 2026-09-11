@@ -28,6 +28,7 @@ Modern corporate website built with **Nuxt 3**, **Nuxt Content v3**, and **Vue 3
 - **Fully self-hosted fonts** — [Vazirmatn](https://fontsource.org/fonts/vazirmatn) (Persian) + [Inter](https://fontsource.org/fonts/inter) (English) bundled locally via Fontsource — zero CDN requests, works offline
 - **Blog engine** — 95 English + 65 Farsi articles via `@nuxt/content` v3 with syntax highlighting
 - **Animated UI** — scroll-reveal sections, page transitions, hero entrance effects, animated stat counters — all CSS-driven and `prefers-reduced-motion` friendly
+- **three.js + anime.js** — WebGL particle sphere in the hero and orchestrated entrance/counter animations (lazy-loaded, performance-conscious)
 - **Client-side search** with category filtering
 - **Docker-ready** — multi-stage build, health checks, nginx reverse proxy included
 - **GitHub Actions** — CI (build + SSR smoke tests + content validation + Docker) and automated tag & release pipeline
@@ -178,6 +179,16 @@ CI runs the same checks automatically: multi-Node build matrix, SSR smoke tests 
 ## 🏷️ Releases
 
 Run the **Release** workflow (Actions → Release → Run workflow). With no input it starts at **v0.0.1** and auto-bumps the patch on each run; you can also type an explicit semver (e.g. `0.1.0`). The workflow tags the repo, syncs `package.json`, attaches build notes and a zip of `.output`.
+
+## 🏗️ Architecture
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full architecture, conventions and project memory (stack decisions, data flow, taxonomy, covers pipeline).
+
+## 🙏 Credits
+
+- Brand icons: [icons.lobehub.com](https://icons.lobehub.com) (`@lobehub/icons-static-svg`) + [simple-icons](https://simpleicons.org)
+- Design language inspired by [ui.lobehub.com](https://ui.lobehub.com)
+- Animation: [three.js](https://threejs.org), [anime.js](https://animejs.com), [Fontsource](https://fontsource.org) fonts (Vazirmatn, Inter)
 
 ## 🛠️ Utility Scripts
 

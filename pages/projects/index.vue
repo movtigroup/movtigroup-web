@@ -1,11 +1,10 @@
 <template>
   <div class="projects-page">
-    <section class="page-header" v-reveal>
-      <div class="container">
-        <h1>{{ $t('nav.projects') }}</h1>
-        <p>Open source tools and frameworks built with passion</p>
-      </div>
-    </section>
+    <PageHero
+      title="Open Source Projects"
+      subtitle="Tools and frameworks built with passion — AI proxies, mirrors, encoding libraries and developer infrastructure."
+      badge="9 open-source projects"
+    />
 
     <section class="projects-content">
       <div class="container">
@@ -113,7 +112,7 @@ const projects = [
 
 <style scoped>
 .projects-page {
-  padding-top: 100px;
+  padding-bottom: 2rem;
 }
 
 .projects-more {

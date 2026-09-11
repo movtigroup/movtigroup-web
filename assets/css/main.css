@@ -152,6 +152,13 @@ a:hover {
   overflow: hidden;
 }
 
+.post-card-top {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
 .post-cover {
   display: block;
   overflow: hidden;

@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- **`docs/ARCHITECTURE.md`** — full architecture + project memory (stack decisions, data flow, conventions, credits) mentioning **icons.lobehub.com**, **ui.lobehub.com** and **charts.lobehub.com**; README (EN/FA) gained an Architecture section and a Credits block
+- **`PageHero` component** — animated gradient page header with badge, grid pattern and entrance effects; applied to Blog, Projects, Contact, Team and Collaborations pages
+- **Blog page polish** — category filter chips now show live post counts, rounded pill filters with hover lift, cover cards refined
+- **Contact page redesigned** — info cards with gradient icon tiles (Email, GitHub, LinkedIn, Hamgit, X), card-style form with focus states, responsive two-column grid
 - **Cover image for every blog post** — `scripts/generate-covers.mjs` generates a branded 1200×630 SVG cover (deterministic gradient, M logo mark, wrapped localized title) for all 160 posts into `public/covers/`; covers shown on blog/search/home cards and at the top of each post (`npm run generate:covers` to regenerate)
 - **Company logo** (`public/images/logo.png`, from the GitHub avatar) now used in the navbar, footer, favicon and JSON-LD publisher logo
 - **Team page** (`/teams`, `/fa/teams`) migrated from the legacy `tahatehran.github.io` site — 5 members with photos, role badges and social links; added to the navbar and sitemap

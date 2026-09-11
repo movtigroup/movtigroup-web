@@ -1,11 +1,10 @@
 <template>
   <div class="blog-page">
-    <section class="page-header" v-reveal>
-      <div class="container">
-        <h1>{{ $t('nav.blog') }}</h1>
-        <p>{{ $t('blog.subtitle') }}</p>
-      </div>
-    </section>
+    <PageHero
+      :title="$t('nav.blog')"
+      :subtitle="$t('blog.subtitle')"
+      :badge="`${totalPosts} ${$t('blog.totalPosts')} · EN / FA`"
+    />
 
     <section class="blog-content">
       <div class="container">
@@ -23,15 +22,16 @@
         </div>
 
         <!-- Categories -->
-        <div class="filters">
+        <div class="filters" v-reveal>
           <button
             v-for="cat in availableCategories"
-            :key="cat"
+            :key="cat.name"
             class="filter-btn"
-            :class="{ active: activeCategory === cat }"
-            @click="activeCategory = cat"
+            :class="{ active: activeCategory === cat.name }"
+            @click="activeCategory = cat.name"
           >
-            {{ cat === 'all' ? $t('blog.allCategories') : cat }}
+            {{ cat.name === 'all' ? $t('blog.allCategories') : cat.name }}
+            <span class="filter-count">{{ cat.count }}</span>
           </button>
           <button v-if="activeTag" class="filter-btn tag-filter-active" @click="activeTag = ''">
             #{{ activeTag }} ✕
@@ -108,13 +108,18 @@ const { data: posts } = await useAsyncData(`blog-posts-${locale.value}`, () =>
     .all()
 )
 
-// Get unique categories from posts
+// Get unique categories from posts (with counts for the filter chips)
 const availableCategories = computed(() => {
-  const cats = new Set(['all'])
+  const counts = new Map()
   posts.value?.forEach(p => {
-    if (p.category) cats.add(p.category)
+    if (p.category) counts.set(p.category, (counts.get(p.category) || 0) + 1)
   })
-  return Array.from(cats)
+  return [
+    { name: 'all', count: posts.value?.length || 0 },
+    ...[...counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([name, count]) => ({ name, count }))
+  ]
 })
 
 // Total posts count
@@ -172,7 +177,7 @@ useSeoMeta({
 
 <style scoped>
 .blog-page {
-  padding-top: 100px;
+  padding-bottom: 4rem;
 }
 
 .page-header {
@@ -234,20 +239,47 @@ useSeoMeta({
 }
 
 .filter-btn {
-  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--text-muted);
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
+  font-family: inherit;
+  font-size: 0.88rem;
   transition: var(--transition);
 }
 
-.filter-btn:hover,
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--text-bright);
+  transform: translateY(-1px);
+}
+
 .filter-btn.active {
   background: var(--primary);
   border-color: var(--primary);
   color: white;
+  box-shadow: 0 4px 14px rgba(108, 92, 231, 0.35);
+}
+
+.filter-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.filter-btn.active .filter-count {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .category-chip {
