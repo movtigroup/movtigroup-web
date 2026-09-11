@@ -45,7 +45,7 @@
             We are a small team of developers, designers and AI enthusiasts
             building open-source tools together.
           </p>
-          <NuxtLink to="/teams" class="btn btn-primary">
+          <NuxtLink :to="localePath('/teams')" class="btn btn-primary">
             {{ $t('nav.teams') }}
             <UiIcon icon="arrow-right" :size="15" />
           </NuxtLink>
@@ -150,4 +150,6 @@ useSeoMeta({
   title: 'About Us — MovtiGroup',
   description: 'Learn about MovtiGroup — our mission, values, and the team building innovative software solutions and open source tools for developers worldwide.'
 })
+
+const localePath = useLocalePath()
 </script>

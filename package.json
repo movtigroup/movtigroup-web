@@ -13,6 +13,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview --port 3002",
     "start": "node scripts/start.mjs",
+    "generate:covers": "node scripts/generate-covers.mjs",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {

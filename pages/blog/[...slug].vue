@@ -2,12 +2,19 @@
   <div class="post-page">
     <div class="container">
       <nav class="breadcrumb">
-        <NuxtLink to="/blog">{{ $t('nav.blog') }}</NuxtLink>
+        <NuxtLink :to="localePath('/blog')">{{ $t('nav.blog') }}</NuxtLink>
         <span class="separator">/</span>
         <span>{{ post?.title }}</span>
       </nav>
 
       <article v-if="post" class="post-article">
+        <img
+          :src="`/covers${contentPath}.svg`"
+          :alt="post.title"
+          class="post-hero-cover"
+          width="1200"
+          height="630"
+        />
         <div class="post-header">
           <div class="post-meta-top">
             <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
@@ -26,12 +33,12 @@
 
       <div v-else class="not-found">
         <h2>{{ $t('blog.postNotFound') }}</h2>
-        <NuxtLink to="/blog" class="btn btn-primary">{{ $t('blog.backToBlog') }}</NuxtLink>
+        <NuxtLink :to="localePath('/blog')" class="btn btn-primary">{{ $t('blog.backToBlog') }}</NuxtLink>
       </div>
 
       <!-- Back to blog -->
       <div class="back-link">
-        <NuxtLink to="/blog" class="btn btn-secondary">← {{ $t('blog.backToBlog') }}</NuxtLink>
+        <NuxtLink :to="localePath('/blog')" class="btn btn-secondary">← {{ $t('blog.backToBlog') }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -43,6 +50,7 @@ const { locale, t } = useI18n()
 
 const config = useRuntimeConfig()
 const siteUrl = (config.public.siteUrl || 'https://movtigroup.me').replace(/\/$/, '')
+const localePath = useLocalePath()
 
 // EN app routes carry no locale prefix; content paths always do (/en|fa/blog/slug)
 const contentPath = route.path.startsWith('/fa/')
@@ -134,6 +142,14 @@ useHead(() => ({
 .post-article {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.post-hero-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
 }
 
 .post-header {

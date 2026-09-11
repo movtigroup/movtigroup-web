@@ -146,6 +146,34 @@ a:hover {
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(108, 92, 231, 0.12);
 }
 
+/* ===== Blog cards with cover ===== */
+.post-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.post-cover {
+  display: block;
+  overflow: hidden;
+}
+
+.post-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.post-card:hover .post-cover img {
+  transform: scale(1.045);
+}
+
+.post-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
 /* ===== Scroll reveal (v-reveal directive) ===== */
 .reveal {
   opacity: 0;

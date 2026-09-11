@@ -85,7 +85,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' }
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+        { rel: 'icon', type: 'image/png', href: '/images/logo.png' }
       ],
       script: [
         {
@@ -102,7 +102,7 @@ export default defineNuxtConfig({
               'name': 'MovtiGroup',
               'url': siteUrl,
               'email': 'info@movtigroup.me',
-              'logo': { '@type': 'ImageObject', 'url': `${siteUrl}/og-image.png` }
+              'logo': { '@type': 'ImageObject', 'url': `${siteUrl}/images/logo.png` }
             },
             'sameAs': [
               'https://github.com/movtigroup'

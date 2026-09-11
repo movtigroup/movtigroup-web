@@ -16,7 +16,7 @@
           </div>
             <h2>{{ slide.title }}</h2>
             <p>{{ slide.subtitle }}</p>
-            <NuxtLink :to="slide.link" class="btn btn-primary">
+            <NuxtLink :to="localePath(slide.link)" class="btn btn-primary">
               {{ slide.cta }}
             </NuxtLink>
           </div>
@@ -97,19 +97,24 @@
           class="card post-card"
           v-reveal="{ delay: (index % 3) * 120 }"
         >
-          <div class="post-card-top">
-            <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
-          </div>
-          <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
-          <p class="post-card-desc">{{ post.description }}</p>
-          <div class="post-card-footer">
-            <span class="post-date">{{ formatDate(post.date) }}</span>
-            <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">Read More</NuxtLink>
+          <NuxtLink :to="postLink(post)" class="post-cover" tabindex="-1" aria-hidden="true">
+            <img :src="coverFor(post)" :alt="post.title" loading="lazy" width="1200" height="630" />
+          </NuxtLink>
+          <div class="post-card-body">
+            <div class="post-card-top">
+              <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
+            </div>
+            <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
+            <p class="post-card-desc">{{ post.description }}</p>
+            <div class="post-card-footer">
+              <span class="post-date">{{ formatDate(post.date) }}</span>
+              <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">Read More</NuxtLink>
+            </div>
           </div>
         </article>
       </div>
       <div style="text-align: center; margin-top: 2rem;">
-        <NuxtLink to="/blog" class="btn btn-primary">View All Articles</NuxtLink>
+        <NuxtLink :to="localePath('/blog')" class="btn btn-primary">View All Articles</NuxtLink>
       </div>
     </section>
 
@@ -167,7 +172,7 @@
           <a href="https://github.com/movtigroup" target="_blank" class="btn btn-primary">
             {{ $t('cta.github') }}
           </a>
-          <NuxtLink to="/contact" class="btn btn-secondary">
+          <NuxtLink :to="localePath('/contact')" class="btn btn-secondary">
             {{ $t('cta.contact') }}
           </NuxtLink>
         </div>
@@ -178,6 +183,7 @@
 
 <script setup>
 const { t, locale } = useI18n()
+const localePath = useLocalePath()
 const currentSlide = ref(0)
 
 const config = useRuntimeConfig()
@@ -493,8 +499,8 @@ useSeoMeta({
   background: var(--bg-card);
 }
 
-.post-card {
-  padding: 1.5rem;
+.post-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
 }
 
 .post-chip {

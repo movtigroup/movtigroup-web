@@ -4,17 +4,17 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3 class="footer-logo">
-            <span class="footer-logo-icon"><UiIcon icon="zap" :size="14" /></span>
+            <img src="/images/logo.png" alt="MovtiGroup logo" class="footer-logo-img" width="30" height="30" />
             MovtiGroup
           </h3>
           <p>{{ $t('footer.madeWith') }}</p>
         </div>
         <div class="footer-links">
           <h4>{{ $t('nav.home') }}</h4>
-          <NuxtLink to="/blog">{{ $t('nav.blog') }}</NuxtLink>
-          <NuxtLink to="/projects">{{ $t('nav.projects') }}</NuxtLink>
-          <NuxtLink to="/teams">{{ $t('nav.teams') }}</NuxtLink>
-          <NuxtLink to="/about">{{ $t('nav.about') }}</NuxtLink>
+          <NuxtLink :to="localePath('/blog')">{{ $t('nav.blog') }}</NuxtLink>
+          <NuxtLink :to="localePath('/projects')">{{ $t('nav.projects') }}</NuxtLink>
+          <NuxtLink :to="localePath('/teams')">{{ $t('nav.teams') }}</NuxtLink>
+          <NuxtLink :to="localePath('/about')">{{ $t('nav.about') }}</NuxtLink>
         </div>
         <div class="footer-social">
           <h4>Social</h4>
@@ -35,6 +35,10 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+const localePath = useLocalePath()
+</script>
 
 <style scoped>
 .footer {
@@ -87,14 +91,11 @@
   gap: 0.55rem;
 }
 
-.footer-logo-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
+.footer-logo-img {
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
-  background: var(--gradient);
-  color: #fff;
+  box-shadow: 0 2px 10px rgba(108, 92, 231, 0.35);
 }
 
 .footer-bottom {

@@ -140,7 +140,7 @@ Your content here...
 
 - File name becomes the URL: `content/en/blog/my-post.md` → `/blog/my-post` (English) and `content/fa/blog/my-post.md` → `/fa/blog/my-post` (Persian).
 - Keep EN and FA file names identical so the sitemap can pair hreflang alternates.
-- Every post automatically gets `BlogPosting` JSON-LD, OG tags, and a sitemap entry.
+- Every post automatically gets `BlogPosting` JSON-LD, OG tags, a sitemap entry, and a branded cover image — after adding posts run `npm run generate:covers` to regenerate cover art in `public/covers/`.
 
 ## 🔍 SEO Checklist (built in)
 

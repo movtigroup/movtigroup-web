@@ -43,15 +43,20 @@
             class="card post-card"
             v-reveal="{ delay: Math.min(index % 3, 2) * 100 }"
           >
-            <div class="post-card-top">
-              <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
-              <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
-            </div>
-            <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
-            <p class="post-card-desc">{{ post.description }}</p>
-            <div class="post-card-footer">
-              <span class="post-date">{{ formatDate(post.date) }}</span>
-              <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
+            <NuxtLink :to="postLink(post)" class="post-cover" tabindex="-1" aria-hidden="true">
+              <img :src="coverFor(post)" :alt="post.title" loading="lazy" width="1200" height="630" />
+            </NuxtLink>
+            <div class="post-card-body">
+              <div class="post-card-top">
+                <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
+                <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
+              </div>
+              <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
+              <p class="post-card-desc">{{ post.description }}</p>
+              <div class="post-card-footer">
+                <span class="post-date">{{ formatDate(post.date) }}</span>
+                <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
+              </div>
             </div>
           </article>
         </div>

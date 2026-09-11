@@ -27,7 +27,7 @@ useHead(() => ({
   },
   link: [
     ...(head.value.link || []),
-    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+    { rel: 'icon', type: 'image/png', href: '/images/logo.png' }
   ],
   meta: [
     ...(head.value.meta || []),

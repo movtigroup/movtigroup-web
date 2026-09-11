@@ -1,18 +1,18 @@
 <template>
   <header class="navbar" :class="{ scrolled: isScrolled }">
     <div class="container nav-container">
-      <NuxtLink to="/" class="logo">
-        <span class="logo-icon"><UiIcon icon="zap" :size="16" /></span>
+      <NuxtLink :to="localePath('/')" class="logo">
+        <img src="/images/logo.png" alt="MovtiGroup logo" class="logo-img" width="30" height="30" />
         <span class="logo-text">MovtiGroup</span>
       </NuxtLink>
-      
+
       <nav class="nav-links" :class="{ active: mobileMenuOpen }">
-        <NuxtLink to="/" class="nav-link">{{ $t('nav.home') }}</NuxtLink>
-        <NuxtLink to="/blog" class="nav-link">{{ $t('nav.blog') }}</NuxtLink>
-        <NuxtLink to="/projects" class="nav-link">{{ $t('nav.projects') }}</NuxtLink>
-        <NuxtLink to="/teams" class="nav-link">{{ $t('nav.teams') }}</NuxtLink>
-        <NuxtLink to="/about" class="nav-link">{{ $t('nav.about') }}</NuxtLink>
-        <NuxtLink to="/contact" class="nav-link">{{ $t('nav.contact') }}</NuxtLink>
+        <NuxtLink :to="localePath('/')" class="nav-link">{{ $t('nav.home') }}</NuxtLink>
+        <NuxtLink :to="localePath('/blog')" class="nav-link">{{ $t('nav.blog') }}</NuxtLink>
+        <NuxtLink :to="localePath('/projects')" class="nav-link">{{ $t('nav.projects') }}</NuxtLink>
+        <NuxtLink :to="localePath('/teams')" class="nav-link">{{ $t('nav.teams') }}</NuxtLink>
+        <NuxtLink :to="localePath('/about')" class="nav-link">{{ $t('nav.about') }}</NuxtLink>
+        <NuxtLink :to="localePath('/contact')" class="nav-link">{{ $t('nav.contact') }}</NuxtLink>
       </nav>
       
       <div class="nav-actions">
@@ -45,6 +45,7 @@
 
 <script setup>
 const { locale, locales, setLocale } = useI18n()
+const localePath = useLocalePath()
 const isScrolled = ref(false)
 const mobileMenuOpen = ref(false)
 
@@ -106,15 +107,11 @@ onUnmounted(() => {
   color: var(--text-bright);
 }
 
-.logo-icon {
-  display: inline-grid;
-  place-items: center;
+.logo-img {
   width: 30px;
   height: 30px;
-  border-radius: 9px;
-  background: var(--gradient);
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(108, 92, 231, 0.4);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links {
