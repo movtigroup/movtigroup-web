@@ -89,15 +89,15 @@
         <p>Latest articles on technology, AI, and software engineering.</p>
       </div>
       <div class="card-grid">
-        <article v-for="post in latestPosts" :key="post._path" class="card post-card">
+        <article v-for="post in latestPosts" :key="post.path" class="card post-card">
           <div class="post-card-top">
             <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
           </div>
-          <h3><NuxtLink :to="post._path">{{ post.title }}</NuxtLink></h3>
+          <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
           <p class="post-card-desc">{{ post.description }}</p>
           <div class="post-card-footer">
             <span class="post-date">{{ formatDate(post.date) }}</span>
-            <NuxtLink :to="post._path" class="btn btn-primary btn-small">Read More</NuxtLink>
+            <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">Read More</NuxtLink>
           </div>
         </article>
       </div>
@@ -173,18 +173,23 @@
 const { t } = useI18n()
 const currentSlide = ref(0)
 
+const config = useRuntimeConfig()
+const siteUrl = (config.public.siteUrl || 'https://movtigroup.me').replace(/\/$/, '')
+
 const slides = [
   { title: t('hero.slide1.title'), subtitle: t('hero.slide1.subtitle'), cta: t('hero.slide1.cta'), link: '/blog' },
   { title: t('hero.slide2.title'), subtitle: t('hero.slide2.subtitle'), cta: t('hero.slide2.cta'), link: '/blog' },
   { title: t('hero.slide3.title'), subtitle: t('hero.slide3.subtitle'), cta: t('hero.slide3.cta'), link: '/projects' }
 ]
 
+const postLink = usePostLink()
+
 // Fetch latest posts
-const { data: latestPosts } = await useAsyncData('latest-posts', () => 
-  queryContent('en')
-    .sort({ date: -1 })
+const { data: latestPosts } = await useAsyncData('latest-posts', () =>
+  queryCollection('blog_en')
+    .order('date', 'DESC')
     .limit(6)
-    .find()
+    .all()
 )
 
 const formatDate = (date) => {
@@ -192,10 +197,25 @@ const formatDate = (date) => {
 }
 
 // Auto-rotate slider
+let sliderTimer
 onMounted(() => {
-  setInterval(() => {
+  sliderTimer = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % slides.length
   }, 5000)
+})
+onUnmounted(() => {
+  if (sliderTimer) clearInterval(sliderTimer)
+})
+
+useSeoMeta({
+  title: 'MovtiGroup — Innovative Software Solutions & Open Source Tools',
+  description: 'MovtiGroup builds innovative software solutions and open source tools for developers. Articles on AI, DevOps, and software engineering in English and Persian.',
+  ogTitle: 'MovtiGroup',
+  ogDescription: 'Innovative Software Solutions & Open Source Tools',
+  ogUrl: siteUrl,
+  ogImage: `${siteUrl}/og-image.png`,
+  twitterTitle: 'MovtiGroup',
+  twitterDescription: 'Innovative Software Solutions & Open Source Tools'
 })
 </script>
 

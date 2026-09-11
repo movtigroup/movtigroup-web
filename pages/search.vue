@@ -24,16 +24,16 @@
         </div>
 
         <div v-if="filteredPosts.length" class="card-grid">
-          <article v-for="post in filteredPosts" :key="post._path" class="card post-card">
+          <article v-for="post in filteredPosts" :key="post.path" class="card post-card">
             <div class="post-card-top">
               <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
               <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
             </div>
-            <h3><NuxtLink :to="post._path">{{ post.title }}</NuxtLink></h3>
+            <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
             <p class="post-card-desc">{{ post.description }}</p>
             <div class="post-card-footer">
               <span class="post-date">{{ formatDate(post.date) }}</span>
-              <NuxtLink :to="post._path" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
+              <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
             </div>
           </article>
         </div>
@@ -54,10 +54,10 @@
 const { locale } = useI18n()
 const query = ref('')
 
+const postLink = usePostLink()
+
 const { data: posts } = await useAsyncData(`search-posts-${locale.value}`, () =>
-  queryContent(locale.value, 'blog')
-    .where({ _partial: false })
-    .find()
+  queryCollection(blogCollectionFor(locale.value)).all()
 )
 
 const filteredPosts = computed(() => {
@@ -78,7 +78,10 @@ const formatDate = (date) => {
 }
 
 useHead({
-  title: 'Search - MovtiGroup'
+  title: 'Search — MovtiGroup',
+  meta: [
+    { name: 'robots', content: 'noindex, follow' }
+  ]
 })
 </script>
 

@@ -78,6 +78,11 @@ const submitForm = () => {
   form.subject = ''
   form.message = ''
 }
+
+useSeoMeta({
+  title: 'Contact Us — MovtiGroup',
+  description: 'Get in touch with the MovtiGroup team — questions, feedback, collaborations and support.'
+})
 </script>
 
 <style scoped>

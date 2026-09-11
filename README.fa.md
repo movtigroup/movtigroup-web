@@ -1,214 +1,162 @@
 <div dir="rtl">
 
-# وبسایت رسمی موتی‌گروپ
+# وب‌سایت رسمی موتی‌گروپ
 
-[![CI/CD](https://github.com/tahatehran/movtigroup-web/actions/workflows/ci.yml/badge.svg)](https://github.com/tahatehran/movtigroup-web/actions/workflows/ci.yml)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue?logo=docker)](https://docker.com)
+[![CI](https://github.com/movtigroup/movtigroup-web/actions/workflows/ci.yml/badge.svg)](https://github.com/movtigroup/movtigroup-web/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/badge/release-v0.0.1-blue?logo=github)](https://github.com/movtigroup/movtigroup-web/releases)
 [![Nuxt 3](https://img.shields.io/badge/Nuxt-3-00dc82?logo=nuxt.js)](https://nuxt.com)
 [![Vue 3](https://img.shields.io/badge/Vue-3-4fc08d?logo=vue.js)](https://vuejs.org)
-[![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js)](https://nodejs.org)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-وبسایت شرکتی مدرن ساخته شده با Nuxt 3، Vue 3 و Nuxt Content. دوزبانه (انگلیسی/فارسی) با بهینه‌سازی کامل SEO و پشتیبانی از Docker.
+وب‌سایت شرکتی مدرن ساخته‌شده با **Nuxt 3**، **Nuxt Content v3** و **Vue 3**. دوزبانه (انگلیسی/فارسی) با سئوی کامل، فونت‌های کاملاً لوکال و استقرار تک‌دستوری با Docker — همه‌چیز روی پورت **3002** اجرا می‌شود.
 
 [🇬🇧 English Version](README.md)
 
----
+## 📸 اسکرین‌شات‌ها
+
+| انگلیسی (LTR) | فارسی (RTL) |
+|:---:|:---:|
+| ![صفحه اصلی EN](docs/screenshots/home-en.png) | ![صفحه اصلی FA](docs/screenshots/home-fa.png) |
+
+| بلاگ | پست بلاگ | پروژه‌ها |
+|:---:|:---:|:---:|
+| ![بلاگ](docs/screenshots/blog.png) | ![پست](docs/screenshots/blog-post.png) | ![پروژه‌ها](docs/screenshots/projects.png) |
 
 ## ✨ ویژگی‌ها
 
-| ویژگی | وضعیت |
-|-------|-------|
-| **Nuxt 3 + Vue 3** | ✅ |
-| **دوزبانه (EN/FA)** | ✅ |
-| **پشتیبانی RTL** | ✅ |
-| **بهینه‌سازی SEO** | ✅ |
-| **سیستم وبلاگ** | ✅ |
-| **جستجو** | ✅ |
-| **Docker** | ✅ |
-| **ریسپانسیو** | ✅ |
-| **تم تاریک** | ✅ |
-| **CI/CD گیت‌هاب** | ✅ |
-
----
+- **Nuxt 3 + Vue 3** — رندر سمت سرور (SSR) با Nitro
+- **دوزبانه (EN/FA)** — i18n نسخه ۹ با استراتژی `prefix_except_default` و پشتیبانی کامل RTL
+- **سئو حرفه‌ای** — `sitemap.xml` داینامیک (۱۶۰+ آدرس)، `robots.txt`، canonical اختصاصی هر صفحه، hreflang بین دو زبان، Open Graph/Twitter Card و داده‌های ساختاریافته JSON-LD
+- **فونت کاملاً لوکال** — [وزیرمتن](https://fontsource.org/fonts/vazirmatn) (فارسی) و [Inter](https://fontsource.org/fonts/inter) (انگلیسی) از طریق Fontsource داخل خود پروژه — بدون هیچ درخواست CDN، حتی آفلاین کار می‌کند
+- **موتور بلاگ** — ۹۵ مقاله انگلیسی و ۶۵ مقاله فارسی با `@nuxt/content` نسخه ۳ و هایلایت کد
+- **جست‌وجوی سمت کلاینت** با فیلتر دسته‌بندی
+- **آماده Docker** — بیلد چندمرحله‌ای، health check و nginx معکوس
+- **GitHub Actions** — CI (بیلد + تست SSR + اعتبارسنجی محتوا + Docker) و پایپ‌لاین خودکار تگ و ریلیز
 
 ## 🚀 شروع سریع
 
-### توسعه محلی
+> **نیازمندی:** Node.js ≥ 20
 
 ```bash
-# کلون کردن ریپو
-git clone https://github.com/tahatehran/movtigroup-web.git
+git clone https://github.com/movtigroup/movtigroup-web.git
 cd movtigroup-web
 
-# نصب وابستگی‌ها
 npm install --legacy-peer-deps
 
-# شروع سرور توسعه
+# سرور توسعه → http://localhost:3002
 npm run dev
 ```
 
-به `http://localhost:3000` بروید
-
-### Docker
+### محیط پروداکشن
 
 ```bash
-# بیلد و اجرا با Docker Compose
-docker-compose up -d --build
+npm run build
+npm run start          # سرو کردن .output روی پورت 3002
 ```
 
-به `http://localhost:3003` بروید
+همه ورودی‌ها به‌صورت پیش‌فرض روی **پورت 3002** هستند (dev، preview، پروداکشن و Docker). هر زمان با متغیر محیطی `PORT` قابل تغییر است.
 
----
+## 🌐 استقرار
+
+### Vercel
+
+1. مخزن را در Vercel ایمپورت کنید — فریم‌ورک Nuxt خودکار شناسایی می‌شود.
+2. متغیر محیطی `NUXT_PUBLIC_SITE_URL=https://movtigroup.me` (دامنه خودتان) را اضافه کنید.
+3. دیپلوی کنید. SSR به‌صورت Serverless اجرا می‌شود و نیازی به تنظیم پورت نیست.
+
+### Dokploy
+
+1. یک سرویس **Docker Compose** یا **Application** جدید بسازید و به این مخزن اشاره دهید.
+2. Dokploy فایل `Dockerfile` موجود را بیلد می‌کند — اپلیکیشن روی **3002** گوش می‌دهد و `EXPOSE 3002` تنظیم شده است.
+3. مسیر health check: ‏`/api/health`
+4. متغیر `NUXT_PUBLIC_SITE_URL` را روی آدرس عمومی بگذارید و دامنه را در Dokploy متصل کنید.
+
+### Docker / Docker Compose
+
+```bash
+docker compose up -d --build     # اپ روی http://localhost:3002 (nginx روی :80)
+
+# یا docker خالص
+docker build -t movtigroup-web .
+docker run -p 3002:3002 movtigroup-web
+```
+
+## 🔌 پورت ۳۰۰۲ در همه‌جا
+
+| محیط | پورت | محل تنظیم |
+|---|---|---|
+| `npm run dev` | **3002** | `--port 3002` + `devServer` در `nuxt.config.ts` |
+| `npm run preview` | **3002** | `--port 3002` |
+| `npm run start` | **3002** | ‏`scripts/start.mjs` (پیش‌فرض `PORT=3002`) |
+| Docker | **3002** | `ENV PORT=3002` + `EXPOSE 3002` + health check |
+| nginx | **3002** | upstream در `nginx.conf` |
 
 ## 📁 ساختار پروژه
 
 ```
 movtigroup-web/
-├── .github/workflows/ci.yml    # GitHub Actions CI/CD
-├── assets/css/                 # استایل‌های سراسری
-├── components/                 # کامپوننت‌های Vue
-│   ├── Navbar.vue
-│   └── Footer.vue
-├── composables/                # کومپوزبل‌های Vue
-│   └── useBlog.ts
-├── content/                    # پست‌های بلاگ (Markdown)
-│   ├── en/blog/               # پست‌های انگلیسی (۹۵)
-│   └── fa/blog/               # پست‌های فارسی (۶۵)
-├── i18n/                      # ترجمه‌ها
-│   ├── en.json
-│   └── fa.json
-├── layouts/                   # لایوت‌های صفحات
-│   └── default.vue
-├── pages/                     # صفحات مسیرها
-│   ├── index.vue
-│   ├── blog/
-│   │   ├── index.vue          # لیست بلاگ
-│   │   └── [...slug].vue      # پست تکی
-│   ├── search.vue             # صفحه جستجو
-│   ├── projects/
-│   ├── about/
-│   ├── contact/
-│   └── collaborations/
-├── public/                    # فایل‌های استاتیک
-│   ├── favicon.svg
-│   ├── robots.txt
-│   └── sitemap.xml
-├── server/                    | API سرور
-│   └── api/health.ts
-├── Dockerfile                 | بیلد Docker چندمرحله‌ای
-├── docker-compose.yml
-├── nuxt.config.ts
-└── package.json
+├── .github/workflows/          # ci.yml و release.yml
+├── assets/css/main.css         # استایل سراسری (تم تیره، سازگار RTL)
+├── components/                 # Navbar.vue و Footer.vue
+├── composables/useBlog.ts      # کوئری‌های Content v3 + لینک محلی‌سازی‌شده
+├── content/en/blog/            # مقالات انگلیسی (۹۵)
+├── content/fa/blog/            # مقالات فارسی (۶۵)
+├── content.config.ts           # کالکشن‌های Content v3 (blog_en / blog_fa)
+├── i18n/                       # ترجمه‌ها (en.json / fa.json)
+├── pages/                      # index، blog، projects، about، contact، collaborations، search
+├── public/                     # favicon.svg، robots.txt، og-image.png
+├── scripts/start.mjs           # نقطه ورود پروداکشن (پورت 3002)
+├── server/
+│   ├── api/health.ts           # اندپوینت سلامت
+│   └── routes/sitemap.xml.ts   # سایت‌مپ داینامیک از کالکشن‌ها
+├── Dockerfile / docker-compose.yml / nginx.conf
+└── nuxt.config.ts
 ```
 
----
-
-## 📝 سیستم بلاگ
-
-این بلاگ از **Nuxt Content** برای مدیریت محتوای داینامیک استفاده می‌کند.
-
-### ساخت پست جدید
+## 📝 نوشتن مقاله جدید
 
 یک فایل Markdown در `content/en/blog/` یا `content/fa/blog/` بسازید:
 
 ```markdown
 ---
-title: "عنوان پست شما"
-date: 2024-01-15
+title: "عنوان مقاله"
+date: 2026-01-15
 lang: fa
 category: "هوش مصنوعی"
-author: "موتی‌گروپ"
-description: "توضیح کوتاهی درباره پست"
+author: "MovtiGroup"
+description: "توضیح کوتاه مقاله"
 ---
 
-محتوای شما اینجا...
+متن مقاله...
 ```
 
-### دسته‌بندی‌ها
-
-پست‌ها به صورت خودکار دسته‌بندی می‌شوند. برای سازماندهی پست‌ها فیلد `category` را در frontmatter قرار دهید.
-
-### جستجو
-
-عملکرد جستجو در موارد زیر جستجو می‌کند:
-- عناوین پست‌ها
-- توضیحات
-- دسته‌بندی‌ها
-
----
-
-## 🐳 تنظیمات Docker
-
-**پورت:** `3003` (قابل تنظیم در `docker-compose.yml`)
-
-```yaml
-ports:
-  - "3003:3000"
-```
-
-### بیلد Image
-
-```bash
-docker build -t movtigroup-web .
-docker run -p 3003:3000 movtigroup-web
-```
-
----
+- نام فایل می‌شود آدرس مقاله: `content/fa/blog/my-post.md` → ‏`/fa/blog/my-post`
+- نام فایل نسخه EN و FA را یکسان نگه دارید تا hreflang در سایت‌مپ جفت شود.
+- هر مقاله به‌طور خودکار JSON-LD، تگ‌های OG و ورودی سایت‌مپ می‌گیرد.
 
 ## 🔧 متغیرهای محیطی
 
 | متغیر | پیش‌فرض | توضیح |
-|-------|---------|-------|
-| `NODE_ENV` | `production` | حالت محیط |
-| `PORT` | `3003` | پورت خارجی |
-| `NUXT_PORT` | `3000` | پورت داخلی |
-| `NUXT_HOST` | `0.0.0.0` | آدرس هاست |
-| `SITE_URL` | `https://movtigroup.me` | آدرس سایت |
-| `DEFAULT_LOCALE` | `fa` | زبان پیش‌فرض |
-| `SUPPORTED_LOCALES` | `en,fa` | زبان‌های موجود |
+|---|---|---|
+| `PORT` | `3002` | پورت پروداکشن |
+| `HOST` | `0.0.0.0` | آدرس bind |
+| `NUXT_PUBLIC_SITE_URL` | `https://movtigroup.me` | آدرس پایه برای canonical/OG/سایت‌مپ |
 
----
+## 🏷️ ریلیز
 
-## 🧪 تست
+ورک‌فلو **Release** را اجرا کنید (Actions → Release → Run workflow). بدون ورودی از **v0.0.1** شروع می‌کند و هر بار یک patch جلو می‌رود؛ می‌توانید نسخه صریح هم بنویسید (مثل `0.1.0`).
 
-```bash
-# اجرای lint
-npm run lint
+## 📄 مجوز
 
-# بیلد برای پروداکشن
-npm run build
+این پروژه تحت [مجوز MIT](LICENSE) منتشر شده است.
 
-# سایت استاتیک
-npm run generate
-```
+## 🤝 مشارکت
 
----
-
-## 📊 آمار
-
-- **کل پست‌ها:** ۱۶۰+
-- **پست‌های انگلیسی:** ۹۵
-- **پست‌های فارسی:** ۶۵
-- **زبان‌ها:** انگلیسی، فارسی (RTL)
-- **CI/CD:** GitHub Actions
-
----
-
-## 📄 لایسنس
-
-لایسنس MIT
-
----
-
-## 🤝 همکاری
-
-همکاری‌ها خوش‌آمد است! لطفاً در ارسال درخواست (Pull Request) دریغ نکنید.
-
----
+مشارکت‌ها خوش‌آمدند — راهنما را در [CONTRIBUTING.md](CONTRIBUTING.md) ببینید.
 
 <div align="center">
 
-ساخته شده با ❤️ توسط **موتی‌گروپ**
+ساخته‌شده با ❤️ توسط **موتی‌گروپ**
 
 </div>
 

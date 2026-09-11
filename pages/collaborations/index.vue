@@ -122,3 +122,10 @@
   margin-bottom: 1rem;
 }
 </style>
+
+<script setup>
+useSeoMeta({
+  title: 'Collaborations — MovtiGroup',
+  description: 'MovtiGroup partners with leading open-source projects and teams to build better developer tools together.'
+})
+</script>

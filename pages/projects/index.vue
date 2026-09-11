@@ -106,3 +106,10 @@
   margin-top: 1rem;
 }
 </style>
+
+<script setup>
+useSeoMeta({
+  title: 'Open Source Projects — MovtiGroup',
+  description: 'Explore open source tools and frameworks built by MovtiGroup: AI agents, automation, developer infrastructure and more.'
+})
+</script>

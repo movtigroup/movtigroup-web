@@ -16,14 +16,14 @@
       
       <div class="nav-actions">
         <div class="lang-switcher">
-          <button 
-            v-for="locale in $i18n.locales" 
-            :key="locale.code"
+          <button
+            v-for="l in locales"
+            :key="l.code"
             class="lang-btn"
-            :class="{ active: $i18n.locale === locale.code }"
-            @click="setLocale(locale.code)"
+            :class="{ active: locale === l.code }"
+            @click="setLocale(l.code)"
           >
-            {{ locale.code.toUpperCase() }}
+            {{ l.code.toUpperCase() }}
           </button>
         </div>
         <button class="mobile-toggle" @click="mobileMenuOpen = !mobileMenuOpen">
@@ -37,14 +37,21 @@
 </template>
 
 <script setup>
-const { locale, setLocale } = useI18n()
+const { locale, locales, setLocale } = useI18n()
 const isScrolled = ref(false)
 const mobileMenuOpen = ref(false)
 
+const onScroll = () => {
+  isScrolled.value = window.scrollY > 50
+}
+
 onMounted(() => {
-  window.addEventListener('scroll', () => {
-    isScrolled.value = window.scrollY > 50
-  })
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
 })
 </script>
 

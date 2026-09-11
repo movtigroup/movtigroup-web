@@ -155,3 +155,10 @@
   }
 }
 </style>
+
+<script setup>
+useSeoMeta({
+  title: 'About Us — MovtiGroup',
+  description: 'Learn about MovtiGroup — our mission, values, and the team building innovative software solutions and open source tools for developers worldwide.'
+})
+</script>

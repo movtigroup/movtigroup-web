@@ -1,21 +1,32 @@
 // composables/useBlog.ts
 import { computed } from 'vue'
 
-export function useBlog() {
+// Content collections are split per locale (see content.config.ts)
+export const blogCollectionFor = (locale: string) => (locale === 'fa' ? 'blog_fa' : 'blog_en')
+
+// Localized app route for a content item path (/en/blog/x -> /blog/x, /fa/blog/x -> /fa/blog/x)
+export const usePostLink = () => {
+  const localePath = useLocalePath()
+  const postLink = (post: { path?: string }) =>
+    localePath((post.path || '/').replace(/^\/(en|fa)/, ''))
+  return postLink
+}
+
+export async function useBlog() {
   const { locale } = useI18n()
-  
+  const collection = blogCollectionFor(locale.value)
+
   // Get all posts
   const { data: posts } = await useAsyncData(`all-blog-posts-${locale.value}`, () =>
-    queryContent(locale.value, 'blog')
-      .where({ _partial: false })
-      .sort({ date: -1 })
-      .find()
+    queryCollection(collection)
+      .order('date', 'DESC')
+      .all()
   )
 
-  // Get single post by slug
+  // Get single post by content path (e.g. /en/blog/slug)
   const getPost = async (slug: string) => {
     const { data } = await useAsyncData(`blog-post-${slug}`, () =>
-      queryContent(slug).findOne()
+      queryCollection(collection).path(slug).first()
     )
     return data
   }

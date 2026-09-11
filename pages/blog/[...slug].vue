@@ -39,26 +39,72 @@
 
 <script setup>
 const route = useRoute()
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
-const { data: post } = await useAsyncData(`post-${route.path}`, () => 
-  queryContent(route.path).findOne()
+const config = useRuntimeConfig()
+const siteUrl = (config.public.siteUrl || 'https://movtigroup.me').replace(/\/$/, '')
+
+// EN app routes carry no locale prefix; content paths always do (/en|fa/blog/slug)
+const contentPath = route.path.startsWith('/fa/')
+  ? route.path
+  : `/en${route.path}`
+
+const { data: post } = await useAsyncData(`post-${route.path}`, () =>
+  queryCollection(blogCollectionFor(locale.value)).path(contentPath).first()
 )
 
 const formatDate = (date) => {
   if (!date) return ''
-  return new Date(date).toLocaleDateString(locale.value === 'fa' ? 'fa-IR' : 'en-US', { 
-    year: 'numeric', month: 'long', day: 'numeric' 
+  return new Date(date).toLocaleDateString(locale.value === 'fa' ? 'fa-IR' : 'en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
   })
 }
 
 // SEO
-useHead({
-  title: post.value?.title,
-  meta: [
-    { name: 'description', content: post.value?.description }
-  ]
+useSeoMeta({
+  title: () => post.value?.title || t('blog.postNotFound'),
+  description: () => post.value?.description || '',
+  ogTitle: () => post.value?.title || '',
+  ogDescription: () => post.value?.description || '',
+  ogType: 'article',
+  ogImage: `${siteUrl}/og-image.png`,
+  articlePublishedTime: () => post.value?.date ? new Date(post.value.date).toISOString() : undefined,
+  articleAuthor: [post.value?.author].filter(Boolean),
+  robots: post.value ? undefined : 'noindex'
 })
+
+// BlogPosting + Breadcrumb structured data
+useHead(() => ({
+  script: post.value
+    ? [
+        {
+          type: 'application/ld+json',
+          textContent: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              'headline': post.value.title,
+              'description': post.value.description,
+              'datePublished': post.value.date ? new Date(post.value.date).toISOString() : undefined,
+              'author': { '@type': 'Organization', 'name': post.value.author || 'MovtiGroup' },
+              'publisher': { '@type': 'Organization', 'name': 'MovtiGroup' },
+              'mainEntityOfPage': `${siteUrl}${route.path}`,
+              'inLanguage': locale.value
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              'itemListElement': [
+                { '@type': 'ListItem', 'position': 1, 'name': 'MovtiGroup', 'item': siteUrl },
+                { '@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': `${siteUrl}${locale.value === 'fa' ? '/fa' : ''}/blog` },
+                { '@type': 'ListItem', 'position': 3, 'name': post.value.title, 'item': `${siteUrl}${route.path}` }
+              ]
+            }
+          ])
+        }
+      ]
+    : []
+}))
 </script>
 
 <style scoped>

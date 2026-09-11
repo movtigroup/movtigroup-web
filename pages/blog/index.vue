@@ -37,16 +37,16 @@
 
         <!-- Posts Grid -->
         <div v-if="filteredPosts.length" class="card-grid">
-          <article v-for="post in filteredPosts" :key="post._path" class="card post-card">
+          <article v-for="post in filteredPosts" :key="post.path" class="card post-card">
             <div class="post-card-top">
               <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
               <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
             </div>
-            <h3><NuxtLink :to="post._path">{{ post.title }}</NuxtLink></h3>
+            <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
             <p class="post-card-desc">{{ post.description }}</p>
             <div class="post-card-footer">
               <span class="post-date">{{ formatDate(post.date) }}</span>
-              <NuxtLink :to="post._path" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
+              <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
             </div>
           </article>
         </div>
@@ -66,16 +66,17 @@
 </template>
 
 <script setup>
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const searchQuery = ref('')
 const activeCategory = ref('all')
 
+const postLink = usePostLink()
+
 // Get all posts for current locale
-const { data: posts } = await useAsyncData(`blog-posts-${locale.value}`, () => 
-  queryContent(locale.value, 'blog')
-    .where({ _partial: false })
-    .sort({ date: -1 })
-    .find()
+const { data: posts } = await useAsyncData(`blog-posts-${locale.value}`, () =>
+  queryCollection(blogCollectionFor(locale.value))
+    .order('date', 'DESC')
+    .all()
 )
 
 // Get unique categories from posts
@@ -114,8 +115,8 @@ const filteredPosts = computed(() => {
 
 const formatDate = (date) => {
   if (!date) return ''
-  return new Date(date).toLocaleDateString(locale.value === 'fa' ? 'fa-IR' : 'en-US', { 
-    year: 'numeric', month: 'short', day: 'numeric' 
+  return new Date(date).toLocaleDateString(locale.value === 'fa' ? 'fa-IR' : 'en-US', {
+    year: 'numeric', month: 'short', day: 'numeric'
   })
 }
 
@@ -123,6 +124,13 @@ const formatDate = (date) => {
 watch(locale, () => {
   activeCategory.value = 'all'
   searchQuery.value = ''
+})
+
+useSeoMeta({
+  title: () => `${t('nav.blog')} — MovtiGroup`,
+  description: () => t('blog.subtitle'),
+  ogTitle: () => t('nav.blog'),
+  ogDescription: () => t('blog.subtitle')
 })
 </script>
 

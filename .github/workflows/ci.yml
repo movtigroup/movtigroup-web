@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI
 
 on:
   push:
@@ -6,126 +6,138 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  APP_PORT: 3002
+
 jobs:
-  test-node:
-    name: Test Node.js & Nuxt
+  build-and-test:
+    name: Build & SSR Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
-    
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: 'npm'
+          node-version: ${{ matrix.node }}
+          cache: npm
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Check Node.js version
-        run: |
-          echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-
-      - name: Lint code
-        run: npm run lint --if-present
-        continue-on-error: true
+      - name: Audit production dependencies (high severity+)
+        run: npm audit --omit=dev --audit-level=high || true
 
       - name: Build Nuxt application
         run: npm run build
 
       - name: Check build output
         run: |
-          echo "Checking build output..."
-          ls -la .output/
-          ls -la .output/server/
-          echo "✅ Build successful!"
+          test -f .output/server/index.mjs || { echo "❌ missing .output/server/index.mjs"; exit 1; }
+          test -d .output/public || { echo "❌ missing .output/public"; exit 1; }
+          FONTS=$(find .output/public -name "*.woff2" | wc -l)
+          echo "Bundled woff2 fonts: $FONTS"
+          [ "$FONTS" -gt 0 ] || { echo "❌ no self-hosted fonts found"; exit 1; }
+          test -f .output/public/og-image.png || { echo "❌ missing og-image.png"; exit 1; }
+          echo "✅ Build output valid"
 
-      - name: Test SSR rendering (EN + FA pages)
+      - name: Start production server on port 3002
         run: |
-          echo "Testing SSR rendering..."
-          npm run preview &
-          sleep 5
-          
-          # Test English pages
-          echo "Testing EN pages..."
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ | grep -q "200" || (echo "❌ Homepage failed" && exit 1)
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/blog | grep -q "200" || (echo "❌ Blog failed" && exit 1)
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/about | grep -q "200" || (echo "❌ About failed" && exit 1)
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/projects | grep -q "200" || (echo "❌ Projects failed" && exit 1)
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/contact | grep -q "200" || (echo "❌ Contact failed" && exit 1)
-          
-          # Test Farsi (RTL) pages
-          echo "Testing FA pages..."
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa | grep -q "200" || (echo "❌ FA Homepage failed" && exit 1)
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa/blog | grep -q "200" || (echo "❌ FA Blog failed" && exit 1)
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/fa/about | grep -q "200" || (echo "❌ FA About failed" && exit 1)
-          
-          echo "✅ All SSR tests passed (EN + FA)!"
-          pkill -f "node .output/server/index.mjs" || true
+          npm run start &
+          for i in $(seq 1 30); do
+            if curl -sf "http://localhost:${APP_PORT}/api/health" > /dev/null; then
+              echo "✅ server is up on :${APP_PORT}"
+              break
+            fi
+            sleep 1
+          done
+          curl -sf "http://localhost:${APP_PORT}/api/health" > /dev/null || { echo "❌ server did not start"; exit 1; }
 
-  test-content:
-    name: Test Content & i18n
+      - name: Test SSR pages (EN + FA)
+        run: |
+          BASE="http://localhost:${APP_PORT}"
+          for path in / /blog /projects /about /contact /collaborations; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE$path")
+            [ "$CODE" = "200" ] || { echo "❌ EN $path -> $CODE"; exit 1; }
+          done
+          for path in /fa /fa/blog /fa/projects /fa/about /fa/contact; do
+            CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE$path")
+            [ "$CODE" = "200" ] || { echo "❌ FA $path -> $CODE"; exit 1; }
+          done
+          echo "✅ All SSR pages OK (EN + FA)"
+
+      - name: Test SEO endpoints & tags
+        run: |
+          BASE="http://localhost:${APP_PORT}"
+          # dynamic sitemap
+          COUNT=$(curl -s "$BASE/sitemap.xml" | grep -c "<url>")
+          [ "$COUNT" -gt 100 ] || { echo "❌ sitemap has only $COUNT urls"; exit 1; }
+          echo "✅ sitemap.xml has $COUNT urls"
+          # robots.txt
+          curl -s "$BASE/robots.txt" | grep -q "Sitemap:" || { echo "❌ robots.txt missing sitemap"; exit 1; }
+          # hreflang + canonical on home
+          curl -s "$BASE/" | grep -q 'rel="canonical"' || { echo "❌ canonical missing"; exit 1; }
+          curl -s "$BASE/" | grep -q 'hreflang="fa"' || { echo "❌ hreflang missing"; exit 1; }
+          curl -s "$BASE/fa" | grep -q 'dir="rtl"' || { echo "❌ RTL dir missing on /fa"; exit 1; }
+          # blog post structured data
+          curl -s "$BASE/blog" | grep -oE 'href="/blog/[a-z0-9-]+"' | head -1 | sed 's/href="//;s/"//' > post_url
+          POST=$(cat post_url)
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE$POST")
+          [ "$CODE" = "200" ] || { echo "❌ blog post $POST -> $CODE"; exit 1; }
+          curl -s "$BASE$POST" | grep -q "BlogPosting" || { echo "❌ BlogPosting JSON-LD missing"; exit 1; }
+          echo "✅ SEO checks passed ($POST)"
+
+  content-check:
+    name: Content & i18n Validation
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
-      - name: Check content files
+      - name: Validate content structure
         run: |
-          echo "Checking content structure..."
           EN_POSTS=$(ls content/en/blog/*.md 2>/dev/null | wc -l)
           FA_POSTS=$(ls content/fa/blog/*.md 2>/dev/null | wc -l)
-          I18N_FILES=$(ls i18n/*.json 2>/dev/null | wc -l)
           echo "English posts: $EN_POSTS"
           echo "Farsi posts: $FA_POSTS"
-          echo "i18n files: $I18N_FILES"
-          
-          # Check for required files
-          test -f i18n/en.json || (echo "❌ Missing en.json" && exit 1)
-          test -f i18n/fa.json || (echo "❌ Missing fa.json" && exit 1)
-          [ "$EN_POSTS" -gt 0 ] || (echo "❌ No English posts found" && exit 1)
-          [ "$FA_POSTS" -gt 0 ] || (echo "❌ No Farsi posts found" && exit 1)
-          echo "✅ Content structure valid! ($EN_POSTS EN, $FA_POSTS FA posts)"
+          test -f i18n/en.json || { echo "❌ Missing i18n/en.json"; exit 1; }
+          test -f i18n/fa.json || { echo "❌ Missing i18n/fa.json"; exit 1; }
+          [ "$EN_POSTS" -gt 0 ] || { echo "❌ No English posts"; exit 1; }
+          [ "$FA_POSTS" -gt 0 ] || { echo "❌ No Farsi posts"; exit 1; }
+          echo "✅ Content structure valid ($EN_POSTS EN, $FA_POSTS FA)"
 
       - name: Validate frontmatter
         run: |
-          echo "Validating post frontmatter..."
           ERRORS=0
-          for file in content/en/blog/*.md; do
-            if ! head -20 "$file" | grep -q "^title:"; then
-              echo "❌ Missing title in $file"
-              ERRORS=$((ERRORS + 1))
-            fi
-            if ! head -20 "$file" | grep -q "^date:"; then
-              echo "❌ Missing date in $file"
-              ERRORS=$((ERRORS + 1))
-            fi
+          for f in content/en/blog/*.md content/fa/blog/*.md; do
+            head -20 "$f" | grep -q "^title:" || { echo "❌ missing title: $f"; ERRORS=$((ERRORS+1)); }
+            head -20 "$f" | grep -qE "^date: [0-9]{4}-[0-9]{2}-[0-9]{2}" || { echo "❌ missing/invalid date: $f"; ERRORS=$((ERRORS+1)); }
+            head -20 "$f" | grep -q "^description:" || { echo "❌ missing description: $f"; ERRORS=$((ERRORS+1)); }
           done
-          if [ "$ERRORS" -gt 0 ]; then
-            echo "❌ Found $ERRORS frontmatter errors"
-            exit 1
-          fi
-          echo "✅ All posts have valid frontmatter!"
+          if [ "$ERRORS" -gt 0 ]; then echo "❌ $ERRORS frontmatter errors"; exit 1; fi
+          echo "✅ All posts have valid frontmatter"
+
+      - name: Validate JSON files
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('i18n/en.json','utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('i18n/fa.json','utf8'))"
+          echo "✅ i18n JSON files are valid"
 
   docker:
     name: Docker Build & Test
     runs-on: ubuntu-latest
-    needs: [test-node, test-content]
-    if: github.ref == 'refs/heads/main'
-    
+    needs: [build-and-test, content-check]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -134,7 +146,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: false
@@ -143,40 +155,16 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Test Docker container
+      - name: Test Docker container on port 3002
         run: |
-          echo "Starting Docker container on port 3003..."
-          docker run -d --name test-container -p 3003:3000 movtigroup-web:latest
-          sleep 15
-          
-          # Health check
-          echo "Testing health endpoint..."
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/api/health | grep -q "200" || (docker logs test-container && exit 1)
-          
-          # Test pages
-          echo "Testing pages..."
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/ | grep -q "200" || exit 1
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/blog | grep -q "200" || exit 1
-          curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/projects | grep -q "200" || exit 1
-          
-          echo "✅ All Docker tests passed!"
-          
-          # Cleanup
-          docker stop test-container
-          docker rm test-container
-
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    needs: docker
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to server
-        run: |
-          echo "🚀 Deploy step - customize with your deployment strategy"
-          echo "Options: SSH deploy, Kubernetes, Vercel, Netlify, etc."
-          echo "✅ Build verified and ready for deployment"
+          docker run -d --name test-container -p 3002:3002 -e PORT=3002 movtigroup-web:latest
+          for i in $(seq 1 30); do
+            if curl -sf "http://localhost:3002/api/health" > /dev/null; then break; fi
+            sleep 2
+          done
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:3002/api/health")
+          [ "$CODE" = "200" ] || { docker logs test-container; exit 1; }
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:3002/")
+          [ "$CODE" = "200" ] || { echo "❌ container homepage -> $CODE"; exit 1; }
+          echo "✅ Docker container works on port 3002"
+          docker stop test-container && docker rm test-container

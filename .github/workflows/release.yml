@@ -1,0 +1,139 @@
+name: Release
+
+# Creates a git tag and a GitHub Release.
+# Start at 0.0.1 — either run manually with a version, or let the workflow
+# compute the next 0.0.x patch automatically from the latest existing tag.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version (e.g. 0.0.1). Leave empty to auto-bump the last tag by one patch."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Tag & Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute release version
+        id: version
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          INPUT="${{ github.event.inputs.version }}"
+
+          if [ -n "$INPUT" ]; then
+            VERSION="$INPUT"
+          elif [ -n "$LAST_TAG" ]; then
+            VERSION=${LAST_TAG#v}
+            PATCH=$(echo "$VERSION" | awk -F. '{print $3}')
+            MINOR=$(echo "$VERSION" | awk -F. '{print $2}')
+            MAJOR=$(echo "$VERSION" | awk -F. '{print $1}')
+            VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
+          else
+            VERSION="0.0.1"
+          fi
+
+          # Validate semver
+          if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "❌ Invalid version: $VERSION (expected semver, e.g. 0.0.1)"
+            exit 1
+          fi
+
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "❌ Tag v$VERSION already exists"
+            exit 1
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing v$VERSION (last tag: ${LAST_TAG:-none})"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build application
+        run: npm run build
+
+      - name: Smoke test the build (port 3002)
+        run: |
+          npm run start &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3002/api/health > /dev/null && break
+            sleep 1
+          done
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/)
+          [ "$CODE" = "200" ] || { echo "❌ smoke test failed ($CODE)"; exit 1; }
+          echo "✅ build serves on :3002"
+
+      - name: Sync package.json version
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '$VERSION';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+      - name: Prepare release notes
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          PREV_TAG=$(git tag --sort=-creatordate | sed -n 2p)
+          {
+            echo "## MovtiGroup Web v$VERSION"
+            echo ""
+            if [ -n "$PREV_TAG" ]; then
+              echo "### Changes since $PREV_TAG"
+              echo ""
+              git log "$PREV_TAG"..HEAD --pretty=format:"- %s (%h)" | head -50
+            else
+              echo "### Initial release 🎉"
+              echo ""
+              echo "- Nuxt 3 + @nuxt/content v3 + i18n (EN/FA)"
+              echo "- Fully self-hosted fonts (Vazirmatn + Inter)"
+              echo "- Dynamic sitemap, hreflang, JSON-LD structured data"
+              echo "- Production port: 3002"
+            fi
+          } > RELEASE_NOTES.md
+          cat RELEASE_NOTES.md
+
+      - name: Pack build artifact
+        run: |
+          zip -rq movtigroup-web-v${{ steps.version.outputs.version }}.output.zip .output
+
+      - name: Create tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          if git diff --cached --quiet; then
+            echo "package.json unchanged"
+          else
+            git commit -m "chore(release): v${{ steps.version.outputs.version }}"
+          fi
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin HEAD:"${{ github.ref_name }}" --tags
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${{ steps.version.outputs.version }}" \
+            --title "v${{ steps.version.outputs.version }}" \
+            --notes-file RELEASE_NOTES.md \
+            "movtigroup-web-v${{ steps.version.outputs.version }}.output.zip"

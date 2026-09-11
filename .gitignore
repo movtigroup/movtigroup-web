@@ -22,3 +22,5 @@ logs
 !.vscode/extensions.json
 # Vite
 vite.config.ts.timestamp-*
+# Local tooling
+.mimosa
