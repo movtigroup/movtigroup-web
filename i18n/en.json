@@ -9,7 +9,8 @@
     "projects": "Projects",
     "about": "About",
     "contact": "Contact",
-    "collaborations": "Collaborations"
+    "collaborations": "Collaborations",
+    "teams": "Team"
   },
   "hero": {
     "slide1": {
@@ -33,7 +34,8 @@
     "englishPosts": "English Posts",
     "farsiPosts": "Farsi Posts",
     "categories": "Categories",
-    "collaborations": "Collaborations"
+    "collaborations": "Collaborations",
+    "teamMembers": "Team Members"
   },
   "features": {
     "title": "Why MovtiGroup?",
@@ -87,5 +89,21 @@
   "footer": {
     "rights": "All rights reserved.",
     "madeWith": "Made with ❤️ by MovtiGroup"
+  },
+  "teams": {
+    "title": "Our Team",
+    "subtitle": "Meet the professional team behind MovtiGroup — the people driving our open-source projects forward.",
+    "membersLabel": "Team Members",
+    "roles": {
+      "dev": "Senior Developer",
+      "tech": "Technical Team",
+      "mgmt": "Management",
+      "ai": "AI Agent"
+    },
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "joinTitle": "Join Our Team",
+    "joinText": "We are always looking for motivated and creative people. If you are interested in collaborating on open-source projects, get in touch.",
+    "joinCta": "Contact Us"
   }
 }

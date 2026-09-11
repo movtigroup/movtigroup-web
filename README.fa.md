@@ -18,9 +18,9 @@
 |:---:|:---:|
 | ![صفحه اصلی EN](docs/screenshots/home-en.png) | ![صفحه اصلی FA](docs/screenshots/home-fa.png) |
 
-| بلاگ | پست بلاگ | پروژه‌ها |
-|:---:|:---:|:---:|
-| ![بلاگ](docs/screenshots/blog.png) | ![پست](docs/screenshots/blog-post.png) | ![پروژه‌ها](docs/screenshots/projects.png) |
+| بلاگ | پست بلاگ | پروژه‌ها | تیم |
+|:---:|:---:|:---:|:---:|
+| ![بلاگ](docs/screenshots/blog.png) | ![پست](docs/screenshots/blog-post.png) | ![پروژه‌ها](docs/screenshots/projects.png) | ![تیم](docs/screenshots/team.png) |
 
 ## ✨ ویژگی‌ها
 
@@ -29,6 +29,7 @@
 - **سئو حرفه‌ای** — `sitemap.xml` داینامیک (۱۶۰+ آدرس)، `robots.txt`، canonical اختصاصی هر صفحه، hreflang بین دو زبان، Open Graph/Twitter Card و داده‌های ساختاریافته JSON-LD
 - **فونت کاملاً لوکال** — [وزیرمتن](https://fontsource.org/fonts/vazirmatn) (فارسی) و [Inter](https://fontsource.org/fonts/inter) (انگلیسی) از طریق Fontsource داخل خود پروژه — بدون هیچ درخواست CDN، حتی آفلاین کار می‌کند
 - **موتور بلاگ** — ۹۵ مقاله انگلیسی و ۶۵ مقاله فارسی با `@nuxt/content` نسخه ۳ و هایلایت کد
+- **رابط کاربری متحرک** — ریویل هنگام اسکرول، ترنزیشن بین صفحات، انیمیشن ورود hero و شمارنده‌های متحرک — همه با CSS و سازگار با `prefers-reduced-motion`
 - **جست‌وجوی سمت کلاینت** با فیلتر دسته‌بندی
 - **آماده Docker** — بیلد چندمرحله‌ای، health check و nginx معکوس
 - **GitHub Actions** — CI (بیلد + تست SSR + اعتبارسنجی محتوا + Docker) و پایپ‌لاین خودکار تگ و ریلیز
@@ -103,7 +104,7 @@ movtigroup-web/
 ├── content/fa/blog/            # مقالات فارسی (۶۵)
 ├── content.config.ts           # کالکشن‌های Content v3 (blog_en / blog_fa)
 ├── i18n/                       # ترجمه‌ها (en.json / fa.json)
-├── pages/                      # index، blog، projects، about، contact، collaborations، search
+├── pages/                      # index، blog، projects، teams، about، contact، collaborations، search
 ├── public/                     # favicon.svg، robots.txt، og-image.png
 ├── scripts/start.mjs           # نقطه ورود پروداکشن (پورت 3002)
 ├── server/

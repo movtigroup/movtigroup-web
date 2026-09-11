@@ -10,6 +10,7 @@
         <NuxtLink to="/" class="nav-link">{{ $t('nav.home') }}</NuxtLink>
         <NuxtLink to="/blog" class="nav-link">{{ $t('nav.blog') }}</NuxtLink>
         <NuxtLink to="/projects" class="nav-link">{{ $t('nav.projects') }}</NuxtLink>
+        <NuxtLink to="/teams" class="nav-link">{{ $t('nav.teams') }}</NuxtLink>
         <NuxtLink to="/about" class="nav-link">{{ $t('nav.about') }}</NuxtLink>
         <NuxtLink to="/contact" class="nav-link">{{ $t('nav.contact') }}</NuxtLink>
       </nav>

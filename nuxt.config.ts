@@ -72,6 +72,7 @@ export default defineNuxtConfig({
   },
 
   app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       titleTemplate: '%s · MovtiGroup',
       title: 'MovtiGroup — Innovative Software Solutions & Open Source Tools',

@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- **Team page** (`/teams`, `/fa/teams`) migrated from the legacy `tahatehran.github.io` site — 5 members with photos, role badges and social links; added to the navbar and sitemap
+- **Animated UI**: scroll-reveal via a new `v-reveal` directive (`plugins/reveal.ts`, IntersectionObserver + scroll sweep, jump-safe), page transitions, staggered hero entrance, floating gradient orbs, count-up stat counters with correct values (160/95/65/5/6), hover lift on all cards — all disabled under `prefers-reduced-motion`
+
 ### Changed
 
 - Require **Node.js ≥ 22** everywhere (`engines`, Docker base image `node:22-alpine`, CI matrix 22/24) — `better-sqlite3` v13, used by `@nuxt/content`, dropped Node 20 support which broke the Node 20 CI job

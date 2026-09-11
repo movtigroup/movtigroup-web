@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   const now = new Date().toISOString().slice(0, 10)
 
   // Static pages: /<path> (en, no prefix) + /fa<path>
-  const staticPaths = ['', '/blog', '/projects', '/about', '/contact', '/collaborations']
+  const staticPaths = ['', '/blog', '/projects', '/teams', '/about', '/contact', '/collaborations']
   const staticEntries = staticPaths.map((p) => {
     const changefreq = p === '' || p === '/blog' ? 'daily' : p === '/projects' ? 'weekly' : 'monthly'
     const priority = p === '' ? '1.0' : p === '/blog' ? '0.9' : '0.7'

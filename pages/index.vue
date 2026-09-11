@@ -34,24 +34,24 @@
     <!-- Stats Counter -->
     <section class="stats-section">
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number" data-target="131">0</div>
+        <div class="stat-card card" v-reveal="{ delay: 0 }">
+          <div class="stat-number" data-target="160">0</div>
           <div class="stat-label">{{ $t('stats.totalPosts') }}</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="74">0</div>
+        <div class="stat-card card" v-reveal="{ delay: 100 }">
+          <div class="stat-number" data-target="95">0</div>
           <div class="stat-label">{{ $t('stats.englishPosts') }}</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="57">0</div>
+        <div class="stat-card card" v-reveal="{ delay: 200 }">
+          <div class="stat-number" data-target="65">0</div>
           <div class="stat-label">{{ $t('stats.farsiPosts') }}</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="21">0</div>
-          <div class="stat-label">{{ $t('stats.categories') }}</div>
-        </div>
-        <div class="stat-card">
+        <div class="stat-card card" v-reveal="{ delay: 300 }">
           <div class="stat-number" data-target="5">0</div>
+          <div class="stat-label">{{ $t('stats.teamMembers') }}</div>
+        </div>
+        <div class="stat-card card" v-reveal="{ delay: 400 }">
+          <div class="stat-number" data-target="6">0</div>
           <div class="stat-label">{{ $t('stats.collaborations') }}</div>
         </div>
       </div>
@@ -59,22 +59,22 @@
 
     <!-- Features -->
     <section class="features-section">
-      <div class="section-header">
+      <div class="section-header" v-reveal>
         <h2>{{ $t('features.title') }}</h2>
         <p>{{ $t('features.subtitle') }}</p>
       </div>
       <div class="card-grid">
-        <div class="card feature-card">
+        <div class="card feature-card" v-reveal="{ delay: 0 }">
           <div class="feature-icon">⚡</div>
           <h3>{{ $t('features.speed.title') }}</h3>
           <p>{{ $t('features.speed.description') }}</p>
         </div>
-        <div class="card feature-card">
+        <div class="card feature-card" v-reveal="{ delay: 120 }">
           <div class="feature-icon">🛡️</div>
           <h3>{{ $t('features.security.title') }}</h3>
           <p>{{ $t('features.security.description') }}</p>
         </div>
-        <div class="card feature-card">
+        <div class="card feature-card" v-reveal="{ delay: 240 }">
           <div class="feature-icon">💬</div>
           <h3>{{ $t('features.support.title') }}</h3>
           <p>{{ $t('features.support.description') }}</p>
@@ -84,12 +84,17 @@
 
     <!-- Latest Posts -->
     <section class="latest-posts-section">
-      <div class="section-header">
+      <div class="section-header" v-reveal>
         <h2>{{ $t('nav.blog') }}</h2>
         <p>Latest articles on technology, AI, and software engineering.</p>
       </div>
       <div class="card-grid">
-        <article v-for="post in latestPosts" :key="post.path" class="card post-card">
+        <article
+          v-for="(post, index) in latestPosts"
+          :key="post.path"
+          class="card post-card"
+          v-reveal="{ delay: (index % 3) * 120 }"
+        >
           <div class="post-card-top">
             <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
           </div>
@@ -153,7 +158,7 @@
 
     <!-- CTA -->
     <section class="cta-section">
-      <div class="cta-box">
+      <div class="cta-box" v-reveal>
         <h2>{{ $t('cta.title') }}</h2>
         <p>{{ $t('cta.subtitle') }}</p>
         <div class="cta-actions">
@@ -170,7 +175,7 @@
 </template>
 
 <script setup>
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const currentSlide = ref(0)
 
 const config = useRuntimeConfig()
@@ -202,10 +207,49 @@ onMounted(() => {
   sliderTimer = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % slides.length
   }, 5000)
+  initStatCounters()
 })
 onUnmounted(() => {
   if (sliderTimer) clearInterval(sliderTimer)
 })
+
+// Count-up animation for the stats section (fires once, even on scroll jumps)
+const initStatCounters = () => {
+  const numbers = document.querySelectorAll('.stat-number')
+  const section = document.querySelector('.stats-section')
+  if (!numbers.length || !section) return
+
+  const fmt = (n) => n.toLocaleString(locale.value === 'fa' ? 'fa-IR' : 'en-US')
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    numbers.forEach((el) => { el.textContent = el.dataset.target })
+    return
+  }
+
+  const animate = (el) => {
+    const target = Number(el.dataset.target || '0')
+    const duration = 1400
+    const start = performance.now()
+    const tick = (now) => {
+      const p = Math.min((now - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      el.textContent = fmt(Math.round(target * eased))
+      if (p < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }
+
+  const maybeAnimate = () => {
+    if (section.getBoundingClientRect().top < window.innerHeight * 0.85) {
+      numbers.forEach(animate)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }
+  const onScroll = () => maybeAnimate()
+
+  window.addEventListener('scroll', onScroll, { passive: true })
+  maybeAnimate()
+}
 
 useSeoMeta({
   title: 'MovtiGroup — Innovative Software Solutions & Open Source Tools',
@@ -229,6 +273,68 @@ useSeoMeta({
   justify-content: center;
   overflow: hidden;
   padding-top: 80px;
+}
+
+/* Ambient floating gradient orbs */
+.hero-slider::before,
+.hero-slider::after {
+  content: '';
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+  pointer-events: none;
+  animation: orbFloat 14s ease-in-out infinite alternate;
+}
+
+.hero-slider::before {
+  background: var(--primary);
+  top: 6%;
+  left: -120px;
+}
+
+.hero-slider::after {
+  background: var(--accent);
+  bottom: -140px;
+  right: -120px;
+  animation-delay: -7s;
+}
+
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(70px, -50px) scale(1.18); }
+}
+
+/* Staggered entrance for the active slide content */
+.hero-slide.active .hero-slide-content > * {
+  animation: heroIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-slide.active .hero-slide-content > :nth-child(1) { animation-delay: 0.05s; }
+.hero-slide.active .hero-slide-content > :nth-child(2) { animation-delay: 0.18s; }
+.hero-slide.active .hero-slide-content > :nth-child(3) { animation-delay: 0.31s; }
+.hero-slide.active .hero-slide-content > :nth-child(4) { animation-delay: 0.44s; }
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-slide.active .hero-slide-icon {
+  animation: iconFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 .hero-slide {

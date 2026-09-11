@@ -1,13 +1,13 @@
 <template>
   <div class="about-page">
-    <section class="page-header">
+    <section class="page-header" v-reveal>
       <div class="container">
         <h1>{{ $t('nav.about') }}</h1>
         <p>Learn more about MovtiGroup and our mission</p>
       </div>
     </section>
 
-    <section class="about-content">
+    <section class="about-content" v-reveal>
       <div class="container">
         <div class="about-grid">
           <div class="about-text">

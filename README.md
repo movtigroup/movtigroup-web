@@ -16,9 +16,9 @@ Modern corporate website built with **Nuxt 3**, **Nuxt Content v3**, and **Vue 3
 |:---:|:---:|
 | ![Homepage EN](docs/screenshots/home-en.png) | ![Homepage FA](docs/screenshots/home-fa.png) |
 
-| Blog | Blog Post | Projects |
-|:---:|:---:|:---:|
-| ![Blog](docs/screenshots/blog.png) | ![Blog Post](docs/screenshots/blog-post.png) | ![Projects](docs/screenshots/projects.png) |
+| Blog | Blog Post | Projects | Team |
+|:---:|:---:|:---:|:---:|
+| ![Blog](docs/screenshots/blog.png) | ![Blog Post](docs/screenshots/blog-post.png) | ![Projects](docs/screenshots/projects.png) | ![Team](docs/screenshots/team.png) |
 
 ## ✨ Features
 
@@ -27,6 +27,7 @@ Modern corporate website built with **Nuxt 3**, **Nuxt Content v3**, and **Vue 3
 - **SEO-first** — dynamic `sitemap.xml` (160+ URLs), `robots.txt`, per-page canonical URLs, hreflang alternates, Open Graph / Twitter cards, JSON-LD structured data (`WebSite`, `BlogPosting`, `BreadcrumbList`)
 - **Fully self-hosted fonts** — [Vazirmatn](https://fontsource.org/fonts/vazirmatn) (Persian) + [Inter](https://fontsource.org/fonts/inter) (English) bundled locally via Fontsource — zero CDN requests, works offline
 - **Blog engine** — 95 English + 65 Farsi articles via `@nuxt/content` v3 with syntax highlighting
+- **Animated UI** — scroll-reveal sections, page transitions, hero entrance effects, animated stat counters — all CSS-driven and `prefers-reduced-motion` friendly
 - **Client-side search** with category filtering
 - **Docker-ready** — multi-stage build, health checks, nginx reverse proxy included
 - **GitHub Actions** — CI (build + SSR smoke tests + content validation + Docker) and automated tag & release pipeline
@@ -108,7 +109,7 @@ movtigroup-web/
 │   └── fa/blog/                # Farsi posts (65)
 ├── content.config.ts           # Content v3 collections (blog_en / blog_fa)
 ├── i18n/                       # en.json / fa.json translations
-├── pages/                      # index, blog, projects, about, contact, collaborations, search
+├── pages/                      # index, blog, projects, teams, about, contact, collaborations, search
 ├── public/                     # favicon.svg, robots.txt, og-image.png
 ├── scripts/start.mjs           # Production entry (defaults to port 3002)
 ├── server/

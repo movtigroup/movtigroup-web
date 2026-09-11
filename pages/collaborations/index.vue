@@ -1,6 +1,6 @@
 <template>
   <div class="collaborations-page">
-    <section class="page-header">
+    <section class="page-header" v-reveal>
       <div class="container">
         <h1>{{ $t('nav.collaborations') }}</h1>
         <p>We partner with leading open-source projects and teams</p>
@@ -10,7 +10,7 @@
     <section class="collaborations-content">
       <div class="container">
         <div class="card-grid">
-          <div class="card collab-card">
+          <div class="card collab-card" v-reveal="{ delay: 0 }">
             <div class="collab-header">
               <div class="collab-icon">🧠</div>
               <div>
@@ -27,7 +27,7 @@
             </a>
           </div>
 
-          <div class="card collab-card">
+          <div class="card collab-card" v-reveal="{ delay: 120 }">
             <div class="collab-header">
               <div class="collab-icon">💻</div>
               <div>
@@ -44,7 +44,7 @@
             </a>
           </div>
 
-          <div class="card collab-card">
+          <div class="card collab-card" v-reveal="{ delay: 240 }">
             <div class="collab-header">
               <div class="collab-icon">🤖</div>
               <div>

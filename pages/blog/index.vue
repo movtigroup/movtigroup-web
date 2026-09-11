@@ -1,6 +1,6 @@
 <template>
   <div class="blog-page">
-    <section class="page-header">
+    <section class="page-header" v-reveal>
       <div class="container">
         <h1>{{ $t('nav.blog') }}</h1>
         <p>{{ $t('blog.subtitle') }}</p>
@@ -37,7 +37,12 @@
 
         <!-- Posts Grid -->
         <div v-if="filteredPosts.length" class="card-grid">
-          <article v-for="post in filteredPosts" :key="post.path" class="card post-card">
+          <article
+            v-for="(post, index) in filteredPosts"
+            :key="post.path"
+            class="card post-card"
+            v-reveal="{ delay: Math.min(index % 3, 2) * 100 }"
+          >
             <div class="post-card-top">
               <span class="post-chip">{{ post.lang === 'en' ? 'English' : 'فارسی' }}</span>
               <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
