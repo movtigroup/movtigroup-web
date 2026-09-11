@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Require **Node.js ≥ 22** everywhere (`engines`, Docker base image `node:22-alpine`, CI matrix 22/24) — `better-sqlite3` v13, used by `@nuxt/content`, dropped Node 20 support which broke the Node 20 CI job
+
 ## [0.0.1] — 2026-09-11
 
 ### Changed

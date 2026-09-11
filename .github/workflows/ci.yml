@@ -20,7 +20,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [20, 22]
+        # Node 22+ required by better-sqlite3 (@nuxt/content)
+        node: [22, 24]
 
     steps:
       - name: Checkout code

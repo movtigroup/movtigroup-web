@@ -35,7 +35,7 @@
 
 ## 🚀 شروع سریع
 
-> **نیازمندی:** Node.js ≥ 20
+> **نیازمندی:** Node.js ≥ 22
 
 ```bash
 git clone https://github.com/movtigroup/movtigroup-web.git

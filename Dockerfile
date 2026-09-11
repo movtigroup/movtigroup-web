@@ -1,5 +1,6 @@
 # Multi-stage build for production (app listens on port 3002)
-FROM node:20-alpine AS builder
+# Node 22+ is required by better-sqlite3 (used by @nuxt/content)
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -17,7 +18,7 @@ COPY . .
 RUN npm run build
 
 # Production stage
-FROM node:20-alpine AS production
+FROM node:22-alpine AS production
 
 WORKDIR /app
 

@@ -33,7 +33,7 @@ Modern corporate website built with **Nuxt 3**, **Nuxt Content v3**, and **Vue 3
 
 ## 🚀 Quick Start
 
-> **Requires:** Node.js ≥ 20
+> **Requires:** Node.js ≥ 22
 
 ```bash
 git clone https://github.com/movtigroup/movtigroup-web.git
