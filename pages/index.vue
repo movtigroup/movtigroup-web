@@ -11,7 +11,9 @@
         >
           <div class="hero-slide-bg"></div>
           <div class="hero-slide-content">
-            <div class="hero-slide-icon">🚀</div>
+          <div class="hero-slide-icon">
+            <UiIcon :icon="slide.icon" :size="46" />
+          </div>
             <h2>{{ slide.title }}</h2>
             <p>{{ slide.subtitle }}</p>
             <NuxtLink :to="slide.link" class="btn btn-primary">
@@ -65,17 +67,17 @@
       </div>
       <div class="card-grid">
         <div class="card feature-card" v-reveal="{ delay: 0 }">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon"><UiIcon icon="zap" :size="28" /></div>
           <h3>{{ $t('features.speed.title') }}</h3>
           <p>{{ $t('features.speed.description') }}</p>
         </div>
         <div class="card feature-card" v-reveal="{ delay: 120 }">
-          <div class="feature-icon">🛡️</div>
+          <div class="feature-icon"><UiIcon icon="shield" :size="28" /></div>
           <h3>{{ $t('features.security.title') }}</h3>
           <p>{{ $t('features.security.description') }}</p>
         </div>
         <div class="card feature-card" v-reveal="{ delay: 240 }">
-          <div class="feature-icon">💬</div>
+          <div class="feature-icon"><UiIcon icon="message" :size="28" /></div>
           <h3>{{ $t('features.support.title') }}</h3>
           <p>{{ $t('features.support.description') }}</p>
         </div>
@@ -118,13 +120,13 @@
         <p>{{ $t('brands.subtitle') }}</p>
       </div>
       <div class="card-grid" style="max-width: 700px; margin: 0 auto;">
-        <div class="card brand-card">
-          <div class="brand-icon">📸</div>
+        <div class="card brand-card" v-reveal="{ delay: 0 }">
+          <div class="brand-icon"><BrandIcon icon="telegram" :size="30" /></div>
           <h3>ArmiGram</h3>
           <p>Visual Social Network</p>
         </div>
-        <div class="card brand-card">
-          <div class="brand-icon">🎬</div>
+        <div class="card brand-card" v-reveal="{ delay: 120 }">
+          <div class="brand-icon"><BrandIcon icon="midjourney" :size="30" /></div>
           <h3>AnimeTi</h3>
           <p>Anime & Entertainment Platform</p>
         </div>
@@ -138,18 +140,18 @@
         <p>{{ $t('collaborations.subtitle') }}</p>
       </div>
       <div class="card-grid">
-        <div class="card collab-card">
-          <div class="collab-icon">🧠</div>
+        <div class="card collab-card" v-reveal="{ delay: 0 }">
+          <div class="collab-icon"><UiIcon icon="atom" :size="26" /></div>
           <h3>Dirac.run</h3>
           <p>AI Inference Platform - Advanced AI agent platform for automated task execution, research, and multi-step problem solving.</p>
         </div>
-        <div class="card collab-card">
-          <div class="collab-icon">💻</div>
+        <div class="card collab-card" v-reveal="{ delay: 120 }">
+          <div class="collab-icon"><UiIcon icon="code" :size="26" /></div>
           <h3>Kilo Code</h3>
           <p>Open-source AI coding assistant with model routing, benchmarking, and autonomous coding capabilities.</p>
         </div>
-        <div class="card collab-card">
-          <div class="collab-icon">🤖</div>
+        <div class="card collab-card" v-reveal="{ delay: 240 }">
+          <div class="collab-icon"><BrandIcon icon="nousresearch" :size="26" /></div>
           <h3>Hermes Agent</h3>
           <p>Self-hosted AI agent framework with deep integration for developers and teams seeking full control.</p>
         </div>
@@ -182,9 +184,9 @@ const config = useRuntimeConfig()
 const siteUrl = (config.public.siteUrl || 'https://movtigroup.me').replace(/\/$/, '')
 
 const slides = [
-  { title: t('hero.slide1.title'), subtitle: t('hero.slide1.subtitle'), cta: t('hero.slide1.cta'), link: '/blog' },
-  { title: t('hero.slide2.title'), subtitle: t('hero.slide2.subtitle'), cta: t('hero.slide2.cta'), link: '/blog' },
-  { title: t('hero.slide3.title'), subtitle: t('hero.slide3.subtitle'), cta: t('hero.slide3.cta'), link: '/projects' }
+  { icon: 'rocket', title: t('hero.slide1.title'), subtitle: t('hero.slide1.subtitle'), cta: t('hero.slide1.cta'), link: '/blog' },
+  { icon: 'book-open', title: t('hero.slide2.title'), subtitle: t('hero.slide2.subtitle'), cta: t('hero.slide2.cta'), link: '/blog' },
+  { icon: 'layers', title: t('hero.slide3.title'), subtitle: t('hero.slide3.subtitle'), cta: t('hero.slide3.cta'), link: '/projects' }
 ]
 
 const postLink = usePostLink()
@@ -367,7 +369,14 @@ useSeoMeta({
 }
 
 .hero-slide-icon {
-  font-size: 4rem;
+  display: inline-grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.25), rgba(0, 206, 201, 0.2));
+  border: 1px solid rgba(108, 92, 231, 0.4);
+  color: #a29bfe;
   margin-bottom: 1.5rem;
 }
 
@@ -449,8 +458,23 @@ useSeoMeta({
 }
 
 .feature-icon {
-  font-size: 3rem;
+  display: inline-grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.22), rgba(0, 206, 201, 0.18));
+  border: 1px solid rgba(108, 92, 231, 0.35);
+  color: #a29bfe;
   margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(108, 92, 231, 0.45);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .feature-card h3 {
@@ -524,8 +548,23 @@ useSeoMeta({
 }
 
 .brand-icon {
-  font-size: 4rem;
+  display: inline-grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.22), rgba(0, 206, 201, 0.18));
+  border: 1px solid rgba(108, 92, 231, 0.35);
+  color: #a29bfe;
   margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.brand-card:hover .brand-icon {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(108, 92, 231, 0.45);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .brand-card h3 {
@@ -548,8 +587,22 @@ useSeoMeta({
 }
 
 .collab-icon {
-  font-size: 2.5rem;
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.22), rgba(0, 206, 201, 0.18));
+  border: 1px solid rgba(108, 92, 231, 0.35);
+  color: #a29bfe;
   margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.collab-card:hover .collab-icon {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(108, 92, 231, 0.45);
 }
 
 .collab-card h3 {

@@ -9,9 +9,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - **Team page** (`/teams`, `/fa/teams`) migrated from the legacy `tahatehran.github.io` site — 5 members with photos, role badges and social links; added to the navbar and sitemap
 - **Animated UI**: scroll-reveal via a new `v-reveal` directive (`plugins/reveal.ts`, IntersectionObserver + scroll sweep, jump-safe), page transitions, staggered hero entrance, floating gradient orbs, count-up stat counters with correct values (160/95/65/5/6), hover lift on all cards — all disabled under `prefers-reduced-motion`
+- **Proper icon system** — new `UiIcon` (lucide-style inline SVGs) and `BrandIcon` (recolorable brand glyphs via CSS mask) components; replaced every UI emoji across navbar, hero, features, brands, projects, collaborations, team and footer
+- **Vendored brand SVGs** (`public/images/brands/`) from `@lobehub/icons-static-svg` (GitHub, NousResearch, Midjourney, OpenAI, Claude, Gemini, DeepSeek, Hugging Face) and simple-icons (Telegram, LinkedIn, X) — self-hosted, no CDN
+- New gradient SVG favicon (no more 404ing `favicon.ico`)
 
 ### Changed
 
+- **Responsive hardening** for phones/tablets/desktop: hamburger menu with animated icon, auto-close on navigation, 44px tap targets, tighter ≤400px navbar, card grids collapse to one column, code blocks/tables scroll horizontally on mobile, global `img { max-width: 100% }`, RTL-aware blockquotes
+- About page "team" teaser now links to the full `/teams` page
 - Require **Node.js ≥ 22** everywhere (`engines`, Docker base image `node:22-alpine`, CI matrix 22/24) — `better-sqlite3` v13, used by `@nuxt/content`, dropped Node 20 support which broke the Node 20 CI job
 
 ## [0.0.1] — 2026-09-11

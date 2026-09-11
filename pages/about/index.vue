@@ -41,13 +41,14 @@
 
         <div class="team-section">
           <h2>Our Team</h2>
-          <div class="card-grid">
-            <div class="card team-card">
-              <div class="team-avatar">👨‍💻</div>
-              <h3>Taha Tehrani</h3>
-              <p>Founder & Lead Developer</p>
-            </div>
-          </div>
+          <p>
+            We are a small team of developers, designers and AI enthusiasts
+            building open-source tools together.
+          </p>
+          <NuxtLink to="/teams" class="btn btn-primary">
+            {{ $t('nav.teams') }}
+            <UiIcon icon="arrow-right" :size="15" />
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -127,26 +128,14 @@
 
 .team-section h2 {
   color: var(--text-bright);
-  margin-bottom: 2rem;
-}
-
-.team-card {
-  padding: 2rem;
-  text-align: center;
-}
-
-.team-avatar {
-  font-size: 4rem;
   margin-bottom: 1rem;
 }
 
-.team-card h3 {
-  color: var(--text-bright);
-  margin-bottom: 0.5rem;
-}
-
-.team-card p {
+.team-section p {
   color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.7;
 }
 
 @media (max-width: 768px) {

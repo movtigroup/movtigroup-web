@@ -11,7 +11,7 @@
       <div class="container">
         <div class="card-grid">
           <div class="card project-card" v-reveal="{ delay: 0 }">
-            <div class="project-icon">🤖</div>
+            <div class="project-icon"><BrandIcon icon="nousresearch" :size="30" /></div>
             <h3>Hermes Agent</h3>
             <p>Self-hosted AI agent framework with deep integration for developers and teams seeking full control.</p>
             <div class="project-links">
@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="card project-card" v-reveal="{ delay: 120 }">
-            <div class="project-icon">💻</div>
+            <div class="project-icon"><UiIcon icon="code" :size="28" /></div>
             <h3>Kilo Code</h3>
             <p>Open-source AI coding assistant with model routing, benchmarking, and autonomous coding capabilities.</p>
             <div class="project-links">
@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="card project-card" v-reveal="{ delay: 240 }">
-            <div class="project-icon">🧠</div>
+            <div class="project-icon"><UiIcon icon="atom" :size="28" /></div>
             <h3>Dirac.run</h3>
             <p>Advanced AI agent platform for automated task execution, research, and multi-step problem solving.</p>
             <div class="project-links">
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="card project-card" v-reveal="{ delay: 0 }">
-            <div class="project-icon">📸</div>
+            <div class="project-icon"><BrandIcon icon="telegram" :size="28" /></div>
             <h3>ArmiGram</h3>
             <p>Visual Social Network - A modern platform for sharing visual content with AI-powered features.</p>
             <div class="project-links">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="card project-card" v-reveal="{ delay: 120 }">
-            <div class="project-icon">🎬</div>
+            <div class="project-icon"><BrandIcon icon="midjourney" :size="28" /></div>
             <h3>AnimeTi</h3>
             <p>Anime & Entertainment Platform - Streaming and community platform for anime enthusiasts.</p>
             <div class="project-links">
@@ -87,8 +87,23 @@
 }
 
 .project-icon {
-  font-size: 3rem;
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.22), rgba(0, 206, 201, 0.18));
+  border: 1px solid rgba(108, 92, 231, 0.35);
+  color: #a29bfe;
   margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.project-card:hover .project-icon {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(108, 92, 231, 0.45);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .project-card h3 {

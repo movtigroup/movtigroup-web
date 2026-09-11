@@ -195,6 +195,13 @@ a:hover {
   }
 }
 
+/* ===== Responsive foundations ===== */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .section-header h2 {
@@ -202,5 +209,24 @@ a:hover {
   }
   .card-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1.1rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.55rem;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
   }
 }

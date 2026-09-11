@@ -5,7 +5,7 @@
       <h1>{{ $t('teams.title') }}</h1>
       <p>{{ $t('teams.subtitle') }}</p>
       <div class="team-count-badge">
-        <span>👥</span>
+        <UiIcon icon="users" :size="16" />
         <span>{{ $t('teams.membersLabel') }}</span>
         <span class="count-num">{{ members.length }}</span>
       </div>
@@ -28,14 +28,14 @@
             <div v-if="member.socials.length" class="member-social">
               <a
                 v-for="social in member.socials"
-                :key="social.label"
+                :key="social.type"
                 :href="social.url"
                 target="_blank"
                 rel="noopener"
                 class="social-link"
                 :class="social.type"
               >
-                <img :src="social.icon" :alt="social.label" width="16" height="16" />
+                <BrandIcon :icon="social.type" :size="15" />
                 {{ social.label }}
               </a>
             </div>
@@ -48,7 +48,8 @@
       <h2>{{ $t('teams.joinTitle') }}</h2>
       <p>{{ $t('teams.joinText') }}</p>
       <NuxtLink :to="localePath('/contact')" class="btn btn-primary btn-join">
-        ✉️ {{ $t('teams.joinCta') }}
+        <UiIcon icon="mail" :size="16" />
+        {{ $t('teams.joinCta') }}
       </NuxtLink>
     </section>
   </div>
@@ -58,8 +59,6 @@
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-const icon = (name) => `/images/icons/${name}`
-
 const members = computed(() => [
   {
     name: 'Taha Tehrani Nasab',
@@ -67,8 +66,8 @@ const members = computed(() => [
     role: t('teams.roles.dev'),
     roleClass: 'role-dev',
     socials: [
-      { type: 'github', label: t('teams.github'), url: 'https://github.com/ththt-dev', icon: icon('github.svg') },
-      { type: 'linkedin', label: t('teams.linkedin'), url: 'https://www.linkedin.com/in/taha-tehrani-nasab', icon: icon('linkedin.svg') }
+      { type: 'github', label: t('teams.github'), url: 'https://github.com/ththt-dev' },
+      { type: 'linkedin', label: t('teams.linkedin'), url: 'https://www.linkedin.com/in/taha-tehrani-nasab' }
     ]
   },
   {
@@ -77,7 +76,7 @@ const members = computed(() => [
     role: t('teams.roles.tech'),
     roleClass: 'role-tech',
     socials: [
-      { type: 'github', label: t('teams.github'), url: 'https://github.com/saratehran', icon: icon('github.svg') }
+      { type: 'github', label: t('teams.github'), url: 'https://github.com/saratehran' }
     ]
   },
   {
@@ -93,7 +92,7 @@ const members = computed(() => [
     role: t('teams.roles.tech'),
     roleClass: 'role-tech',
     socials: [
-      { type: 'github', label: t('teams.github'), url: 'https://github.com/sanaminatozak', icon: icon('github.svg') }
+      { type: 'github', label: t('teams.github'), url: 'https://github.com/sanaminatozak' }
     ]
   },
   {
@@ -102,7 +101,7 @@ const members = computed(() => [
     role: t('teams.roles.ai'),
     roleClass: 'role-ai',
     socials: [
-      { type: 'github', label: t('teams.github'), url: 'https://github.com/ththlo', icon: icon('github.svg') }
+      { type: 'github', label: t('teams.github'), url: 'https://github.com/ththlo' }
     ]
   }
 ])
@@ -282,8 +281,6 @@ useSeoMeta({
   color: var(--text-primary);
   transition: var(--transition);
 }
-
-.social-link img { width: 16px; height: 16px; }
 
 .social-link:hover {
   transform: translateY(-2px);

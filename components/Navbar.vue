@@ -2,7 +2,7 @@
   <header class="navbar" :class="{ scrolled: isScrolled }">
     <div class="container nav-container">
       <NuxtLink to="/" class="logo">
-        <span class="logo-icon">⚡</span>
+        <span class="logo-icon"><UiIcon icon="zap" :size="16" /></span>
         <span class="logo-text">MovtiGroup</span>
       </NuxtLink>
       
@@ -27,7 +27,13 @@
             {{ l.code.toUpperCase() }}
           </button>
         </div>
-        <button class="mobile-toggle" @click="mobileMenuOpen = !mobileMenuOpen">
+        <button
+          class="mobile-toggle"
+          :class="{ open: mobileMenuOpen }"
+          :aria-expanded="mobileMenuOpen ? 'true' : 'false'"
+          aria-label="Menu"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -45,6 +51,12 @@ const mobileMenuOpen = ref(false)
 const onScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
+
+// Close the mobile menu whenever the route changes
+const route = useRoute()
+watch(() => route.fullPath, () => {
+  mobileMenuOpen.value = false
+})
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
@@ -95,7 +107,14 @@ onUnmounted(() => {
 }
 
 .logo-icon {
-  font-size: 1.6rem;
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(108, 92, 231, 0.4);
 }
 
 .nav-links {
@@ -165,21 +184,42 @@ onUnmounted(() => {
 .mobile-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .mobile-toggle span {
-  width: 25px;
+  width: 24px;
   height: 2px;
+  border-radius: 2px;
   background: var(--text-bright);
   transition: var(--transition);
 }
 
+.mobile-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 @media (max-width: 768px) {
+  .nav-container {
+    gap: 0.75rem;
+  }
+
   .nav-links {
     position: fixed;
     top: 70px;
@@ -187,21 +227,43 @@ onUnmounted(() => {
     right: 0;
     background: var(--bg-dark);
     flex-direction: column;
-    padding: 2rem;
-    gap: 1rem;
+    padding: 1.5rem 2rem;
+    gap: 0.25rem;
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   }
-  
+
+  .nav-links .nav-link {
+    padding: 0.85rem 0.5rem;
+    font-size: 1.05rem;
+  }
+
   .nav-links.active {
     transform: translateY(0);
     opacity: 1;
     pointer-events: all;
   }
-  
+
   .mobile-toggle {
     display: flex;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo-text {
+    font-size: 1.05rem;
+  }
+
+  .lang-switcher {
+    gap: 0.15rem;
+  }
+
+  .lang-btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.72rem;
   }
 }
 </style>

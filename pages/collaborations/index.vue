@@ -12,7 +12,7 @@
         <div class="card-grid">
           <div class="card collab-card" v-reveal="{ delay: 0 }">
             <div class="collab-header">
-              <div class="collab-icon">🧠</div>
+              <div class="collab-icon"><UiIcon icon="atom" :size="26" /></div>
               <div>
                 <h3>Dirac.run</h3>
                 <span class="collab-tag">AI Inference Platform</span>
@@ -29,7 +29,7 @@
 
           <div class="card collab-card" v-reveal="{ delay: 120 }">
             <div class="collab-header">
-              <div class="collab-icon">💻</div>
+              <div class="collab-icon"><UiIcon icon="code" :size="26" /></div>
               <div>
                 <h3>Kilo Code</h3>
                 <span class="collab-tag">AI Coding Assistant</span>
@@ -46,7 +46,7 @@
 
           <div class="card collab-card" v-reveal="{ delay: 240 }">
             <div class="collab-header">
-              <div class="collab-icon">🤖</div>
+              <div class="collab-icon"><BrandIcon icon="nousresearch" :size="26" /></div>
               <div>
                 <h3>Hermes Agent</h3>
                 <span class="collab-tag">AI Agent Framework</span>
@@ -103,7 +103,21 @@
 }
 
 .collab-icon {
-  font-size: 2.5rem;
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.22), rgba(0, 206, 201, 0.18));
+  border: 1px solid rgba(108, 92, 231, 0.35);
+  color: #a29bfe;
+  transition: var(--transition);
+}
+
+.collab-card:hover .collab-icon {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(108, 92, 231, 0.45);
 }
 
 .collab-card h3 {

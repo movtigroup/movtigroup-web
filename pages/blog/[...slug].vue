@@ -245,6 +245,49 @@ useHead(() => ({
 
 :deep(img) {
   max-width: 100%;
+  height: auto;
   border-radius: 8px;
+}
+
+:deep(table) {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+:deep(th),
+:deep(td) {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.8rem;
+  text-align: start;
+}
+
+:deep(p), :deep(li) {
+  overflow-wrap: break-word;
+}
+
+[dir='rtl'] :deep(blockquote) {
+  border-left: 0;
+  border-right: 4px solid var(--primary);
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .post-page {
+    padding-top: 100px;
+  }
+
+  .post-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .post-meta {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 }
 </style>
