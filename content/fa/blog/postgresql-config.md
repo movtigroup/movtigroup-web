@@ -2,9 +2,10 @@
 title: "پیکربندی و بهینه‌سازی PostgreSQL"
 date: 2026-05-23
 lang: fa
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "نکات کلیدی برای پیکربندی و افزایش کارایی دیتابیس PostgreSQL."
+tags: ["postgresql", "sql", "database"]
 ---
 
 PostgreSQL یکی از پیشرفته‌ترین دیتابیس‌های متن‌باز است. اما برای پروژه‌های بزرگ، نیاز به تنظیمات دقیق دارد.

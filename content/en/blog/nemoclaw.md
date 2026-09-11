@@ -2,9 +2,10 @@
 title: "NemoClaw: NVIDIA's Enterprise Security Layer for OpenClaw"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How NVIDIA NemoClaw adds enterprise-grade guardrails, privacy filters, and compliance to your OpenClaw assistant."
+tags: ["docker", "monitoring", "security", "ai"]
 ---
 
 NemoClaw is NVIDIA's enterprise-grade security enhancement for OpenClaw. It adds guardrails, privacy filters, and compliance features to make OpenClaw safe for corporate and government use.

@@ -2,9 +2,10 @@
 title: "Systems Thinking for Modern Software Engineering"
 date: 2026-07-21
 lang: en
-category: ""
+category: "Tools"
 author: "MovtiGroup"
 description: "Why systems thinking matters more than ever for backend, DevOps, and scalable architecture decisions."
+tags: ["ai"]
 ---
 
 Modern software problems are rarely about a single service or a single language. They are about interaction, failure modes, and long-term evolution.

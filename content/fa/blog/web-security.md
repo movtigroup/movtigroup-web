@@ -2,9 +2,10 @@
 title: "نکات امنیتی ضروری در وب"
 date: 2026-05-24
 lang: fa
-category: ""
+category: "Security"
 author: "MovtiGroup"
 description: "حفاظت از داده‌های کاربران در برابر حملات متداول وب مثل XSS و SQL Injection."
+tags: ["sql", "security"]
 ---
 
 امنیت در وب یک موضوع حیاتی است. نادیده گرفتن آن می‌تواند به اعتبار و دارایی‌های شما آسیب جدی بزند.

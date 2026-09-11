@@ -2,9 +2,10 @@
 title: "OpenClaw Review: The Complete Open-Source AI Assistant Platform"
 date: 2026-07-25
 lang: en
-category: ""
+category: "Tools"
 author: "MovtiGroup"
 description: "A comprehensive review of OpenClaw: features, skills ecosystem, security, deployment options, and real-world performance."
+tags: ["sql", "security", "telegram", "ai"]
 ---
 
 OpenClaw is the foundational open-source AI assistant platform that started the entire Claw ecosystem. This comprehensive review covers its features, architecture, security, and real-world performance.

@@ -2,9 +2,10 @@
 title: "NemoClaw: لایه امنیتی سازمانی NVIDIA برای OpenClaw"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه NVIDIA NemoClaw موافقت سازمانی، فیلترهای حریم خصوصی و انطباق را به دستیار OpenClaw شما اضافه می‌کند."
+tags: ["docker", "security", "ai", "openclaw"]
 ---
 
 NemoClaw لایه امنیتی سازمانی NVIDIA برای OpenClaw است. این ابزار محافظت‌ها، فیلترهای حریم خصوصی و قابلیت‌های انطباق را اضافه می‌کند تا OpenClaw برای استفاده سازمانی و دولتی ایمن شود.

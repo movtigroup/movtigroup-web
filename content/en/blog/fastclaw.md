@@ -2,9 +2,10 @@
 title: "FastClaw: Lightweight Multi-Agent Runtime in Go"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How FastClaw delivers a lightweight multi-agent Go runtime with personalities, memory, skills, and sandbox isolation."
+tags: ["redis", "sql", "security", "ai"]
 ---
 
 FastClaw is a lightweight multi-agent runtime written in Go that provides personalities, memory, skills, and sandbox isolation for running multiple AI agents simultaneously.

@@ -2,9 +2,10 @@
 title: "بررسی و مقایسه OpenClaw، KiloClaw و زیربنای سیستم"
 date: 2026-07-12
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "مقایسه عمیق OpenClaw و KiloClaw، معماری گت‌وی، لایه‌های امنیتی، و تفاوت‌های کلیدی برای انتخاب پلتفرم مناسب."
+tags: ["security", "ai", "claude", "openclaw"]
 ---
 
 در دنیای دستیارهای هوشمند، دو نام **OpenClaw** و **KiloClaw** زیاد شنیده می‌شوند. در این مقاله، هر دو را بررسی می‌کنیم، معماری زیربنایی OpenClaw را کالبدشکافی می‌کنیم، و تفاوت‌های کلیدی را برای انتخاب بهتر شما آشکار می‌کنیم.

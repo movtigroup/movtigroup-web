@@ -2,9 +2,10 @@
 title: "BirdClaw: فضایش‌محوری Twitter/X"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه BirdClaw مدیریت Twitter/X را با اعتماد SQLite FTS5، دروارت آرشیو و راستگر CLI/web فراهم می‌کند."
+tags: ["sql", "ai", "ai-agents", "openclaw"]
 ---
 
 BirdClaw یک فضای کاری Twitter/X محلی‌اول است که کنترل کامل داده‌های Twitter شما را فراهم می‌کند. با جستجوی کامل متن SQLite FTS5، وارد کردن آرشیو و رابط‌های CLI و وب، ابزار قدرتمندی برای مدیریت Twitter است.

@@ -2,9 +2,10 @@
 title: "Teldrive: Build Your Own Cloud Storage on Telegram"
 date: 2026-07-24
 lang: en
-category: ""
+category: "Networking"
 author: "MovtiGroup"
 description: "Discover Teldrive, a self-hosted cloud storage solution that leverages Telegram as its backend to provide unlimited, free file storage with full API access."
+tags: ["git", "github", "telegram", "ai"]
 ---
 
 ## What is Teldrive?

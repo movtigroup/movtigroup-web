@@ -2,9 +2,10 @@
 title: "سیستم هوشمند پایش و اعلان آگهی‌های خودرو در دیوار"
 date: 2025-07-02
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "ربات هوشمند پایش و اعلان آگهی‌های خودرو در دیوار با استفاده از وب اسکرپر پیشرفته و ربات Bale"
+tags: ["security", "ai", "api"]
 ---
 
 ## معرفی پروژه

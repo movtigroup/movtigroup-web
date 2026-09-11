@@ -172,6 +172,56 @@ a:hover {
 
 .post-card-body {
   padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ===== Tags ===== */
+.post-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0 0.85rem;
+}
+
+.tag-chip {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.tag-chip:hover {
+  color: #fff;
+  border-color: var(--primary);
+  background: rgba(108, 92, 231, 0.2);
+}
+
+.tag-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.tag-chip.static {
+  cursor: default;
+}
+
+.tag-filter-active {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== Scroll reveal (v-reveal directive) ===== */

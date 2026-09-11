@@ -2,9 +2,10 @@
 title: "AI Ethics and Ethical Challenges"
 date: 2025-06-05
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Exploring ethical challenges in AI, algorithmic transparency, and developer responsibilities."
+tags: ["security", "ai", "machine-learning"]
 ---
 
 As AI becomes integrated into various aspects of our lives, ethical issues and philosophical challenges arise.

@@ -2,9 +2,10 @@
 title: "Claw Ecosystem Comparison: Choosing the Right AI Agent Platform"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Comprehensive comparison of all Claw ecosystem platforms: OpenClaw, NemoClaw, NanoClaw, IronClaw, NullClaw, PicoClaw, MicroClaw, FastClaw, ZeroClaw, BirdClaw, and ClawHub."
+tags: ["docker", "typescript", "rust", "security"]
 ---
 
 The Claw ecosystem has grown rapidly, offering specialized AI agent platforms for every use case. This comprehensive comparison helps you choose the right platform for your needs.

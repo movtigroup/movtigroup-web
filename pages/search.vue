@@ -193,10 +193,15 @@ useHead({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.75rem;
 }
 
 .post-date {
   color: var(--text-muted);
   font-size: 0.85rem;
+  white-space: nowrap;
 }
 </style>

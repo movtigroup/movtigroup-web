@@ -2,9 +2,10 @@
 title: "Building Fast APIs with FastAPI"
 date: 2025-05-24
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Why is FastAPI the best choice for Python developers in 2024?"
+tags: ["python", "fastapi", "api"]
 ---
 
 If you are looking for high development and execution speed, FastAPI is your first choice.

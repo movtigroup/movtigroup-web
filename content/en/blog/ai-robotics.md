@@ -2,9 +2,10 @@
 title: "Intelligent Robotics and AI Integration"
 date: 2025-06-11
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "AI integration in robotics, industrial and service robots with artificial intelligence."
+tags: ["monitoring", "security", "ai", "computer-vision"]
 ---
 
 Intelligent robotics combines AI and robotic engineering to create robots that can understand and make decisions about their environment.

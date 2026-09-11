@@ -2,9 +2,10 @@
 title: "AI in Healthcare and Medicine"
 date: 2025-06-08
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Novel AI applications in healthcare, disease diagnosis, and personalized treatments."
+tags: ["ai", "deep-learning", "nlp"]
 ---
 
 AI in healthcare has improved diagnostic accuracy and expanded access to medical services.

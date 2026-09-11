@@ -2,9 +2,10 @@
 title: "OpenClaw: A Customizable AI Assistant for Every Team"
 date: 2026-07-12
 lang: en
-category: ""
+category: "Tools"
 author: "MovtiGroup"
 description: "What is OpenClaw? A deep dive into the customizable AI assistant platform with skills, local file access, browser automation, and real-world use cases."
+tags: ["git", "security", "telegram", "ai"]
 ---
 
 OpenClaw is an open-source AI assistant platform that lets you build a personalized assistant — not just a simple chatbot. With extensible skills, local file access, web research, browser automation, and integrations with popular services, OpenClaw replaces repetitive commands and daily searches with intelligent automation.

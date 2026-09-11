@@ -2,9 +2,10 @@
 title: "استقرار هوش مصنوعی در ابر (Cloud Deployment)"
 date: 2026-06-13
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "راهنمای کامل استقرار مدل‌های هوش مصنوعی در سرویس‌های ابری و بهینه‌سازی هزینه‌ها."
+tags: ["docker", "monitoring", "cicd", "security"]
 ---
 
 استقرار مدل‌های هوش مصنوعی در محیط‌های ابری، دسترس‌پذیری و مقیاس‌پذیری را افزایش می‌دهد.

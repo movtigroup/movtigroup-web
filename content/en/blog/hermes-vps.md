@@ -2,9 +2,10 @@
 title: "Complete Guide: Deploying Hermes on a VPS"
 date: 2026-07-12
 lang: en
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "Step-by-step guide to deploy and configure Hermes on a cloud VPS — from server selection to stable Docker deployment with security."
+tags: ["docker", "ubuntu", "debian", "git"]
 ---
 
 Hermes is a communication/bridge layer (gateway) that connects AI assistants to various channels (Telegram, web, API). In this article, we explain how to deploy Hermes on a VPS step by step.

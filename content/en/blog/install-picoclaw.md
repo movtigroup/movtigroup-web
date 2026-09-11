@@ -2,9 +2,10 @@
 title: "How to Install PicoClaw: AI Agent on $10 Hardware"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Guide to install PicoClaw on Raspberry Pi, RISC-V boards, and other affordable hardware for edge AI."
+tags: ["debian", "sql", "git", "github"]
 ---
 
 PicoClaw runs a full AI agent on $10 hardware. This guide covers installation on Raspberry Pi and RISC-V devices.

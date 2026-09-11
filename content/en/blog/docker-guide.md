@@ -2,9 +2,10 @@
 title: "Comprehensive Docker Guide for Developers"
 date: 2025-05-23
 lang: en
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "Why is Docker essential for software development? Concepts of containers, images, and benefits."
+tags: ["docker", "ai", "tutorial"]
 ---
 
 Docker has revolutionized how we build, test, and deploy software. With Docker, you'll never hear the famous "It worked on my machine!" again.

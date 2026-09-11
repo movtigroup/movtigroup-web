@@ -2,9 +2,10 @@
 title: "AI in Finance and Banking"
 date: 2025-06-17
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "New AI applications in finance, fraud detection, and intelligent financial decision-making."
+tags: ["monitoring", "security", "ai", "machine-learning"]
 ---
 
 AI in finance and banking has improved decision accuracy and security.

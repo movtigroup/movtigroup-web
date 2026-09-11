@@ -2,9 +2,10 @@
 title: "ClawHub: The npm-Style Skill Registry for OpenClaw"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How ClawHub serves as the official skill marketplace for OpenClaw with semantic search, versioning, and trust scoring."
+tags: ["docker", "rust", "ai", "ai-agents"]
 ---
 
 ClawHub is the official skill registry and marketplace for the OpenClaw ecosystem. Think of it as npm for AI agent skills — a place to discover, install, publish, and share capabilities for your OpenClaw assistant.

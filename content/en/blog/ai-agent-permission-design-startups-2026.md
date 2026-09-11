@@ -2,9 +2,10 @@
 title: "AI Agent Permission Design for Startups: Give Agents Power Without Losing Control"
 date: 2026-07-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "AI Agent Permission Design for Startups: Give Agents Power Without Losing Control"
+tags: ["ai", "ai-agents", "startups"]
 ---
 
 AI Agent Permission Design for Startups: Give Agents Power Without Losing Control is not a prediction piece. It is a buying and rollout memo for founders who want agent work to show up as fewer hours, fewer dropped tasks, and cleaner decisions inside the business.

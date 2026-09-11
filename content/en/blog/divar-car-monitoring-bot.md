@@ -2,9 +2,10 @@
 title: "Smart Car Ad Monitoring and Notification System on Divar"
 date: 2025-07-02
 lang: en
-category: ""
+category: "Security"
 author: "MovtiGroup"
 description: "An intelligent bot for monitoring and notifying car ads on Divar using advanced web scraping and Bale messenger"
+tags: ["monitoring", "security", "ai", "api"]
 ---
 
 ## Project Introduction

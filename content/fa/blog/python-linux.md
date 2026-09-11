@@ -2,9 +2,10 @@
 title: "نصب پایتون روی لینوکس و Machine Wizard"
 date: 2026-05-23
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "آموزش نصب حرفه‌ای پایتون و استفاده از جادوگر ماشین برای مدیریت محیط‌های لینوکسی."
+tags: ["linux", "python", "tutorial", "setup"]
 ---
 
 پایتون زبان اول لینوکس است. در این مطلب نحوه نصب صحیح و مدیریت نسخه‌های مختلف را یاد می‌گیرید.

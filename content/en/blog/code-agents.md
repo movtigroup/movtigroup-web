@@ -2,9 +2,10 @@
 title: "Introduction to Code Agents"
 date: 2025-05-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "The future of programming with smart assistants and autonomous agents."
+tags: ["ai", "ai-agents"]
 ---
 
 Code Agents are the next generation of software development tools, doing much more than simple code completion.

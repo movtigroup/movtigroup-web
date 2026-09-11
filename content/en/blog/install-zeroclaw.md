@@ -2,9 +2,10 @@
 title: "How to Install ZeroClaw: High-Performance Rust Agent Framework"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Installation guide for ZeroClaw with <5MB RAM, <10ms startup, and 30+ messaging integrations."
+tags: ["linux", "rust", "sql", "git"]
 ---
 
 ZeroClaw delivers maximum AI agent performance with minimum resources. This guide covers installation and optimization.

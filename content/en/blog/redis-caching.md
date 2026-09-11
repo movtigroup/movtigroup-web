@@ -2,9 +2,10 @@
 title: "Boosting App Speed with Redis"
 date: 2025-05-24
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Tutorial on using Redis as a caching layer to reduce pressure on the main database."
+tags: ["redis", "database", "ai", "tutorial"]
 ---
 
 Redis is an in-memory database that significantly increases your application's responsiveness.

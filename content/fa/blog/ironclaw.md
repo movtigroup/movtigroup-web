@@ -2,9 +2,10 @@
 title: "IronClaw: عامل هوش مصنوعی Rust با Sandboxed WASM و امنیت TEE"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه IronClaw عملکرد Rust، ایزولاسیون WASM و vaultهای رمزنگاری‌شده TEE را به امنیت عامل OpenClaw می‌آورد."
+tags: ["rust", "security", "ai", "openclaw"]
 ---
 
 IronClaw یک چارچوب عامل هوش مصنوعی مبتنی بر Rust است که توسط NEAR AI توسعه یافته و ایزولاسیون WebAssembly و امنیت Trusted Execution Environment (TEE) را به عامل‌های سازگار با OpenClaw می‌آورد.

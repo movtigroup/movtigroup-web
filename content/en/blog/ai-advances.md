@@ -2,9 +2,10 @@
 title: "Recent Advances in AI and What They Mean for Developers"
 date: 2026-07-21
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "A practical overview of recent AI breakthroughs and how they affect software development, automation, and product design."
+tags: ["ai", "computer-vision", "automation", "api"]
 ---
 
 Artificial intelligence continues to evolve rapidly, with new models, tools, and deployment patterns appearing every week.

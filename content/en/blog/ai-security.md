@@ -2,9 +2,10 @@
 title: "AI Security and Threat Defense"
 date: 2025-06-14
 lang: en
-category: ""
+category: "Security"
 author: "MovtiGroup"
 description: "AI security challenges, adversarial attacks, and defensive methods."
+tags: ["monitoring", "security", "ai", "api"]
 ---
 
 Security in AI systems is a very important priority that requires special attention and advanced solutions.

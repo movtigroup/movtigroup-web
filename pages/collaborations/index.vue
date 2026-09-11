@@ -53,10 +53,28 @@
               </div>
             </div>
             <p>
-              Self-hosted AI agent framework with deep integration for developers and teams 
+              Self-hosted AI agent framework with deep integration for developers and teams
               seeking full control. MovtiGroup contributes to development and testing.
             </p>
-            <a href="https://github.com/NousResearch/hermes-agent" target="_blank" class="btn btn-primary btn-small">
+            <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener" class="btn btn-primary btn-small">
+              View on GitHub
+            </a>
+          </div>
+
+          <div class="card collab-card" v-reveal="{ delay: 0 }">
+            <div class="collab-header">
+              <div class="collab-icon"><BrandIcon icon="cherrystudio" :size="26" /></div>
+              <div>
+                <h3>Cherry Studio</h3>
+                <span class="collab-tag">AI Client — Desktop & Mobile</span>
+              </div>
+            </div>
+            <p>
+              Open-source AI productivity studio with smart chat, autonomous agents and 300+
+              assistants for Windows, macOS, Linux, and mobile. MovtiGroup collaborates on both
+              the desktop and mobile applications — testing, localization and community support.
+            </p>
+            <a href="https://github.com/CherryHQ/cherry-studio" target="_blank" rel="noopener" class="btn btn-primary btn-small">
               View on GitHub
             </a>
           </div>

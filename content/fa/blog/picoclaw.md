@@ -2,9 +2,10 @@
 title: "PicoClaw: عامل هوش برای سرور $10 با Go"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه PicoClaw دستیار کامل هوش را بر رزبری پی، تبلهتهای RISC-V و سرورهای $10 با Go اجرا می‌دهد."
+tags: ["sql", "git", "github", "security"]
 ---
 
 PicoClaw یک عامل هوش مصنوعی فوق‌سبک مبتنی بر Go است که برای اجرا روی سخت‌افزار ۱۰ دلاری مانند Raspberry Pi، بردهای RISC-V و دستگاه‌های محدود منابع طراحی شده است.

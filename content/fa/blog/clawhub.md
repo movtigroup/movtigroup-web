@@ -2,9 +2,10 @@
 title: "ClawHub: رغیستری اسکیل‌های npm برای OpenClaw"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه ClawHub به‌عنوان بازارگاه رسمی اسکیل‌های OpenClaw با جستجوی مفهومی و اعتبار طرحی ایفاده می‌کند."
+tags: ["docker", "rust", "ai", "openclaw"]
 ---
 
 ClawHub رجیستری رسمی اسکیل‌ها و بازارگاه اکوسیستم OpenClaw است. آن را به‌عنوان npm برای مهارت‌های عامل هوش مصنوعی در نظر بگیرید — مکانی برای کشف، نصب، انتشار و اشتراک‌گذاری قابلیت‌ها.

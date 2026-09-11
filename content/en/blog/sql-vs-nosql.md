@@ -2,9 +2,10 @@
 title: "SQL vs NoSQL Databases Comparison"
 date: 2025-05-23
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Which database is right for your project? Examining differences, pros, and cons."
+tags: ["postgresql", "mysql", "sql", "database"]
 ---
 
 Choosing the right database is one of the most critical decisions in software architecture. In this article, we explore the fundamental differences between SQL and NoSQL.

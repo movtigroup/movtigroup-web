@@ -2,9 +2,10 @@
 title: "نصب و مانیتورینگ با Portainer در لینوکس"
 date: 2026-05-23
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "مدیریت بصری کانتینرهای داکر با استفاده از پنل قدرتمند Portainer."
+tags: ["docker", "portainer", "linux", "monitoring"]
 ---
 
 اگر از خط فرمان داکر خسته شده‌اید، Portainer بهترین رابط گرافیکی برای مدیریت کانتینرهای شماست.

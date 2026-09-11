@@ -2,9 +2,10 @@
 title: "Installing and Monitoring with Portainer on Linux"
 date: 2025-05-23
 lang: en
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "Visual management of Docker containers using the powerful Portainer panel."
+tags: ["docker", "portainer", "linux", "monitoring"]
 ---
 
 If you're tired of the Docker command line, Portainer is the best GUI for managing your containers.

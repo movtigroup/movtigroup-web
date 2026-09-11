@@ -2,9 +2,10 @@
 title: "How to Install NemoClaw: Enterprise Security for OpenClaw"
 date: 2026-07-25
 lang: en
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "Step-by-step guide to install and configure NemoClaw for enterprise-grade security on your OpenClaw deployment."
+tags: ["docker", "git", "github", "security"]
 ---
 
 NemoClaw adds enterprise-grade security guardrails to your OpenClaw deployment. This guide walks you through installation, configuration, and verification.

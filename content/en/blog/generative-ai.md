@@ -2,9 +2,10 @@
 title: "Generative AI and the Content Revolution"
 date: 2025-06-07
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Exploring Generative AI, text and image models, and its impact on creative industries."
+tags: ["ai", "llm", "claude", "generative-ai"]
 ---
 
 Generative AI can create new content based on learned patterns.

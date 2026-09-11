@@ -2,9 +2,10 @@
 title: "AI Startups in Iran"
 date: 2025-06-20
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Introducing new AI startups in Iran, opportunities and challenges in this field."
+tags: ["ai", "chatbots", "robotics", "startups"]
 ---
 
 Iran is developing AI startups with its human and cultural capabilities.

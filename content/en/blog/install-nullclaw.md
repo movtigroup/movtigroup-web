@@ -2,9 +2,10 @@
 title: "How to Install NullClaw: The 678KB AI Agent Runtime"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Quick guide to install NullClaw, the ultra-lightweight Zig-powered AI agent that runs in under 1MB RAM."
+tags: ["linux", "sql", "git", "github"]
 ---
 
 NullClaw is the lightest full-featured AI agent at just 678KB. Here's how to install and run it.

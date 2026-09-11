@@ -2,9 +2,10 @@
 title: "مقدمه‌ای بر CI/CD و اتوماسیون استقرار"
 date: 2026-05-24
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "چگونه با استفاده از CI/CD خطاهای انسانی را کاهش داده و سرعت تحویل نرم‌افزار را بالا ببریم."
+tags: ["git", "github", "cicd"]
 ---
 
 فرآیند Continuous Integration (CI) و Continuous Deployment (CD) قلب تپنده توسعه نرم‌افزار مدرن است.

@@ -2,9 +2,10 @@
 title: "Deep Learning and Neural Networks Explained"
 date: 2025-06-02
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Complete guide to artificial neural networks, layer architectures, and deep learning applications in vision and language."
+tags: ["ai", "deep-learning", "nlp", "llm"]
 ---
 
 Deep Learning uses multi-layer neural networks to model increasingly complex patterns in data.

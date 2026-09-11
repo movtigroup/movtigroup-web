@@ -2,9 +2,10 @@
 title: "📣 پایان خدمات آپلودبوی: پایان ۱۳ سال فعالیت"
 date: 2026-07-23
 lang: fa
-category: ""
+category: "Networking"
 author: "MovtiGroup"
 description: "اعلام پایان خدمات آپلودبوی پس از ۱۳ سال فعالیت و خداحافظی از میلیون‌ها کاربر."
+tags: ["server"]
 ---
 
 کاربران عزیز آپلودبوی

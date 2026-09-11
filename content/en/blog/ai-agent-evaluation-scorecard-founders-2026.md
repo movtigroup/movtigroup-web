@@ -2,9 +2,10 @@
 title: "AI Agent Evaluation Scorecard: What Founders Should Test Before Rollout"
 date: 2026-07-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "AI Agent Evaluation Scorecard: What Founders Should Test Before Rollout"
+tags: ["ai", "ai-agents", "openclaw", "api"]
 ---
 
 AI Agent Evaluation Scorecard: What Founders Should Test Before Rollout is not a prediction piece. It is a buying and rollout memo for founders who want agent work to show up as fewer hours, fewer dropped tasks, and cleaner decisions inside the business.

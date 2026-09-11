@@ -21,6 +21,12 @@
           <a href="https://github.com/movtigroup" target="_blank" rel="noopener">
             <BrandIcon icon="github" :size="16" /> GitHub
           </a>
+          <a href="https://www.linkedin.com/company/movtigroup/" target="_blank" rel="noopener">
+            <BrandIcon icon="linkedin" :size="15" /> LinkedIn
+          </a>
+          <a href="https://hamgit.ir/tahavey18/MovtiGroup" target="_blank" rel="noopener">
+            <UiIcon icon="git-branch" :size="15" /> Hamgit
+          </a>
           <a href="https://x.com/movtigroup" target="_blank" rel="noopener">
             <BrandIcon icon="x" :size="14" /> X (Twitter)
           </a>

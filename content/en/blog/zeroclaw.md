@@ -2,9 +2,10 @@
 title: "ZeroClaw: Ultra-Efficient Rust Framework for AI Agents"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How ZeroClaw delivers <5MB RAM, <10ms startup, 30+ integrations, and SQLite memory for AI agents."
+tags: ["rust", "sql", "ai", "ai-agents"]
 ---
 
 ZeroClaw is an ultra-efficient Rust framework for building AI agents that need maximum performance with minimum resource usage. With <5MB RAM, <10ms startup, and 30+ integrations, it's built for production at scale.

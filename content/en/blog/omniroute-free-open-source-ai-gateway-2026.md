@@ -2,9 +2,10 @@
 title: "OmniRoute: Free Open-Source AI Gateway With 268 Providers and Auto-Fallback"
 date: 2026-07-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "OmniRoute: Free Open-Source AI Gateway With 268 Providers and Auto-Fallback"
+tags: ["ai", "ai-agents", "llm", "claude"]
 ---
 
 OmniRoute is an open-source AI gateway that gives developers one endpoint for 268 AI providers, automatic failover when quotas run out, and built-in token compression that can cut costs by up to 95%. If your team uses coding agents, LLM APIs, or local models, OmniRoute removes the complexity of managing multiple keys, endpoints, and rate limits.

@@ -2,9 +2,10 @@
 title: "پیکربندی MySQL با داکر"
 date: 2026-05-23
 lang: fa
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "آموزش گام‌به‌گام راه‌اندازی دیتابیس MySQL با استفاده از Docker Compose."
+tags: ["docker", "mysql", "sql", "database"]
 ---
 
 راه‌اندازی MySQL با داکر بسیار ساده و سریع است. در این آموزش یاد می‌گیرید چگونه با Docker Compose یک دیتابیس پایدار ایجاد کنید.

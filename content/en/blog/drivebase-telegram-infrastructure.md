@@ -2,9 +2,10 @@
 title: "Drivebase: Telegram-Based Infrastructure for File Management"
 date: 2026-07-24
 lang: en
-category: ""
+category: "Networking"
 author: "MovtiGroup"
 description: "Learn about Drivebase, an infrastructure toolkit for building file management systems on top of Telegram, designed for developers and self-hosters."
+tags: ["git", "github", "telegram", "ai"]
 ---
 
 ## What is Drivebase?

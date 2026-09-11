@@ -2,9 +2,10 @@
 title: "راهنمای کامل راه‌اندازی Hermes روی VPS"
 date: 2026-07-12
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "نحوه استقرار و پیکربندی Hermes روی سرور ابری (VPS) — از انتخاب سرور تا اجرای پایدار با Docker و امنیت."
+tags: ["docker", "ubuntu", "debian", "git"]
 ---
 
 Hermes یک لایه ارتباطی/واسط (gateway/bridge) است که دستیارهای هوشمند را به کانال‌های مختلف (تلگرام، وب، API) متصل می‌کند. در این مقاله، نحوه راه‌اندازی Hermes روی یک VPS را گام‌به‌گام توضیح می‌دهیم.

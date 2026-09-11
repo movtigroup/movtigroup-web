@@ -2,9 +2,10 @@
 title: "Installing Python on Linux and Machine Wizard"
 date: 2025-05-23
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Professional Python installation and using Machine Wizard for Linux environment management."
+tags: ["linux", "python", "setup"]
 ---
 
 Python is the primary language for Linux. In this post, you'll learn how to correctly install and manage different versions.

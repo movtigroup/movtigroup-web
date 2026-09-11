@@ -2,9 +2,10 @@
 title: "AI Chatbots and Intelligent Consultation"
 date: 2025-06-09
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Building intelligent chatbots with LLM, advisory and customer support applications."
+tags: ["database", "git", "ai", "llm"]
 ---
 
 Intelligent chatbots using Large Language Models (LLM) have revolutionized user experience in digital services.

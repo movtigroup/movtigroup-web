@@ -2,9 +2,10 @@
 title: "NanoClaw: Container-Isolated AI Agent in 15 Files"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How NanoClaw brings WhatsApp, Telegram, and Discord to OpenClaw with container isolation and agent swarms."
+tags: ["docker", "telegram", "ai", "ai-agents"]
 ---
 
 NanoClaw is a lightweight, container-isolated AI agent that connects OpenClaw to WhatsApp, Telegram, Discord, and other messaging platforms. Built on the OpenClaw Gateway, it provides sandboxed skill execution and agent swarm capabilities.

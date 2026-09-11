@@ -2,9 +2,10 @@
 title: "Essential Web Security Tips"
 date: 2025-05-24
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Protecting user data against common web attacks like XSS and SQL Injection."
+tags: ["rust", "sql", "security", "ai"]
 ---
 
 Security on the web is a vital issue. Ignoring it can seriously damage your reputation and assets.

@@ -2,9 +2,10 @@
 title: "Autonomous Vehicles and AI Technology"
 date: 2025-06-18
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "AI technologies in autonomous vehicles, driving systems, and safety."
+tags: ["linux", "ai", "computer-vision", "robotics"]
 ---
 
 Autonomous vehicles combine AI technologies to revolutionize driving.

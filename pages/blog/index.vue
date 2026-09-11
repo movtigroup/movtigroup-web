@@ -24,14 +24,17 @@
 
         <!-- Categories -->
         <div class="filters">
-          <button 
-            v-for="cat in availableCategories" 
+          <button
+            v-for="cat in availableCategories"
             :key="cat"
             class="filter-btn"
             :class="{ active: activeCategory === cat }"
             @click="activeCategory = cat"
           >
             {{ cat === 'all' ? $t('blog.allCategories') : cat }}
+          </button>
+          <button v-if="activeTag" class="filter-btn tag-filter-active" @click="activeTag = ''">
+            #{{ activeTag }} ✕
           </button>
         </div>
 
@@ -53,6 +56,17 @@
               </div>
               <h3><NuxtLink :to="postLink(post)">{{ post.title }}</NuxtLink></h3>
               <p class="post-card-desc">{{ post.description }}</p>
+              <div v-if="post.tags?.length" class="post-tags">
+                <button
+                  v-for="tag in post.tags.slice(0, 3)"
+                  :key="tag"
+                  class="tag-chip"
+                  :class="{ active: activeTag === tag }"
+                  @click.prevent="toggleTag(tag)"
+                >
+                  #{{ tag }}
+                </button>
+              </div>
               <div class="post-card-footer">
                 <span class="post-date">{{ formatDate(post.date) }}</span>
                 <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">{{ $t('blog.readMore') }}</NuxtLink>
@@ -79,8 +93,13 @@
 const { locale, t } = useI18n()
 const searchQuery = ref('')
 const activeCategory = ref('all')
+const activeTag = ref('')
 
 const postLink = usePostLink()
+
+const toggleTag = (tag) => {
+  activeTag.value = activeTag.value === tag ? '' : tag
+}
 
 // Get all posts for current locale
 const { data: posts } = await useAsyncData(`blog-posts-${locale.value}`, () =>
@@ -101,25 +120,31 @@ const availableCategories = computed(() => {
 // Total posts count
 const totalPosts = computed(() => posts.value?.length || 0)
 
-// Filter posts by search and category
+// Filter posts by search, category and tag
 const filteredPosts = computed(() => {
   let result = posts.value || []
-  
+
   // Category filter
   if (activeCategory.value !== 'all') {
     result = result.filter(p => p.category === activeCategory.value)
   }
-  
+
+  // Tag filter
+  if (activeTag.value) {
+    result = result.filter(p => (p.tags || []).includes(activeTag.value))
+  }
+
   // Search filter
   if (searchQuery.value.trim()) {
     const q = searchQuery.value.toLowerCase()
-    result = result.filter(p => 
+    result = result.filter(p =>
       p.title?.toLowerCase().includes(q) ||
       p.description?.toLowerCase().includes(q) ||
-      p.category?.toLowerCase().includes(q)
+      p.category?.toLowerCase().includes(q) ||
+      p.tags?.some(t => t.toLowerCase().includes(q))
     )
   }
-  
+
   return result
 })
 
@@ -130,9 +155,10 @@ const formatDate = (date) => {
   })
 }
 
-// Reset category when locale changes
+// Reset filters when locale changes
 watch(locale, () => {
   activeCategory.value = 'all'
+  activeTag.value = ''
   searchQuery.value = ''
 })
 

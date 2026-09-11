@@ -2,9 +2,10 @@
 title: "FastClaw: رانتاین سبک چنداعامله استاد، Go"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه FastClaw رانتاین Go سبک چنداعامله استاد با خصیت‌های شخصی، حافظه، اسکیل و ایزولاسیون sandbox ارائه می‌دهد."
+tags: ["redis", "git", "github", "ai"]
 ---
 
 FastClaw یک رانتایم چند عاملی سبک نوشته‌شده با Go است که شخصیت‌ها، حافظه، اسکیل‌ها و ایزولاسیون sandbox را برای اجرای همزمان چندین عامل هوش مصنوعی فراهم می‌کند.

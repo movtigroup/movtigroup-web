@@ -2,9 +2,10 @@
 title: "Free AI Coding Models: GLM 4.7 and MiniMax M2.1 in Kilo Code"
 date: 2026-07-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Free AI Coding Models: GLM 4.7 and MiniMax M2.1 in Kilo Code"
+tags: ["ai", "llm", "claude", "gemini"]
 ---
 
 Kilo Code now offers two frontier-level AI coding models at no cost: GLM 4.7 from Z.ai and MiniMax M2.1. If you want strong AI coding assistance without paying for tokens, these free models give you access to thinking-level quality inside the same extension you use for Claude, GPT, and Gemini.

@@ -2,9 +2,10 @@
 title: "AI in Energy and Environment"
 date: 2025-06-19
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "AI applications in energy, consumption optimization, and renewable energy."
+tags: ["ai", "deep-learning", "nlp", "storage"]
 ---
 
 AI in the energy sector has increased efficiency and contributed to smart energy management.

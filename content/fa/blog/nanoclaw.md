@@ -2,9 +2,10 @@
 title: "NanoClaw: عامل هوش مصنوعی ایزوله‌شده با Container در ۱۵ فایل"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه NanoClaw با ایزولاسیون container و swarm عامل‌ها، واتساپ، تلگرام و دیسکورد را به OpenClaw می‌آورد."
+tags: ["docker", "telegram", "ai", "ai-agents"]
 ---
 
 NanoClaw یک عامل هوش مصنوعی سبک و ایزوله‌شده با container است که OpenClaw را به واتساپ، تلگرام، دیسکورد و پلتفرم‌های پیام‌رسان دیگر متصل می‌کند.

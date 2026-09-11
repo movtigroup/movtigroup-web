@@ -2,9 +2,10 @@
 title: "مقایسه دیتابیس‌های SQL و NoSQL"
 date: 2026-05-23
 lang: fa
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "کدام دیتابیس برای پروژه شما مناسب است؟ بررسی تفاوت‌ها، مزایا و معایب SQL و NoSQL."
+tags: ["postgresql", "mysql", "sql", "database"]
 ---
 
 انتخاب دیتابیس مناسب یکی از حیاتی‌ترین تصمیمات در معماری نرم‌افزار است. در این مقاله تفاوت‌های بنیادین SQL و NoSQL را بررسی می‌کنیم.

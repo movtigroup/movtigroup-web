@@ -2,9 +2,10 @@
 title: "افزایش سرعت اپلیکیشن با Redis"
 date: 2026-05-24
 lang: fa
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "آموزش استفاده از Redis به عنوان لایه کش برای کاهش فشار روی دیتابیس اصلی."
+tags: ["redis", "database", "tutorial"]
 ---
 
 ردیس (Redis) یک پایگاه داده درون‌حافظه‌ای (In-memory) است که سرعت پاسخگویی اپلیکیشن شما را به طرز چشمگیری افزایش می‌دهد.

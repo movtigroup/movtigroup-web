@@ -2,9 +2,10 @@
 title: "PicoClaw: AI Agent for $10 Hardware in Go"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How PicoClaw runs a full AI assistant on Raspberry Pi, RISC-V boards, and other $10 hardware with Go."
+tags: ["sql", "git", "github", "telegram"]
 ---
 
 PicoClaw is a Go-based ultra-lightweight AI agent designed to run on $10 hardware like Raspberry Pi, RISC-V boards, and other resource-constrained devices. It brings the full OpenClaw experience to the edge.

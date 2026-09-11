@@ -2,9 +2,10 @@
 title: "مقایسه OpenClaw و Perplexity Computer: مقایسه رobot خودمختار هوش مصنوعی (۲۰۲۶)"
 date: 2026-07-23
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "مقایسه OpenClaw و Perplexity Computer: مقایسه رobot خودمختار هوش مصنوعی (۲۰۲۶)"
+tags: ["git", "github", "ai", "openclaw"]
 ---
 
 OpenClaw و Perplexity Computer هر دو عامل خودمختار هوش مصنوعی هستند، اما تعادل متفاوتی بین راحتی و کنترل ایجاد می‌کنند. OpenClaw آزادی کامل مدل، حاکمیت داده و یک پلتفرم منبع-باز توسعه‌پذیر را به شما می‌دهد. Perplexity Computer هدوله‌سازی صفر-نصب با ۱۹ مدل هدایت خودکار، ۴۰۰+ یکپارچگی برنامه و تولید رسانه داخلی ارائه می‌دهد — اما ۲۰۰ دلار در ماه هزینه دارد و داده‌های شما را روی سرورهای آنها پردازش می‌کند.

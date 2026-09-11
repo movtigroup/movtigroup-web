@@ -2,9 +2,10 @@
 title: "How to Install ClawHub: The Skill Marketplace for OpenClaw"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Step-by-step guide to install ClawHub CLI and set up the official skill marketplace for your OpenClaw assistant."
+tags: ["docker", "security", "ai", "ai-agents"]
 ---
 
 ClawHub is the official skill marketplace for OpenClaw. This guide covers installing the CLI, finding skills, and publishing your own.

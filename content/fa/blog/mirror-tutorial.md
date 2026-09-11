@@ -2,9 +2,10 @@
 title: "آموزش شروع کار با پروژه Mirror"
 date: 2026-05-20
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "راهنمای سریع برای استفاده از اسکریپت‌ها و اجرای محلی پروژه Mirror. آموزش Mirror را در موتی‌گروپ بخوانید."
+tags: ["docker", "ubuntu", "linux", "git"]
 ---
 
 این آموزش براساس اطلاعات مخزن [movtigroup/Mirror](https://github.com/movtigroup/Mirror) آماده شده است.

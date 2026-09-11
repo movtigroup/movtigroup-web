@@ -2,9 +2,10 @@
 title: "Telegram Drive: Open-Source File Manager for Telegram"
 date: 2026-07-24
 lang: en
-category: ""
+category: "Networking"
 author: "MovtiGroup"
 description: "Discover Telegram Drive, an open-source file manager that transforms your Telegram account into a fully-featured cloud drive with upload, download, and API support."
+tags: ["git", "github", "telegram", "ai"]
 ---
 
 ## What is Telegram Drive?

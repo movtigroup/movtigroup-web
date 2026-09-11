@@ -2,9 +2,10 @@
 title: "How to Install MicroClaw: Rust Shell-Powered AI Agent"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Installation guide for MicroClaw with shell integration, persistent memory, and MCP federation."
+tags: ["linux", "rust", "sql", "git"]
 ---
 
 MicroClaw combines Rust performance with deep shell integration. This guide covers installation and setup.

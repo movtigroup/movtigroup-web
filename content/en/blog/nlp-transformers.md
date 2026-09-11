@@ -2,9 +2,10 @@
 title: "Natural Language Processing and Transformers"
 date: 2025-06-03
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Comprehensive guide to Natural Language Processing (NLP) and the impact of Transformer architecture on Large Language Models."
+tags: ["ai", "nlp", "llm", "generative-ai"]
 ---
 
 Natural Language Processing (NLP) is one of the most widely used fields of AI that helps computers understand and generate human text.

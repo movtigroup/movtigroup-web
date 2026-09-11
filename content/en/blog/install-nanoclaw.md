@@ -2,9 +2,10 @@
 title: "How to Install NanoClaw: Multi-Channel AI Agent Gateway"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Complete guide to install NanoClaw and connect OpenClaw to WhatsApp, Telegram, and Discord with container isolation."
+tags: ["docker", "telegram", "ai", "ai-agents"]
 ---
 
 NanoClaw connects your OpenClaw assistant to multiple messaging platforms with container isolation. Follow this guide to get started.

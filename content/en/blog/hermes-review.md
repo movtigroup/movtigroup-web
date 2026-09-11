@@ -2,9 +2,10 @@
 title: "Hermes Claw: AI Agent Communication Bridge Review"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Review of Hermes Claw as the communication layer and gateway for AI agents in the OpenClaw ecosystem."
+tags: ["security", "telegram", "ai", "ai-agents"]
 ---
 
 Hermes Claw serves as the communication bridge and gateway layer in the OpenClaw ecosystem. It enables AI agents to communicate across different platforms, protocols, and networks seamlessly.

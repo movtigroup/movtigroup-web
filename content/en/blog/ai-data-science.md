@@ -2,9 +2,10 @@
 title: "Data Science and AI: The Perfect Combination"
 date: 2025-06-12
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "The role of data science in AI, big data analysis, and knowledge extraction."
+tags: ["python", "sql", "database", "ai"]
 ---
 
 Data Science and AI are two related specialties whose combination yields the best results in data analysis and prediction.

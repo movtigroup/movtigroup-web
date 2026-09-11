@@ -2,9 +2,10 @@
 title: "IronClaw: Rust AI Agent with WASM Sandboxes & TEE Security"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How IronClaw brings Rust performance, WASM sandboxing, and TEE-encrypted vaults to OpenClaw agent security."
+tags: ["rust", "security", "ai", "ai-agents"]
 ---
 
 IronClaw is a Rust-based AI agent framework developed by NEAR AI that brings WebAssembly sandboxing and Trusted Execution Environment (TEE) security to OpenClaw-compatible agents.

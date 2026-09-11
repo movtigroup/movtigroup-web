@@ -2,9 +2,10 @@
 title: "AI in Smart Agriculture"
 date: 2025-06-15
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "New AI applications in agriculture, plant health, and crop optimization."
+tags: ["ai", "robotics"]
 ---
 
 AI in agriculture, known as Smart Farming, plays a significant role in increasing efficiency and reducing farming costs.

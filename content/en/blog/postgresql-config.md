@@ -2,9 +2,10 @@
 title: "Configuring and Optimizing PostgreSQL"
 date: 2025-05-23
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Key tips for configuring and improving the performance of PostgreSQL database."
+tags: ["postgresql", "sql", "database"]
 ---
 
 PostgreSQL is one of the most advanced open-source databases. However, for large projects, it needs precise tuning.

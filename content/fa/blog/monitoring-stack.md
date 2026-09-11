@@ -2,9 +2,10 @@
 title: "مانیتورینگ زیرساخت با Prometheus و Grafana"
 date: 2026-05-24
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "نظارت هوشمند بر سلامت سرورها و اپلیکیشن‌ها با استفاده از داشبوردهای بصری."
+tags: ["monitoring", "server"]
 ---
 
 داشتن دید کامل نسبت به وضعیت زیرساخت، کلید پایداری سیستم‌های بزرگ است.

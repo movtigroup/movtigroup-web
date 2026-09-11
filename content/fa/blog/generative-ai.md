@@ -2,9 +2,10 @@
 title: "هوش مصنوعی تولیدکننده (Generative AI) و انقلاب محتوا"
 date: 2026-06-07
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "بررسی هوش مصنوعی تولیدکننده، مدل‌های متنی و تصویری، و تأثیر آن بر صنایع خلاقانه."
+tags: ["ai", "llm", "claude", "generative-ai"]
 ---
 
 هوش مصنوعی تولیدکننده (Generative AI) توانسته محتوای جدیدی را از روی الگوهای یادگرفته‌شده تولید کند.

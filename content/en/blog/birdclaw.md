@@ -2,9 +2,10 @@
 title: "BirdClaw: Local-First Twitter/X Workspace"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How BirdClaw provides local-first Twitter/X management with SQLite FTS5, archive import, and CLI/web interface."
+tags: ["docker", "sql", "ai", "ai-agents"]
 ---
 
 BirdClaw is a local-first Twitter/X workspace that gives you full control over your Twitter data. With SQLite FTS5 full-text search, archive import, and both CLI and web interfaces, it's the power user's tool for Twitter management.

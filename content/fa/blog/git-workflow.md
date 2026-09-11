@@ -2,9 +2,10 @@
 title: "جریان کاری حرفه‌ای با Git"
 date: 2026-05-24
 lang: fa
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "چگونه با استفاده از Git Flow و Conventional Commits، مدیریت پروژه را بهبود ببخشیم."
+tags: ["git", "ai"]
 ---
 
 استفاده صحیح از سیستم کنترل ورژن Git برای موفقیت هر تیمی ضروری است. در این مقاله به بررسی بهترین روش‌ها می‌پردازیم.

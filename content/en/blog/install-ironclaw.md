@@ -2,9 +2,10 @@
 title: "How to Install IronClaw: Rust AI Agent with WASM & TEE"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Step-by-step guide to install IronClaw for Rust-powered AI agents with WASM sandboxing and TEE security."
+tags: ["rust", "git", "github", "security"]
 ---
 
 IronClaw brings Rust performance, WASM sandboxing, and TEE security to AI agents. This guide covers installation and setup.

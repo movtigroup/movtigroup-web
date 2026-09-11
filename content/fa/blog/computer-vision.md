@@ -2,9 +2,10 @@
 title: "بینایی کامپیوتری (Computer Vision) و کاربردهای آن"
 date: 2026-06-04
 lang: fa
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "معرفی بینایی کامپیوتری، تکنیک‌های پیشرفته و کاربردهای صنعتی در حوزه‌های مختلف."
+tags: ["python", "security", "nlp", "computer-vision"]
 ---
 
 بینایی کامپیوتری (Computer Vision) توانایی کامپیوترها را درک، تحلیل و درک تصاویر دیجیتال می‌دهد.

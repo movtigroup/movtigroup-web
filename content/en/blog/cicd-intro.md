@@ -2,9 +2,10 @@
 title: "Introduction to CI/CD and Deployment Automation"
 date: 2025-05-24
 lang: en
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "How to reduce human errors and increase software delivery speed using CI/CD."
+tags: ["git", "github", "cicd", "automation"]
 ---
 
 The Continuous Integration (CI) and Continuous Deployment (CD) process is the heartbeat of modern software development.

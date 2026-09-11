@@ -2,9 +2,10 @@
 title: "MicroClaw: Rust AI Agent for Multi-Channel Chat"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How MicroClaw combines Rust performance with shell tools, persistent memory, and MCP federation for AI chat."
+tags: ["rust", "sql", "git", "ai"]
 ---
 
 MicroClaw is a Rust-powered AI agent designed for multi-channel chat with shell tool integration, persistent memory, and MCP (Model Context Protocol) federation. It bridges the gap between terminal power users and AI assistants.

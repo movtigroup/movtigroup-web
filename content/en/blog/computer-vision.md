@@ -2,9 +2,10 @@
 title: "Computer Vision and Its Applications"
 date: 2025-06-04
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Introduction to computer vision, advanced techniques, and industrial applications across various sectors."
+tags: ["monitoring", "python", "git", "security"]
 ---
 
 Computer Vision gives computers the ability to understand, analyze, and interpret digital images.

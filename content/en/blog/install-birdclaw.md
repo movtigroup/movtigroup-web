@@ -2,9 +2,10 @@
 title: "How to Install BirdClaw: Local-First Twitter/X Workspace"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Step-by-step guide to install BirdClaw for local Twitter/X management with full-text search and analytics."
+tags: ["linux", "git", "github", "openclaw"]
 ---
 
 BirdClaw gives you local-first control over your Twitter/X data. This guide covers installation, archive import, and setup.

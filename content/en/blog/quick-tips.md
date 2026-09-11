@@ -2,9 +2,10 @@
 title: "Quick Tips for Site Optimization"
 date: 2025-05-21
 lang: en
-category: ""
+category: "Tools"
 author: "MovtiGroup"
 description: "Short and practical tips for optimization, SEO, and user experience. Professional web development."
+tags: ["tools"]
 ---
 
 Here are some practical tips to improve your website:

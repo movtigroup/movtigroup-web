@@ -2,9 +2,10 @@
 title: "How to Install FastClaw: Multi-Agent Go Runtime"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Guide to install FastClaw for running multiple AI agents with personalities, memory, and sandbox isolation."
+tags: ["docker", "linux", "redis", "git"]
 ---
 
 FastClaw runs multiple AI agents with distinct personalities. This guide covers installation and team configuration.

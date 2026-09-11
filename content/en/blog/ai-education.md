@@ -2,9 +2,10 @@
 title: "AI in Education and Learning"
 date: 2025-06-16
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "AI transformations in education, automated teaching, and personalized learning."
+tags: ["monitoring", "ai", "llm", "computer-vision"]
 ---
 
 AI in education has personalized and made learning more accessible.

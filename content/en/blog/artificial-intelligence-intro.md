@@ -2,9 +2,10 @@
 title: "Introduction to Artificial Intelligence (AI)"
 date: 2025-05-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "An introduction to AI, Machine Learning, and its role in the future of technology."
+tags: ["ai", "machine-learning", "deep-learning", "nlp"]
 ---
 
 Artificial Intelligence (AI) is no longer just a sci-fi concept; it's an integral part of our daily lives and industry. From voice assistants to self-driving cars, AI is redefining the boundaries of knowledge.

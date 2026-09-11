@@ -2,9 +2,10 @@
 title: "برسی Hermes Claw: پل ارتباط ارتشاطی عامل هوش"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "برسی Hermes Claw به‌عنوان لایه ارتباط و گیتگوی عامل‌های هوش در اکوسیستم OpenClaw."
+tags: ["security", "proxy", "telegram", "ai"]
 ---
 
 Hermes Claw به‌عنوان پل ارتباطی و لایه گیت‌وی در اکوسیستم OpenClaw عمل می‌کند. این ابزار به عامل‌های هوش مصنوعی اجازه می‌دهد به‌صورت یکپارچه در پلتفرم‌ها، پروتکل‌ها و شبکه‌های مختلف ارتباط برقرار کنند.

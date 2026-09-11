@@ -2,9 +2,10 @@
 title: "ساخت API سریع با FastAPI"
 date: 2026-05-24
 lang: fa
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "چرا FastAPI بهترین انتخاب برای توسعه‌دهندگان پایتون در سال ۲۰۲۴ است؟"
+tags: ["python", "fastapi", "api"]
 ---
 
 اگر به دنبال سرعت بالا در توسعه و اجرا هستید، FastAPI گزینه اول شماست.

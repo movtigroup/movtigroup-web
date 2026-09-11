@@ -2,9 +2,10 @@
 title: "NullClaw: Zig-Powered AI Agent Runtime in 678KB"
 date: 2026-07-25
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "How NullClaw delivers a full AI agent runtime in just 678KB using Zig, with 50+ providers and 19 messaging channels."
+tags: ["sql", "git", "github", "telegram"]
 ---
 
 NullClaw is a Zig-powered AI agent runtime that fits in just 678KB, making it one of the lightest full-featured AI agents available. Despite its tiny size, it supports 50+ model providers and 19 messaging channels.

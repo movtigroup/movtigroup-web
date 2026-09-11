@@ -2,9 +2,10 @@
 title: "هوش مصنوعی در مالی و بانکداری"
 date: 2026-06-17
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "کاربردهای نوین هوش مصنوعی در مالی، تشخیص تقلب و تصمیم‌گیری مالی هوشمند."
+tags: ["security", "ai", "machine-learning", "deep-learning"]
 ---
 
 هوش مصنوعی در حوزه مالی و بانکداری، دقت تصمیمات و امنیت را بهبود بخشیده است.

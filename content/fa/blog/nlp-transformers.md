@@ -2,9 +2,10 @@
 title: "پردازش زبان طبیعی و معماری Transformer"
 date: 2026-06-03
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "بررسی جامع پردازش زبان طبیعی (NLP) و تأثیر معماری Transformer بر مدل‌های زبانی بزرگ."
+tags: ["ai", "nlp", "llm", "generative-ai"]
 ---
 
 پردازش زبان طبیعی (NLP) یکی از پرکاربردترین حوزه‌های هوش مصنوعی است که به کامپیوترها کمک می‌کند تا متون انسانی را درک و تولید کنند.

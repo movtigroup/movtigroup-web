@@ -2,9 +2,10 @@
 title: "Telegram Drive for VPNs: Secure File Storage for Privacy Tools"
 date: 2026-07-24
 lang: en
-category: ""
+category: "Security"
 author: "MovtiGroup"
 description: "Explore Telegram Drive for VPNs — a specialized Telegram-based file storage client designed for users who need secure, encrypted file storage alongside their VPN usage."
+tags: ["git", "github", "vpn", "security"]
 ---
 
 ## What is Telegram Drive for VPNs?

@@ -2,9 +2,10 @@
 title: "مبانی یادگیری ماشین (Machine Learning) برای مبتدیان"
 date: 2026-06-01
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "آشنایی کامل با مبانی یادگیری ماشین، الگوریتم‌های ابتدایی و کاربردهای عملی در دنیای واقعی."
+tags: ["python", "ai", "machine-learning", "tutorial"]
 ---
 
 یادگیری ماشین (Machine Learning) یکی از شاخه‌های کلیدی هوش مصنوعی است که به سیستم‌ها امکان می‌دهد بدون برنامه‌نویسی صریح، الگوها را از داده‌ها بیاموزند.

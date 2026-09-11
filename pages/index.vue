@@ -2,6 +2,7 @@
   <div class="home-page">
     <!-- Hero Slider -->
     <section class="hero-slider">
+      <HeroThree />
       <div class="hero-slides">
         <div 
           v-for="(slide, index) in slides" 
@@ -211,17 +212,50 @@ const formatDate = (date) => {
 
 // Auto-rotate slider
 let sliderTimer
+let animeFn = null
+
+// anime.js entrance for the active slide content
+const animateActiveSlide = () => {
+  if (!animeFn) return
+  const els = document.querySelectorAll('.hero-slide.active .hero-slide-content > *')
+  if (!els.length) return
+  animeFn.set(els, { opacity: 0, translateY: 30, scale: 0.97 })
+  animeFn({
+    targets: els,
+    opacity: [0, 1],
+    translateY: [30, 0],
+    scale: [0.97, 1],
+    easing: 'easeOutCubic',
+    duration: 750,
+    delay: animeFn.stagger(110)
+  })
+}
+
+watch(currentSlide, () => {
+  if (document.visibilityState === 'visible') animateActiveSlide()
+})
+
+const initAnime = async () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  try {
+    const mod = await import('animejs')
+    animeFn = mod.default || mod
+    animateActiveSlide()
+  } catch { /* anime.js unavailable — content simply stays visible */ }
+}
+
 onMounted(() => {
   sliderTimer = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % slides.length
   }, 5000)
+  initAnime()
   initStatCounters()
 })
 onUnmounted(() => {
   if (sliderTimer) clearInterval(sliderTimer)
 })
 
-// Count-up animation for the stats section (fires once, even on scroll jumps)
+// Count-up animation for the stats section (anime.js, fires once on view)
 const initStatCounters = () => {
   const numbers = document.querySelectorAll('.stat-number')
   const section = document.querySelector('.stats-section')
@@ -234,17 +268,24 @@ const initStatCounters = () => {
     return
   }
 
+  const fired = new WeakSet()
   const animate = (el) => {
+    if (fired.has(el)) return
+    fired.add(el)
     const target = Number(el.dataset.target || '0')
-    const duration = 1400
-    const start = performance.now()
-    const tick = (now) => {
-      const p = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - p, 3)
-      el.textContent = fmt(Math.round(target * eased))
-      if (p < 1) requestAnimationFrame(tick)
+    const counter = { v: 0 }
+    if (animeFn) {
+      animeFn({
+        targets: counter,
+        v: target,
+        round: 1,
+        easing: 'easeOutCubic',
+        duration: 1500,
+        update: () => { el.textContent = fmt(counter.v) }
+      })
+    } else {
+      el.textContent = fmt(target)
     }
-    requestAnimationFrame(tick)
   }
 
   const maybeAnimate = () => {
@@ -315,28 +356,9 @@ useSeoMeta({
   to { transform: translate(70px, -50px) scale(1.18); }
 }
 
-/* Staggered entrance for the active slide content */
-.hero-slide.active .hero-slide-content > * {
-  animation: heroIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.hero-slide.active .hero-slide-content > :nth-child(1) { animation-delay: 0.05s; }
-.hero-slide.active .hero-slide-content > :nth-child(2) { animation-delay: 0.18s; }
-.hero-slide.active .hero-slide-content > :nth-child(3) { animation-delay: 0.31s; }
-.hero-slide.active .hero-slide-content > :nth-child(4) { animation-delay: 0.44s; }
-
-@keyframes heroIn {
-  from {
-    opacity: 0;
-    transform: translateY(28px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.hero-slide.active .hero-slide-icon {
+/* Staggered entrance for the active slide content is driven by anime.js
+   (see script) — CSS handles only the gentle icon float. */
+.hero-slide-icon svg {
   animation: iconFloat 3.2s ease-in-out infinite;
 }
 
@@ -536,11 +558,16 @@ useSeoMeta({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.75rem;
 }
 
 .post-date {
   color: var(--text-muted);
   font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 /* Brands */

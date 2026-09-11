@@ -21,8 +21,10 @@
     "@fontsource/vazirmatn": "^5.3.0",
     "@nuxt/content": "^3.16.0",
     "@nuxtjs/i18n": "^9.5.6",
+    "animejs": "^3.2.2",
     "better-sqlite3": "^13.0.3",
     "nuxt": "^3.13.0",
+    "three": "^0.186.0",
     "vue": "^3.4.0",
     "vue-router": "^4.4.0"
   }

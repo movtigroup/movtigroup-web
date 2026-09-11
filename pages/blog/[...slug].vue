@@ -24,6 +24,10 @@
           <div class="post-meta">
             <span class="post-date">{{ formatDate(post.date) }}</span>
             <span v-if="post.author" class="post-author">{{ post.author }}</span>
+            <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
+          </div>
+          <div v-if="post.tags?.length" class="post-tags">
+            <span v-for="tag in post.tags" :key="tag" class="tag-chip static">#{{ tag }}</span>
           </div>
           <p v-if="post.description" class="post-description">{{ post.description }}</p>
         </div>
@@ -78,6 +82,8 @@ useSeoMeta({
   ogImage: `${siteUrl}/og-image.png`,
   articlePublishedTime: () => post.value?.date ? new Date(post.value.date).toISOString() : undefined,
   articleAuthor: [post.value?.author].filter(Boolean),
+  articleTag: () => post.value?.tags || undefined,
+  articleSection: () => post.value?.category || undefined,
   robots: post.value ? undefined : 'noindex'
 })
 

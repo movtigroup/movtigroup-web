@@ -2,9 +2,10 @@
 title: "AI Future Trends and 2025 Predictions"
 date: 2025-06-10
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Predicting new AI trends, technological transformations, and impact on the future of work."
+tags: ["security", "ai", "ai-agents", "server"]
 ---
 
 AI has undergone remarkable transformations in recent years, and the future is full of new horizons.

@@ -10,6 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **Cover image for every blog post** — `scripts/generate-covers.mjs` generates a branded 1200×630 SVG cover (deterministic gradient, M logo mark, wrapped localized title) for all 160 posts into `public/covers/`; covers shown on blog/search/home cards and at the top of each post (`npm run generate:covers` to regenerate)
 - **Company logo** (`public/images/logo.png`, from the GitHub avatar) now used in the navbar, footer, favicon and JSON-LD publisher logo
 - **Team page** (`/teams`, `/fa/teams`) migrated from the legacy `tahatehran.github.io` site — 5 members with photos, role badges and social links; added to the navbar and sitemap
+- **Projects page rebuilt** around 9 flagship MovtiGroup repos (Web, Liara Chat Completion Proxy, Iran System Encoding, Docker Installer, Mirror, Mirror Developer, Ubuntu/Debian Mirror, Docker Mirror Proxy, Core Rust VPN) with GitHub/Website links per project
+- **Cherry Studio** added to Collaborations (desktop + mobile collaboration); collaboration cards now cover Dirac.run, Kilo Code, Hermes Agent and Cherry Studio
+- **Social links**: LinkedIn company page and Hamgit added to the footer and contact page
+- **Blog taxonomy** — every post now carries a `category` (AI / DevOps / Programming / Networking / Security / Tools) and 2–4 `tags`, assigned by `scripts/assign-taxonomy.mjs` with English + Persian keyword rules; blog page gets working category counts, clickable tag chips on cards, tag filtering (combined with search), and posts show tags + `article:tag` meta
+- **Homepage animation engines**: `three.js` particle sphere in the hero (lazy-loaded, paused off-screen, reduced-motion safe) and `anime.js` for orchestrated hero entrances and the stat counters
+- **CRM-style lead capture**: `POST /api/leads` validates and stores contact submissions (`.data/leads.json`; swap for a DB/CRM webhook on serverless), and the contact form now submits with sending/success/error states plus all contact channels
+
+### Fixed
+
+- **Card footer overlap**: post date and Read More button no longer collide (gap + wrap + equal-height cards)
+- **Persian navigation bug**: navbar/footer/breadcrumb links were hardcoded (`/blog`, `/about`, …), so clicking them from a `/fa/...` page jumped back to English — all internal links now go through `useLocalePath()`
 - **Animated UI**: scroll-reveal via a new `v-reveal` directive (`plugins/reveal.ts`, IntersectionObserver + scroll sweep, jump-safe), page transitions, staggered hero entrance, floating gradient orbs, count-up stat counters with correct values (160/95/65/5/6), hover lift on all cards — all disabled under `prefers-reduced-motion`
 - **Proper icon system** — new `UiIcon` (lucide-style inline SVGs) and `BrandIcon` (recolorable brand glyphs via CSS mask) components; replaced every UI emoji across navbar, hero, features, brands, projects, collaborations, team and footer
 - **Vendored brand SVGs** (`public/images/brands/`) from `@lobehub/icons-static-svg` (GitHub, NousResearch, Midjourney, OpenAI, Claude, Gemini, DeepSeek, Hugging Face) and simple-icons (Telegram, LinkedIn, X) — self-hosted, no CDN

@@ -2,9 +2,10 @@
 title: "Configuring MySQL with Docker"
 date: 2025-05-23
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "Step-by-step tutorial on setting up a MySQL database using Docker Compose."
+tags: ["docker", "mysql", "sql", "database"]
 ---
 
 Setting up MySQL with Docker is simple and fast. In this tutorial, you'll learn how to create a stable database with Docker Compose.

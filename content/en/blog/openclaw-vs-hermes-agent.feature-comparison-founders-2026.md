@@ -2,9 +2,10 @@
 title: "OpenClaw vs Hermes Agent: Every Feature That Matters for Founders in 2026"
 date: 2026-07-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "A tactical feature-by-feature breakdown of OpenClaw and Hermes Agent covering memory, channels, skills, deployment, model support, automation, and security. Each feature is scored by what it actually saves or enables for a founder."
+tags: ["security", "ai", "ai-agents", "openclaw"]
 ---
 
 A tactical feature-by-feature breakdown of OpenClaw and Hermes Agent covering memory, channels, skills, deployment, model support, automation, and security. Each feature is scored by what it actually saves or enables for a founder.

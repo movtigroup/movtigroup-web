@@ -2,9 +2,10 @@
 title: "MicroClaw: عامل هوش مصنوعی Rust برای چت چند کاناله"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه MicroClaw عملکرد Rust را با ابزارهای shell، حافظهای منقطاعی و فدراسیون MCP ترکیب می‌کند."
+tags: ["rust", "sql", "git", "ai"]
 ---
 
 MicroClaw یک عامل هوش مصنوعی مبتنی بر Rust طراحی شده برای چت چند کاناله با یکپارچگی ابزارهای shell، حافظه پایدار و فدراسیون MCP (Model Context Protocol) است.

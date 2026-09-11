@@ -2,9 +2,10 @@
 title: "Machine Learning Basics for Beginners"
 date: 2025-06-01
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "Complete introduction to machine learning fundamentals, basic algorithms, and real-world applications."
+tags: ["python", "ai", "machine-learning", "robotics"]
 ---
 
 Machine Learning (ML) is a key branch of Artificial Intelligence that enables systems to learn patterns from data without explicit programming.

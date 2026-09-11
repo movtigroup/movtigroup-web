@@ -2,9 +2,10 @@
 title: "AI Cloud Deployment and Optimization"
 date: 2025-06-13
 lang: en
-category: ""
+category: "DevOps"
 author: "MovtiGroup"
 description: "Complete guide to deploying AI models in cloud services and cost optimization."
+tags: ["docker", "monitoring", "cicd", "security"]
 ---
 
 Deploying AI models in cloud environments increases accessibility and scalability.

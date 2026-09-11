@@ -2,9 +2,10 @@
 title: "GPT-Load: High-Performance AI API Proxy for OpenAI, Gemini, and Claude"
 date: 2026-07-23
 lang: en
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "GPT-Load: High-Performance AI API Proxy for OpenAI, Gemini, and Claude"
+tags: ["redis", "mysql", "sql", "proxy"]
 ---
 
 GPT-Load is an enterprise-grade AI API proxy service built with Go 1.23+ that provides a transparent layer between your applications and multiple AI providers. If your team uses OpenAI, Google Gemini, Anthropic Claude, or compatible services, GPT-Load gives you unified API access with intelligent key management, load balancing, and high-concurrency handling without rewriting client code.

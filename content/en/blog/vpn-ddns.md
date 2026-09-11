@@ -2,9 +2,10 @@
 title: "Remote Access with VPN and DDNS"
 date: 2025-05-23
 lang: en
-category: ""
+category: "Networking"
 author: "MovtiGroup"
 description: "How to use DDNS and VPN to connect to your local network from anywhere in the world."
+tags: ["vpn", "security", "dns", "ai"]
 ---
 
 Secure remote access to home files and services is a fundamental need. In this article, we explore the powerful combination of VPN and DDNS.

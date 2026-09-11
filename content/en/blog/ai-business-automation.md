@@ -2,9 +2,10 @@
 title: "AI-Powered Business Automation"
 date: 2025-06-06
 lang: en
-category: ""
+category: "Tools"
 author: "MovtiGroup"
 description: "AI solutions for business process automation, time and cost savings, and operational efficiency."
+tags: ["python", "ai", "llm", "chatbots"]
 ---
 
 AI enables automation of complex processes that previously required human intervention.

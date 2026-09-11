@@ -2,9 +2,10 @@
 title: "NullClaw: رانتاین عامل هوش متکی Zig در 678KB"
 date: 2026-07-25
 lang: fa
-category: ""
+category: "AI"
 author: "MovtiGroup"
 description: "چگونه NullClaw رانتاین کامل عامل هوش مصنوعی را به کمر 678KB با Zig ارائه می‌دهد."
+tags: ["git", "github", "telegram", "ai"]
 ---
 
 NullClaw یک رانتایم عامل هوش مصنوعی مبتنی بر Zig است که در فقط 678KB جای می‌گیرد و یکی از سبک‌ترین عامل‌های کامل‌قابلیت موجود است.

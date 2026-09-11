@@ -2,9 +2,10 @@
 title: "Getting Started with Mirror Project"
 date: 2025-05-20
 lang: en
-category: ""
+category: "Tools"
 author: "MovtiGroup"
 description: "Quick guide to using scripts and running the Mirror project locally. High performance software mirrors."
+tags: ["docker", "ubuntu", "debian", "linux"]
 ---
 
 This tutorial is based on the [movtigroup/Mirror](https://github.com/movtigroup/Mirror) repository.

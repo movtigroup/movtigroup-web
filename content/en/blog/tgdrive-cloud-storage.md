@@ -2,9 +2,10 @@
 title: "TGDrive: Turn Telegram into Your Personal Cloud Drive"
 date: 2026-07-24
 lang: en
-category: ""
+category: "Networking"
 author: "MovtiGroup"
 description: "Explore TGDrive, a Telegram cloud drive client that transforms your Telegram account into a fast, free personal cloud drive for storing and managing files."
+tags: ["database", "git", "github", "telegram"]
 ---
 
 ## What is TGDrive?

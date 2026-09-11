@@ -2,9 +2,10 @@
 title: "Introduction to Iran System Encoding Project"
 date: 2025-05-22
 lang: en
-category: ""
+category: "Programming"
 author: "MovtiGroup"
 description: "A high-performance, professional Python library for the legacy Iran System character encoding. Secure and fast."
+tags: ["python", "database", "setup", "api"]
 ---
 
 The **Iran System Encoding** project is a high-performance Python library for handling the legacy Iran System character encoding. It provides symmetrical encoding/decoding with automatic locale detection and smart number handling.

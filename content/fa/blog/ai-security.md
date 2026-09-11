@@ -2,9 +2,10 @@
 title: "امنیت هوش مصنوعی و دفاع در برابر تهدیدات"
 date: 2026-06-14
 lang: fa
-category: ""
+category: "Security"
 author: "MovtiGroup"
 description: "چالش‌های امنیتی در هوش مصنوعی، حملات Adversarial و روش‌های دفاعی."
+tags: ["monitoring", "security", "ai", "tutorial"]
 ---
 
 امنیت در سیستم‌های هوش مصنوعی یک اولویت بسیار مهم است که نیازمند توجه ویژه و راهکارهای پیشرفته است.
