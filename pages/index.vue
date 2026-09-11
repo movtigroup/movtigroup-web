@@ -119,9 +119,45 @@
       </div>
     </section>
 
+    <!-- About -->
+    <section class="about-section">
+      <div class="container about-inner">
+        <div class="about-copy" v-reveal>
+          <span class="about-kicker">About MovtiGroup</span>
+          <h2>Small team, serious open source</h2>
+          <p>
+            MovtiGroup is an independent software group building open-source tools for
+            developers worldwide — from AI infrastructure and mirror proxies to bilingual
+            technical content. We believe useful software should be open, fast and accessible
+            to everyone.
+          </p>
+          <div class="about-actions">
+            <NuxtLink :to="localePath('/about')" class="btn btn-primary">
+              About Us <UiIcon icon="arrow-right" :size="14" />
+            </NuxtLink>
+            <NuxtLink :to="localePath('/teams')" class="btn btn-secondary">Meet the Team</NuxtLink>
+          </div>
+        </div>
+        <div class="about-points" v-reveal="{ delay: 140 }">
+          <div class="about-point card">
+            <UiIcon icon="sparkles" :size="18" />
+            <div><strong>100% open source</strong><span>Every tool we ship is public by default.</span></div>
+          </div>
+          <div class="about-point card">
+            <UiIcon icon="globe" :size="18" />
+            <div><strong>Bilingual content</strong><span>160+ technical articles in English &amp; Persian.</span></div>
+          </div>
+          <div class="about-point card">
+            <UiIcon icon="shield-check" :size="18" />
+            <div><strong>Privacy-first</strong><span>No trackers, self-hosted assets, offline-friendly.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Brands -->
     <section class="brands-section">
-      <div class="section-header">
+      <div class="section-header" v-reveal>
         <h2>{{ $t('brands.title') }}</h2>
         <p>{{ $t('brands.subtitle') }}</p>
       </div>
@@ -141,26 +177,12 @@
 
     <!-- Collaborations -->
     <section class="collaborations-section">
-      <div class="section-header">
+      <div class="section-header" v-reveal>
         <h2>{{ $t('collaborations.title') }}</h2>
         <p>{{ $t('collaborations.subtitle') }}</p>
       </div>
-      <div class="card-grid">
-        <div class="card collab-card" v-reveal="{ delay: 0 }">
-          <div class="collab-icon"><UiIcon icon="atom" :size="26" /></div>
-          <h3>Dirac.run</h3>
-          <p>AI Inference Platform - Advanced AI agent platform for automated task execution, research, and multi-step problem solving.</p>
-        </div>
-        <div class="card collab-card" v-reveal="{ delay: 120 }">
-          <div class="collab-icon"><UiIcon icon="code" :size="26" /></div>
-          <h3>Kilo Code</h3>
-          <p>Open-source AI coding assistant with model routing, benchmarking, and autonomous coding capabilities.</p>
-        </div>
-        <div class="card collab-card" v-reveal="{ delay: 240 }">
-          <div class="collab-icon"><BrandIcon icon="nousresearch" :size="26" /></div>
-          <h3>Hermes Agent</h3>
-          <p>Self-hosted AI agent framework with deep integration for developers and teams seeking full control.</p>
-        </div>
+      <div class="container">
+        <CollabSlider :items="collabs" />
       </div>
     </section>
 
@@ -197,6 +219,7 @@ const slides = [
 ]
 
 const postLink = usePostLink()
+const collabs = useCollaborations()
 
 // Fetch latest posts
 const { data: latestPosts } = await useAsyncData('latest-posts', () =>
@@ -313,6 +336,76 @@ useSeoMeta({
 </script>
 
 <style scoped>
+/* About section */
+.about-section {
+  padding: 4.5rem 0;
+  background: var(--bg-card);
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.about-copy h2 {
+  color: var(--text-bright);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 0.9rem;
+}
+
+.about-copy p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.4rem;
+}
+
+.about-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.about-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.about-point {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.95rem 1.1rem;
+}
+
+.about-point svg {
+  color: var(--accent);
+  flex: none;
+}
+
+.about-point strong {
+  display: block;
+  color: var(--text-bright);
+  font-size: 0.95rem;
+}
+
+.about-point span {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
 /* Hero Slider */
 .hero-slider {
   position: relative;
@@ -691,6 +784,10 @@ useSeoMeta({
   }
   .stat-number {
     font-size: 2.5rem;
+  }
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
   }
 }
 </style>

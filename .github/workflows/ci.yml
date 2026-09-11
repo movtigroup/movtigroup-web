@@ -36,8 +36,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Audit production dependencies (high severity+)
-        run: npm audit --omit=dev --audit-level=high || true
+      - name: Unit tests (Vitest)
+        run: npm test
+
+      - name: Audit production dependencies (high severity fails the build)
+        run: npm audit --omit=dev --audit-level=high
 
       - name: Build Nuxt application
         run: npm run build
@@ -51,6 +54,13 @@ jobs:
           [ "$FONTS" -gt 0 ] || { echo "❌ no self-hosted fonts found"; exit 1; }
           test -f .output/public/og-image.png || { echo "❌ missing og-image.png"; exit 1; }
           echo "✅ Build output valid"
+
+      - name: Client bundle budget
+        run: |
+          JS=$(find .output/public/_nuxt -name "*.js" -exec du -cb {} + | tail -1 | cut -f1)
+          echo "client JS total: $((JS/1024)) KB"
+          [ "$JS" -le 2500000 ] || { echo "❌ client JS exceeds 2.5MB budget"; exit 1; }
+          echo "✅ within bundle budget"
 
       - name: Start production server on port 3002
         run: |
@@ -90,13 +100,25 @@ jobs:
           curl -s "$BASE/" | grep -q 'rel="canonical"' || { echo "❌ canonical missing"; exit 1; }
           curl -s "$BASE/" | grep -q 'hreflang="fa"' || { echo "❌ hreflang missing"; exit 1; }
           curl -s "$BASE/fa" | grep -q 'dir="rtl"' || { echo "❌ RTL dir missing on /fa"; exit 1; }
+          # security headers
+          curl -sI "$BASE/" | grep -qi "x-frame-options" || { echo "❌ X-Frame-Options missing"; exit 1; }
+          curl -sI "$BASE/" | grep -qi "content-security-policy" || { echo "❌ CSP missing"; exit 1; }
+          curl -sI "$BASE/" | grep -qi "referrer-policy" || { echo "❌ Referrer-Policy missing"; exit 1; }
           # blog post structured data
           curl -s "$BASE/blog" | grep -oE 'href="/blog/[a-z0-9-]+"' | head -1 | sed 's/href="//;s/"//' > post_url
           POST=$(cat post_url)
           CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE$POST")
           [ "$CODE" = "200" ] || { echo "❌ blog post $POST -> $CODE"; exit 1; }
           curl -s "$BASE$POST" | grep -q "BlogPosting" || { echo "❌ BlogPosting JSON-LD missing"; exit 1; }
-          echo "✅ SEO checks passed ($POST)"
+          echo "✅ SEO + security header checks passed ($POST)"
+
+      - name: Stop smoke-test server
+        run: pkill -f ".output/server/index.mjs" || true; sleep 2
+
+      - name: Lighthouse CI (performance / SEO / a11y / best-practices)
+        run: npx --yes @lhci/cli@0.14.x autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   content-check:
     name: Content & i18n Validation

@@ -71,6 +71,20 @@ export default defineNuxtConfig({
     }
   },
 
+  // Security headers on every response (CSP allows the inline JSON-LD + hydration payload)
+  routeRules: {
+    '/**': {
+      headers: {
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'SAMEORIGIN',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+      }
+    }
+  },
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {

@@ -9,11 +9,13 @@
   },
   "scripts": {
     "dev": "nuxt dev --host 0.0.0.0 --port 3002",
-    "build": "nuxt build",
+    "build": "npm run sync:icons && nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview --port 3002",
     "start": "node scripts/start.mjs",
     "generate:covers": "node scripts/generate-covers.mjs",
+    "sync:icons": "node scripts/sync-icons.mjs",
+    "test": "vitest run",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -27,5 +29,12 @@
     "three": "^0.186.0",
     "vue": "^3.4.0",
     "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@lobehub/icons-static-svg": "^1.95.0",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/test-utils": "^2.5.0",
+    "happy-dom": "^20.14.3",
+    "vitest": "^5.0.0"
   }
 }

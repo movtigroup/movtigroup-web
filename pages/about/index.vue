@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <div class="team-section">
+        <div class="team-section" v-reveal>
           <h2>Our Team</h2>
           <p>
             We are a small team of developers, designers and AI enthusiasts
@@ -49,6 +49,11 @@
             {{ $t('nav.teams') }}
             <UiIcon icon="arrow-right" :size="15" />
           </NuxtLink>
+        </div>
+
+        <div class="about-collabs" v-reveal>
+          <h2>Key Collaborations</h2>
+          <CollabSlider :items="collabs" />
         </div>
       </div>
     </section>
@@ -138,6 +143,16 @@
   line-height: 1.7;
 }
 
+.about-collabs {
+  margin-top: 3rem;
+}
+
+.about-collabs h2 {
+  color: var(--text-bright);
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -152,4 +167,5 @@ useSeoMeta({
 })
 
 const localePath = useLocalePath()
+const collabs = useCollaborations()
 </script>

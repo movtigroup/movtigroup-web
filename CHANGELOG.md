@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- **Official `@lobehub/icons` static package** is now a real dependency — `scripts/sync-icons.mjs` vendors the needed icons (incl. `kilocode` and the color `cherrystudio-color`) from `node_modules/@lobehub/icons-static-svg` on every build, per https://lobehub.com/icons/skill.md; `BrandIcon` gained a raw mode for official multi-color glyphs
+- **Projects page redesign** — clean grouped row-listing (AI & Developer Experience / Infrastructure & Mirrors / Security) with per-project category chips, lucide-style concept icons and official brand icons, ordered GitHub/Website actions
+- **`CollabSlider`** — interactive Key Collaborations carousel (autoplay, prev/next, dots, touch swipe, pause on hover); embedded in the Projects page, the homepage Key Collaborations section and the About page
+- **Homepage About section** — mission copy with quick facts and About/Team CTAs
+- **Security hardening** — security headers on every response (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) via `routeRules`; **CodeQL** workflow (`security-extended`)
+- **Professional test suite** — Vitest (19 tests): pure helpers (`utils/blog.ts`), lead validation (`server/utils/lead-validate.ts`, incl. input-truncation DoS guard), content taxonomy/cover integrity across all 160 posts, and a PageHero component test; CI runs it and **fails on high-severity production audit findings**
+- **Lighthouse CI** — performance/SEO/a11y/best-practices score gates + client JS bundle budget (2.5 MB) in CI
 - **`docs/ARCHITECTURE.md`** — full architecture + project memory (stack decisions, data flow, conventions, credits) mentioning **icons.lobehub.com**, **ui.lobehub.com** and **charts.lobehub.com**; README (EN/FA) gained an Architecture section and a Credits block
 - **`PageHero` component** — animated gradient page header with badge, grid pattern and entrance effects; applied to Blog, Projects, Contact, Team and Collaborations pages
 - **Blog page polish** — category filter chips now show live post counts, rounded pill filters with hover lift, cover cards refined
