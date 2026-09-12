@@ -47,11 +47,6 @@
             <UiIcon icon="arrow-right" :size="15" />
           </NuxtLink>
         </div>
-
-        <div class="about-collabs" v-reveal>
-          <h2>{{ $t('collaborations.keyTitle') }}</h2>
-          <CollabSlider :items="collabs" />
-        </div>
       </div>
     </section>
   </div>
@@ -140,16 +135,6 @@
   line-height: 1.7;
 }
 
-.about-collabs {
-  margin-top: 3rem;
-}
-
-.about-collabs h2 {
-  color: var(--text-bright);
-  text-align: center;
-  margin-bottom: 1.6rem;
-}
-
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -158,11 +143,12 @@
 </style>
 
 <script setup>
+const { t } = useI18n()
+
 useSeoMeta({
-  title: 'About Us — MovtiGroup',
+  title: () => `${t('nav.about')} — MovtiGroup`,
   description: 'Learn about MovtiGroup — our mission, values, and the team building innovative software solutions and open source tools for developers worldwide.'
 })
 
 const localePath = useLocalePath()
-const collabs = useCollaborations()
 </script>

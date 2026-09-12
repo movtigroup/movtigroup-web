@@ -24,10 +24,14 @@
           <div class="post-meta">
             <span class="post-date">{{ formatDate(post.date) }}</span>
             <span v-if="post.author" class="post-author">{{ post.author }}</span>
-            <span v-if="post.category" class="post-chip category-chip">{{ post.category }}</span>
+            <span v-if="post.category" class="post-chip category-chip">
+              {{ categoryLabel(post.category, locale) }}
+            </span>
           </div>
           <div v-if="post.tags?.length" class="post-tags">
-            <span v-for="tag in post.tags" :key="tag" class="tag-chip static">#{{ tag }}</span>
+            <span v-for="tag in post.tags" :key="tag" class="tag-chip static">
+              #{{ tagLabel(tag, locale) }}
+            </span>
           </div>
           <p v-if="post.description" class="post-description">{{ post.description }}</p>
         </div>

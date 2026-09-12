@@ -1,14 +1,18 @@
 // composables/useBlog.ts
 import { computed } from 'vue'
+import { blogCollectionFor, stripLocalePrefix } from '~/utils/blog'
 
 // Content collections are split per locale (see content.config.ts)
 export const blogCollectionFor = (locale: string) => (locale === 'fa' ? 'blog_fa' : 'blog_en')
 
-// Localized app route for a content item path (/en/blog/x -> /blog/x, /fa/blog/x -> /fa/blog/x)
+// Localized app route for a post, based on the POST's own language —
+// an EN article always links to /blog/x and a FA article always to /fa/blog/x,
+// regardless of the page the visitor is on (global URL structure).
 export const usePostLink = () => {
-  const localePath = useLocalePath()
-  const postLink = (post: { path?: string }) =>
-    localePath((post.path || '/').replace(/^\/(en|fa)/, ''))
+  const postLink = (post: { path?: string; lang?: string }) => {
+    const path = post.path || '/'
+    return post.lang === 'fa' ? path : stripLocalePrefix(path)
+  }
   return postLink
 }
 

@@ -70,11 +70,23 @@
 content/{en,fa}/blog/*.md
   └─► @nuxt/content v3 build (sqlite dump bundled into .output)
         └─► queryCollection('blog_en' | 'blog_fa') in pages/composables
-              ├─► /blog (list + category/tag/search filters)
+              ├─► /blog (list + language sections All/EN/FA + category/tag/search filters)
+              ├─► /fa/blog (same UI, Persian-first: fa labels, fa-IR digits/dates)
               ├─► /blog/[slug] (SSR + BlogPosting JSON-LD + cover)
               └─► /sitemap.xml (server route, hreflang pairs)
 public/covers/<lang>/blog/<slug>.svg  ◄── scripts/generate-covers.mjs (per post)
 ```
+
+### Blog URL structure (global convention)
+
+- English article: **`/blog/<slug>`** — always points to the EN content (`/en/blog/<slug>`)
+- Persian article: **`/fa/blog/<slug>`** — always points to the FA content (`/fa/blog/<slug>`)
+- Links between posts are **language-pure** (`usePostLink`): an EN article never
+  resolves through the FA route and vice versa, regardless of the page locale.
+- The blog page on both locales offers **language sections** (All / English / فارسی)
+  with live counts, so EN and FA content are separate, switchable sections.
+- Taxonomy keys stored in frontmatter are language-neutral (e.g. `AI`, `docker`);
+  display labels are localized via `utils/labels.ts` (fa: «هوش مصنوعی», «داکر», …).
 
 ## Deployment
 
