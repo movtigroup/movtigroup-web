@@ -1,6 +1,6 @@
 {
   "name": "movtigroup-web",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MovtiGroup Official Website — Nuxt 3 + Content v3 + i18n + SEO, fully self-hosted (port 3002)",
   "private": true,
   "license": "MIT",
