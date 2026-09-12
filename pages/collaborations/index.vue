@@ -2,79 +2,37 @@
   <div class="collaborations-page">
     <PageHero
       :title="$t('nav.collaborations')"
-      subtitle="We partner with leading open-source projects and teams — from AI agents to desktop and mobile apps."
-      badge="4 partner projects"
+      :subtitle="$t('collaborations.heroSubtitle')"
+      :badge="$t('collaborations.heroBadge')"
     />
 
     <section class="collaborations-content">
       <div class="container">
         <div class="card-grid">
-          <div class="card collab-card" v-reveal="{ delay: 0 }">
+          <div
+            v-for="(collab, i) in collabs"
+            :key="collab.name"
+            class="card collab-card"
+            v-reveal="{ delay: (i % 3) * 120 }"
+          >
             <div class="collab-header">
-              <div class="collab-icon"><UiIcon icon="atom" :size="26" /></div>
+              <div class="collab-icon">
+                <BrandIcon
+                  v-if="collab.icon.kind === 'brand'"
+                  :icon="collab.icon.value"
+                  :raw="collab.icon.raw"
+                  :size="26"
+                />
+                <UiIcon v-else :icon="collab.icon.value" :size="26" />
+              </div>
               <div>
-                <h3>Dirac.run</h3>
-                <span class="collab-tag">AI Inference Platform</span>
+                <h3>{{ collab.name }}</h3>
+                <span class="collab-tag">{{ collab.tag }}</span>
               </div>
             </div>
-            <p>
-              Advanced AI agent platform for automated task execution, research, and multi-step 
-              problem solving. MovtiGroup contributes to optimization and deployment processes.
-            </p>
-            <a href="https://github.com/dirac-run/dirac" target="_blank" class="btn btn-primary btn-small">
-              View on GitHub
-            </a>
-          </div>
-
-          <div class="card collab-card" v-reveal="{ delay: 120 }">
-            <div class="collab-header">
-              <div class="collab-icon"><UiIcon icon="code" :size="26" /></div>
-              <div>
-                <h3>Kilo Code</h3>
-                <span class="collab-tag">AI Coding Assistant</span>
-              </div>
-            </div>
-            <p>
-              Open-source AI coding assistant with model routing, benchmarking, and autonomous 
-              coding capabilities. MovtiGroup contributes to model integration and testing.
-            </p>
-            <a href="https://github.com/kilo-org/kilo" target="_blank" class="btn btn-primary btn-small">
-              View on GitHub
-            </a>
-          </div>
-
-          <div class="card collab-card" v-reveal="{ delay: 240 }">
-            <div class="collab-header">
-              <div class="collab-icon"><BrandIcon icon="nousresearch" :size="26" /></div>
-              <div>
-                <h3>Hermes Agent</h3>
-                <span class="collab-tag">AI Agent Framework</span>
-              </div>
-            </div>
-            <p>
-              Self-hosted AI agent framework with deep integration for developers and teams
-              seeking full control. MovtiGroup contributes to development and testing.
-            </p>
-            <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener" class="btn btn-primary btn-small">
-              View on GitHub
-            </a>
-          </div>
-
-          <div class="card collab-card" v-reveal="{ delay: 0 }">
-            <div class="collab-header">
-              <div class="collab-icon"><BrandIcon icon="cherrystudio" :size="26" /></div>
-              <div>
-                <h3>Cherry Studio</h3>
-                <span class="collab-tag">AI Client — Desktop & Mobile</span>
-              </div>
-            </div>
-            <p>
-              Open-source AI productivity studio with smart chat, autonomous agents and 300+
-              assistants for Windows, macOS, Linux, and mobile. MovtiGroup collaborates on both
-              the desktop and mobile applications — testing, localization and community support.
-            </p>
-            <a href="https://github.com/CherryHQ/cherry-studio" target="_blank" rel="noopener" class="btn btn-primary btn-small">
-              View on GitHub
+            <p>{{ collab.description }}</p>
+            <a :href="collab.url" target="_blank" rel="noopener" class="btn btn-primary btn-small">
+              {{ $t('collaborations.viewGithub') }}
             </a>
           </div>
         </div>
@@ -82,6 +40,16 @@
     </section>
   </div>
 </template>
+
+<script setup>
+const { t } = useI18n()
+const collabs = useCollaborations()
+
+useSeoMeta({
+  title: () => `${t('nav.collaborations')} — MovtiGroup`,
+  description: () => t('collaborations.heroSubtitle')
+})
+</script>
 
 <style scoped>
 .collaborations-page {
@@ -153,10 +121,3 @@
   margin-bottom: 1rem;
 }
 </style>
-
-<script setup>
-useSeoMeta({
-  title: 'Collaborations — MovtiGroup',
-  description: 'MovtiGroup partners with leading open-source projects and teams to build better developer tools together.'
-})
-</script>

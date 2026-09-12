@@ -17,7 +17,7 @@
           <NuxtLink :to="localePath('/about')">{{ $t('nav.about') }}</NuxtLink>
         </div>
         <div class="footer-social">
-          <h4>Social</h4>
+          <h4>{{ $t('footer.social') }}</h4>
           <a href="https://github.com/movtigroup" target="_blank" rel="noopener">
             <BrandIcon icon="github" :size="16" /> GitHub
           </a>

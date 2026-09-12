@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const query = ref('')
 
 const postLink = usePostLink()
@@ -83,7 +83,7 @@ const formatDate = (date) => {
 }
 
 useHead({
-  title: 'Search — MovtiGroup',
+  title: `${t('search.title')} — MovtiGroup`,
   meta: [
     { name: 'robots', content: 'noindex, follow' }
   ]

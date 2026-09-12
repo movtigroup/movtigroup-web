@@ -1,16 +1,16 @@
 <template>
   <div class="contact-page">
     <PageHero
-      title="Contact Us"
-      subtitle="Questions, feedback, collaborations or support — we usually reply within a couple of days."
-      badge="We reply fast"
+      :title="$t('contact.heroTitle')"
+      :subtitle="$t('contact.heroSubtitle')"
+      :badge="$t('contact.heroBadge')"
     />
 
     <section class="contact-content">
       <div class="container">
         <div class="contact-grid">
           <div class="contact-info" v-reveal>
-            <h2>Contact Information</h2>
+            <h2>{{ $t('contact.infoTitle') }}</h2>
             <div class="info-item">
               <span class="info-icon"><UiIcon icon="mail" :size="18" /></span>
               <div>
@@ -49,32 +49,32 @@
           </div>
 
           <div class="contact-form" v-reveal="{ delay: 120 }">
-            <h2>Send us a message</h2>
+            <h2>{{ $t('contact.formTitle') }}</h2>
             <form @submit.prevent="submitForm">
               <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">{{ $t('contact.name') }}</label>
                 <input type="text" id="name" v-model="form.name" required maxlength="120" />
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">{{ $t('contact.email') }}</label>
                 <input type="email" id="email" v-model="form.email" required maxlength="200" />
               </div>
               <div class="form-group">
-                <label for="subject">Subject</label>
+                <label for="subject">{{ $t('contact.subject') }}</label>
                 <input type="text" id="subject" v-model="form.subject" required maxlength="200" />
               </div>
               <div class="form-group">
-                <label for="message">Message</label>
+                <label for="message">{{ $t('contact.message') }}</label>
                 <textarea id="message" v-model="form.message" rows="5" required maxlength="5000"></textarea>
               </div>
               <button type="submit" class="btn btn-primary" :disabled="status === 'sending'">
-                {{ status === 'sending' ? 'Sending…' : 'Send Message' }}
+                {{ status === 'sending' ? $t('contact.sending') : $t('contact.send') }}
               </button>
               <p v-if="status === 'success'" class="form-feedback success">
-                ✓ Thank you! Your message has been received — we will get back to you soon.
+                {{ $t('contact.success') }}
               </p>
               <p v-else-if="status === 'error'" class="form-feedback error">
-                ✗ Something went wrong ({{ errorMessage }}). Please try again or email us directly.
+                {{ $t('contact.error') }}
               </p>
             </form>
           </div>
@@ -86,6 +86,8 @@
 
 <script setup>
 const { locale } = useI18n()
+
+const { t } = useI18n()
 
 const form = reactive({
   name: '',
@@ -122,8 +124,8 @@ const submitForm = async () => {
 }
 
 useSeoMeta({
-  title: 'Contact Us — MovtiGroup',
-  description: 'Get in touch with the MovtiGroup team — questions, feedback, collaborations and support.'
+  title: () => `${t('contact.heroTitle')} — MovtiGroup`,
+  description: () => t('contact.heroSubtitle')
 })
 </script>
 

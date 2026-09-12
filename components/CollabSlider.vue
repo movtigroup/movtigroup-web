@@ -35,7 +35,7 @@
               <p>{{ collab.description }}</p>
               <a :href="collab.url" target="_blank" rel="noopener" class="btn btn-primary btn-small slide-link">
                 <BrandIcon icon="github" :size="14" />
-                View on GitHub
+                {{ $t('collaborations.viewGithub') }}
                 <UiIcon icon="arrow-right" :size="13" />
               </a>
             </div>

@@ -1,19 +1,19 @@
 <template>
   <div class="projects-page">
     <PageHero
-      title="Open Source Projects"
-      subtitle="Tools and frameworks built with passion — AI infrastructure, mirrors, encoding libraries and developer tooling."
-      badge="9 open-source projects"
+      :title="$t('projects.heroTitle')"
+      :subtitle="$t('projects.heroSubtitle')"
+      :badge="$t('projects.heroBadge')"
     />
 
     <section
       v-for="group in groups"
-      :key="group.title"
+      :key="group.titleKey"
       class="project-group"
     >
       <div class="container">
         <div class="group-header" v-reveal>
-          <h2>{{ group.title }}</h2>
+          <h2>{{ $t(group.titleKey) }}</h2>
           <span class="group-count">{{ group.projects.length }}</span>
         </div>
         <div class="project-list">
@@ -40,7 +40,7 @@
                 <h3>{{ project.name }}</h3>
                 <span class="project-category">{{ project.category }}</span>
               </div>
-              <p>{{ project.description }}</p>
+              <p>{{ $t('projects.items.' + project.key) }}</p>
             </div>
             <div class="project-links" @click.prevent>
               <a
@@ -50,7 +50,7 @@
                 rel="noopener"
                 class="row-link"
               >
-                <UiIcon icon="globe" :size="15" /> Website
+                <UiIcon icon="globe" :size="15" /> {{ $t('projects.website') }}
               </a>
               <a
                 v-if="project.github"
@@ -59,7 +59,7 @@
                 rel="noopener"
                 class="row-link primary"
               >
-                <BrandIcon icon="github" :size="15" /> GitHub
+                <BrandIcon icon="github" :size="15" /> {{ $t('projects.github') }}
               </a>
             </div>
           </a>
@@ -70,8 +70,8 @@
     <section class="collabs-section">
       <div class="container">
         <div class="section-header" v-reveal>
-          <h2>Key Collaborations</h2>
-          <p>Open-source projects and teams we build with — switch through them below.</p>
+          <h2>{{ $t('collaborations.keyTitle') }}</h2>
+          <p>{{ $t('collaborations.heroSubtitle') }}</p>
         </div>
         <CollabSlider :items="collabs" />
       </div>
@@ -80,9 +80,11 @@
     <section class="projects-more" v-reveal>
       <div class="container">
         <p>
-          This is a selection — explore the full list on
+          {{ $t('projects.morePrefix') }}
           <a href="https://github.com/orgs/movtigroup/repositories" target="_blank" rel="noopener">GitHub</a>
-          or <a href="https://hamgit.ir/tahavey18/MovtiGroup" target="_blank" rel="noopener">Hamgit</a>.
+          /
+          <a href="https://hamgit.ir/tahavey18/MovtiGroup" target="_blank" rel="noopener">Hamgit</a>
+          {{ $t('projects.moreSuffix') }}
         </p>
       </div>
     </section>
@@ -90,9 +92,11 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
+
 useSeoMeta({
-  title: 'Open Source Projects — MovtiGroup',
-  description: 'Explore open source tools and frameworks built by MovtiGroup: AI proxies, mirrors, encoding libraries, Docker tooling and more.'
+  title: () => `${t('projects.heroTitle')} — MovtiGroup`,
+  description: () => t('projects.heroSubtitle')
 })
 
 const collabs = useCollaborations()
@@ -100,83 +104,83 @@ const collabs = useCollaborations()
 // Grouped, ordered listing: AI & DX → Infrastructure & Mirrors → Security
 const groups = [
   {
-    title: 'AI & Developer Experience',
+    titleKey: 'projects.groupAI',
     projects: [
       {
         name: 'MovtiGroup Web',
         category: 'Website',
+        key: 'web',
         brandIcon: 'github',
-        description: 'This very website — a bilingual (EN/FA) Nuxt 3 site with Nuxt Content v3, full SEO, self-hosted fonts and Docker deployment.',
         github: 'https://github.com/movtigroup/movtigroup-web',
         homepage: 'https://movtigroup.me'
       },
       {
         name: 'Liara Chat Completion Proxy',
         category: 'AI Proxy',
+        key: 'liara',
         uiIcon: 'bot',
-        description: 'Advanced proxy for AI chat-completion models with multi-model support, failover and professional features on Liara Cloud.',
         github: 'https://github.com/movtigroup/Liara_Chat_Completion_Proxy'
       },
       {
         name: 'Iran System Encoding',
         category: 'Library',
+        key: 'iranEncoding',
         uiIcon: 'type',
-        description: 'Library for the Iran System character encoding — convert legacy Persian text for SMS and embedded systems.',
         github: 'https://github.com/movtigroup/Iran-System-encoding',
         homepage: 'https://movtigroup.github.io/Iran-System-encoding/'
       }
     ]
   },
   {
-    title: 'Infrastructure & Mirrors',
+    titleKey: 'projects.groupInfra',
     projects: [
       {
         name: 'Docker Installer',
         category: 'Docker',
+        key: 'dockerInstaller',
         uiIcon: 'container',
-        description: 'One-command Docker installation script tuned for servers in Iran, with registry mirrors baked in.',
         github: 'https://github.com/movtigroup/docker',
         homepage: 'https://install.3cn.ir'
       },
       {
         name: 'Docker Mirror Proxy',
         category: 'Docker',
+        key: 'dockerMirror',
         uiIcon: 'boxes',
-        description: 'Docker Hub mirror proxy for Iran — pull images without rate limits or connectivity issues.',
         github: 'https://github.com/movtigroup/mirro-docker'
       },
       {
         name: 'Mirror',
         category: 'Mirror',
+        key: 'mirror',
         uiIcon: 'globe',
-        description: 'Documentation and browse mirror for 🇮🇷 — fast access to popular developer resources from inside Iran.',
         github: 'https://github.com/movtigroup/Mirror',
         homepage: 'https://mirro.movtigroup.ir'
       },
       {
         name: 'Mirror Developer',
         category: 'Mirror',
+        key: 'mirrorDev',
         uiIcon: 'package',
-        description: 'Unified mirror proxy for PyPI, npm, Go modules, NuGet and Maven — speed up package managers for local teams.',
         github: 'https://github.com/movtigroup/mirror-developer'
       },
       {
         name: 'Ubuntu & Debian Mirror',
         category: 'Mirror',
+        key: 'ubuntuMirror',
         uiIcon: 'download-cloud',
-        description: 'Smart apt mirror proxy for Ubuntu and Debian with caching and automatic upstream selection.',
         github: 'https://github.com/movtigroup/ubuntu-debian'
       }
     ]
   },
   {
-    title: 'Security',
+    titleKey: 'projects.groupSec',
     projects: [
       {
         name: 'Core Rust VPN',
         category: 'VPN',
+        key: 'rustVpn',
         uiIcon: 'shield-check',
-        description: 'High-performance SSH VPN core written in Rust for fast, secure tunneling.',
         github: 'https://github.com/movtigroup/core-rust-vpn'
       }
     ]

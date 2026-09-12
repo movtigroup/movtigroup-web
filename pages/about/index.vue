@@ -40,11 +40,8 @@
         </div>
 
         <div class="team-section" v-reveal>
-          <h2>Our Team</h2>
-          <p>
-            We are a small team of developers, designers and AI enthusiasts
-            building open-source tools together.
-          </p>
+          <h2>{{ $t('aboutPage.teamTitle') }}</h2>
+          <p>{{ $t('aboutPage.teamText') }}</p>
           <NuxtLink :to="localePath('/teams')" class="btn btn-primary">
             {{ $t('nav.teams') }}
             <UiIcon icon="arrow-right" :size="15" />
@@ -52,7 +49,7 @@
         </div>
 
         <div class="about-collabs" v-reveal>
-          <h2>Key Collaborations</h2>
+          <h2>{{ $t('collaborations.keyTitle') }}</h2>
           <CollabSlider :items="collabs" />
         </div>
       </div>

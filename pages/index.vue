@@ -89,7 +89,7 @@
     <section class="latest-posts-section">
       <div class="section-header" v-reveal>
         <h2>{{ $t('nav.blog') }}</h2>
-        <p>Latest articles on technology, AI, and software engineering.</p>
+        <p>{{ $t('home.latestSubtitle') }}</p>
       </div>
       <div class="card-grid">
         <article
@@ -109,13 +109,13 @@
             <p class="post-card-desc">{{ post.description }}</p>
             <div class="post-card-footer">
               <span class="post-date">{{ formatDate(post.date) }}</span>
-              <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">Read More</NuxtLink>
+              <NuxtLink :to="postLink(post)" class="btn btn-primary btn-small">{{ $t('home.readMore') }}</NuxtLink>
             </div>
           </div>
         </article>
       </div>
       <div style="text-align: center; margin-top: 2rem;">
-        <NuxtLink :to="localePath('/blog')" class="btn btn-primary">View All Articles</NuxtLink>
+        <NuxtLink :to="localePath('/blog')" class="btn btn-primary">{{ $t('home.viewAll') }}</NuxtLink>
       </div>
     </section>
 
@@ -123,33 +123,28 @@
     <section class="about-section">
       <div class="container about-inner">
         <div class="about-copy" v-reveal>
-          <span class="about-kicker">About MovtiGroup</span>
-          <h2>Small team, serious open source</h2>
-          <p>
-            MovtiGroup is an independent software group building open-source tools for
-            developers worldwide — from AI infrastructure and mirror proxies to bilingual
-            technical content. We believe useful software should be open, fast and accessible
-            to everyone.
-          </p>
+          <span class="about-kicker">{{ $t('home.about.kicker') }}</span>
+          <h2>{{ $t('home.about.title') }}</h2>
+          <p>{{ $t('home.about.text') }}</p>
           <div class="about-actions">
             <NuxtLink :to="localePath('/about')" class="btn btn-primary">
-              About Us <UiIcon icon="arrow-right" :size="14" />
+              {{ $t('home.about.ctaAbout') }} <UiIcon icon="arrow-right" :size="14" />
             </NuxtLink>
-            <NuxtLink :to="localePath('/teams')" class="btn btn-secondary">Meet the Team</NuxtLink>
+            <NuxtLink :to="localePath('/teams')" class="btn btn-secondary">{{ $t('home.about.ctaTeam') }}</NuxtLink>
           </div>
         </div>
         <div class="about-points" v-reveal="{ delay: 140 }">
           <div class="about-point card">
             <UiIcon icon="sparkles" :size="18" />
-            <div><strong>100% open source</strong><span>Every tool we ship is public by default.</span></div>
+            <div><strong>{{ $t('home.about.p1t') }}</strong><span>{{ $t('home.about.p1s') }}</span></div>
           </div>
           <div class="about-point card">
             <UiIcon icon="globe" :size="18" />
-            <div><strong>Bilingual content</strong><span>160+ technical articles in English &amp; Persian.</span></div>
+            <div><strong>{{ $t('home.about.p2t') }}</strong><span>{{ $t('home.about.p2s') }}</span></div>
           </div>
           <div class="about-point card">
             <UiIcon icon="shield-check" :size="18" />
-            <div><strong>Privacy-first</strong><span>No trackers, self-hosted assets, offline-friendly.</span></div>
+            <div><strong>{{ $t('home.about.p3t') }}</strong><span>{{ $t('home.about.p3s') }}</span></div>
           </div>
         </div>
       </div>
