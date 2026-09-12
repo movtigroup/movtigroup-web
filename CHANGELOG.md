@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- **Complete Persian localization** — every section added since the redesign is fully translated (homepage About, Projects incl. 9 per-project FA descriptions, Collaborations, Contact incl. form states, About page, footer/search); `useCollaborations` is locale-aware
+- **Specialized Persian blog** — `/fa/blog` renders localized category/tag labels («هوش مصنوعی», «داکر», …) via `utils/labels.ts`, fa-IR digits for counts, fa-IR dates and per-post Persian covers; `/blog` mirrors everything in English
+- **Language sections on the blog** — All / English / فارسی switchable tabs with live counts on both `/blog` and `/fa/blog`; each locale opens on its own language (`/blog` → English, `/fa/blog` → فارسی); global blog URL structure documented in `docs/ARCHITECTURE.md` (EN = `/blog/x`, FA = `/fa/blog/x`, language-pure post links)
+- **Locale-aware error pages** — new `error.vue` renders 404 / 500 / 502 / 403 / generic errors in English or Persian (detected from error URL, request URL and i18n cookie) with branded gradient design, RTL support and Home/Blog actions
 - **Official `@lobehub/icons` static package** is now a real dependency — `scripts/sync-icons.mjs` vendors the needed icons (incl. `kilocode` and the color `cherrystudio-color`) from `node_modules/@lobehub/icons-static-svg` on every build, per https://lobehub.com/icons/skill.md; `BrandIcon` gained a raw mode for official multi-color glyphs
 - **Projects page redesign** — clean grouped row-listing (AI & Developer Experience / Infrastructure & Mirrors / Security) with per-project category chips, lucide-style concept icons and official brand icons, ordered GitHub/Website actions
 - **`CollabSlider`** — interactive Key Collaborations carousel (autoplay, prev/next, dots, touch swipe, pause on hover); embedded in the Projects page, the homepage Key Collaborations section and the About page
@@ -32,15 +36,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - **Card footer overlap**: post date and Read More button no longer collide (gap + wrap + equal-height cards)
 - **Persian navigation bug**: navbar/footer/breadcrumb links were hardcoded (`/blog`, `/about`, …), so clicking them from a `/fa/...` page jumped back to English — all internal links now go through `useLocalePath()`
-- **Animated UI**: scroll-reveal via a new `v-reveal` directive (`plugins/reveal.ts`, IntersectionObserver + scroll sweep, jump-safe), page transitions, staggered hero entrance, floating gradient orbs, count-up stat counters with correct values (160/95/65/5/6), hover lift on all cards — all disabled under `prefers-reduced-motion`
-- **Proper icon system** — new `UiIcon` (lucide-style inline SVGs) and `BrandIcon` (recolorable brand glyphs via CSS mask) components; replaced every UI emoji across navbar, hero, features, brands, projects, collaborations, team and footer
-- **Vendored brand SVGs** (`public/images/brands/`) from `@lobehub/icons-static-svg` (GitHub, NousResearch, Midjourney, OpenAI, Claude, Gemini, DeepSeek, Hugging Face) and simple-icons (Telegram, LinkedIn, X) — self-hosted, no CDN
-- New gradient SVG favicon (no more 404ing `favicon.ico`)
+- **Blog language defaults**: `/blog` and `/fa/blog` now each open on their own language section (English / فارسی) instead of a mixed "All" view — the language sections and post language chips are present on both locales
+- **TDZ crash on `/fa/projects`**: `t` from `useI18n()` was referenced by `useSeoMeta` before its declaration
 
 ### Changed
 
+- **Animated UI**: scroll-reveal via a new `v-reveal` directive (`plugins/reveal.ts`, IntersectionObserver + scroll sweep, jump-safe), page transitions, staggered hero entrance, floating gradient orbs, count-up stat counters with correct values (160/95/65/5/6), hover lift on all cards — all disabled under `prefers-reduced-motion`
+- **Proper icon system** — new `UiIcon` (lucide-style inline SVGs) and `BrandIcon` (recolorable brand glyphs via CSS mask) components; replaced every UI emoji across navbar, hero, features, brands, projects, collaborations, team and footer
+- **Vendored brand SVGs** (`public/images/brands/`) from `@lobehub/icons-static-svg` (GitHub, NousResearch, Kilo Code, Midjourney, OpenAI, Claude, Gemini, DeepSeek, Hugging Face) and simple-icons (Telegram, LinkedIn, X) — self-hosted, no CDN
+- New gradient SVG favicon (no more 404ing `favicon.ico`)
 - **Responsive hardening** for phones/tablets/desktop: hamburger menu with animated icon, auto-close on navigation, 44px tap targets, tighter ≤400px navbar, card grids collapse to one column, code blocks/tables scroll horizontally on mobile, global `img { max-width: 100% }`, RTL-aware blockquotes
-- About page "team" teaser now links to the full `/teams` page
+- About page "team" teaser now links to the full `/teams` page; the Key Collaborations slider stays on the homepage and Projects page only
 - Require **Node.js ≥ 22** everywhere (`engines`, Docker base image `node:22-alpine`, CI matrix 22/24) — `better-sqlite3` v13, used by `@nuxt/content`, dropped Node 20 support which broke the Node 20 CI job
 
 ## [0.0.1] — 2026-09-11

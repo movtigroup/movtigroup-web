@@ -23,15 +23,20 @@ Modern corporate website built with **Nuxt 3**, **Nuxt Content v3**, and **Vue 3
 ## ✨ Features
 
 - **Nuxt 3 + Vue 3** — SSR rendering with Nitro server preset
-- **Bilingual (EN/FA)** — `@nuxtjs/i18n` v9 with `prefix_except_default` strategy, full RTL support
+- **Bilingual (EN/FA)** — `@nuxtjs/i18n` v9 with `prefix_except_default` strategy, full RTL support; every UI string exists in both locales
+- **Specialized Persian blog** — `/fa/blog` is Persian-first: localized category/tag labels (هوش مصنوعی، دواپس، …), fa-IR digits and dates, and its own branded covers; `/blog` mirrors this in English
+- **Language sections on the blog** — All / English / فارسی switchable sections with live counts on both locales (global URL structure: EN = `/blog/x`, FA = `/fa/blog/x`)
+- **Localized error pages** — 404 / 500 / 502 / … rendered in the visitor's language with branded design
 - **SEO-first** — dynamic `sitemap.xml` (160+ URLs), `robots.txt`, per-page canonical URLs, hreflang alternates, Open Graph / Twitter cards, JSON-LD structured data (`WebSite`, `BlogPosting`, `BreadcrumbList`)
 - **Fully self-hosted fonts** — [Vazirmatn](https://fontsource.org/fonts/vazirmatn) (Persian) + [Inter](https://fontsource.org/fonts/inter) (English) bundled locally via Fontsource — zero CDN requests, works offline
-- **Blog engine** — 95 English + 65 Farsi articles via `@nuxt/content` v3 with syntax highlighting
+- **Blog engine** — 95 English + 65 Farsi articles via `@nuxt/content` v3 with syntax highlighting, category/tag taxonomy and per-post branded covers
 - **Animated UI** — scroll-reveal sections, page transitions, hero entrance effects, animated stat counters — all CSS-driven and `prefers-reduced-motion` friendly
 - **three.js + anime.js** — WebGL particle sphere in the hero and orchestrated entrance/counter animations (lazy-loaded, performance-conscious)
-- **Client-side search** with category filtering
+- **Client-side search** with category, tag and language filtering
+- **Security hardened** — CSP/HSTS/X-Frame-Options/Referrer-Policy/Permissions-Policy headers on every response, CodeQL analysis, production audit gate
+- **Tested** — Vitest unit suite (19 tests: helpers, lead validation, taxonomy/cover integrity, components) + Lighthouse CI score gates + client bundle budget
 - **Docker-ready** — multi-stage build, health checks, nginx reverse proxy included
-- **GitHub Actions** — CI (build + SSR smoke tests + content validation + Docker) and automated tag & release pipeline
+- **GitHub Actions** — CI (tests + build + SSR smoke tests + SEO/security header checks + Lighthouse + Docker), CodeQL and automated tag & release pipeline
 
 ## 🚀 Quick Start
 

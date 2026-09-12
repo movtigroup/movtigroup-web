@@ -28,7 +28,9 @@
 1. **Port = 3002 everywhere** — dev, preview, `npm run start` (`scripts/start.mjs`), Docker (`ENV PORT=3002`, `EXPOSE 3002`), nginx upstream, CI smoke tests. Override only via `PORT`/`NUXT_PORT`.
 2. **No CDN requests** — fonts, icons, images are all local. Anything new must be vendored.
 3. **All internal links go through `useLocalePath()`** — hardcoding `/blog` breaks the Persian locale (this bug happened once; do not reintroduce).
-4. **Content paths carry the locale prefix** (`/en/blog/x`, `/fa/blog/x`) while EN app routes do not (`/blog/x`). Use `usePostLink()` / `blogCollectionFor()` from `composables/useBlog.ts`.
+4. **Every new UI string must exist in BOTH `i18n/en.json` and `i18n/fa.json`** — the Persian site must never show hardcoded English (this bug happened once; do not reintroduce).
+5. **Content paths carry the locale prefix** (`/en/blog/x`, `/fa/blog/x`) while EN app routes do not (`/blog/x`). Use `usePostLink()` / `blogCollectionFor()` from `composables/useBlog.ts`. Post links are language-pure: an EN article always resolves to `/blog/x`, a FA article to `/fa/blog/x`.
+6. **Blog taxonomy labels are display-localized** — frontmatter stores language-neutral keys; `utils/labels.ts` maps them to Persian/English labels.
 5. **Cover images**: `scripts/generate-covers.mjs` → `public/covers/<lang>/blog/<slug>.svg` (1200×630, deterministic gradient, M mark, RTL-aware title). Run `npm run generate:covers` after adding posts.
 6. **Taxonomy**: `scripts/assign-taxonomy.mjs` assigns `category` (AI / DevOps / Programming / Networking / Security / Tools) + 2–4 `tags` per post (EN + FA keyword rules). Blog filters combine category + tag + search.
 7. **Content DB is in-memory** — never switch back to a file-based sqlite without handling URL-encoded paths (the `%20` Windows-space bug).
@@ -37,6 +39,7 @@
 10. **Leads (CRM-lite)**: `POST /api/leads` validates + appends to `.data/leads.json`. On serverless the FS is ephemeral — swap `appendLead` for a DB/CRM webhook in production.
 11. **Releases**: `.github/workflows/release.yml` (manual dispatch) tags `vX.Y.Z` starting at `v0.0.1`, syncs `package.json`, attaches build zip.
 12. `@lobehub/ui` and `@lobehub/charts` are **React-only** — do not try to install them in this Vue project; replicate their design language in CSS instead.
+13. **Error pages** live in root `error.vue` — locale-aware (error URL → request URL → i18n cookie) with per-status messages (404/500/502/403) in EN and FA.
 
 ---
 
@@ -45,11 +48,17 @@
 ```
 ├── content.config.ts        # blog_en / blog_fa collections (schema: title, date, category, tags, …)
 ├── content/{en,fa}/blog/    # 95 EN + 65 FA markdown posts (category + tags in frontmatter)
+├── error.vue                # locale-aware 404/500/502 error page (EN + FA)
 ├── plugins/reveal.ts        # v-reveal scroll-reveal directive (IntersectionObserver + jump-safe sweep)
+├── utils/
+│   ├── blog.ts              # pure helpers: blogCollectionFor, stripLocalePrefix, coverForPath
+│   └── labels.ts            # localized category/tag display labels (fa + en)
 ├── components/
 │   ├── UiIcon.vue           # lucide-style inline stroke icons
 │   ├── BrandIcon.vue        # mask-based recolorable brand glyphs
 │   ├── HeroThree.vue        # three.js particle sphere (lazy, pausable)
+│   ├── CollabSlider.vue     # interactive Key Collaborations carousel
+│   ├── PageHero.vue         # animated gradient page header
 │   └── Navbar / Footer
 ├── composables/useBlog.ts   # blogCollectionFor / usePostLink / coverFor
 ├── pages/                   # index, blog(+[...slug]), projects, teams, about, contact, collaborations, search

@@ -47,6 +47,7 @@ CI must pass on your PR (build, SSR smoke tests for EN/FA, content validation).
 - Keep the dark theme CSS variables in `assets/css/main.css` as the single source of truth for colors.
 - The app must keep working fully offline: no CDN fonts, no external trackers.
 - Keep everything listening on **port 3002** by default.
+- **i18n is mandatory**: any new UI string must be added to both `i18n/en.json` and `i18n/fa.json` — the Persian site must never show hardcoded English. Internal links must always go through `useLocalePath()`.
 
 ## Reporting Bugs
 
