@@ -112,7 +112,8 @@ const { locale, t } = useI18n()
 const searchQuery = ref('')
 const activeCategory = ref('all')
 const activeTag = ref('')
-const activeLang = ref('all')
+// /blog defaults to the English section, /fa/blog to the Persian one
+const activeLang = ref(locale.value === 'fa' ? 'fa' : 'en')
 
 const postLink = usePostLink()
 
@@ -136,7 +137,7 @@ const availableLangs = computed(() => {
   const en = all.filter(p => p.lang !== 'fa').length
   const fa = all.length - en
   return [
-    { key: 'all', label: 'All', count: all.length },
+    { key: 'all', label: locale.value === 'fa' ? 'همه' : 'All', count: all.length },
     { key: 'en', label: 'English', count: en },
     { key: 'fa', label: 'فارسی', count: fa }
   ]
@@ -207,6 +208,7 @@ watch(locale, () => {
   activeCategory.value = 'all'
   activeTag.value = ''
   searchQuery.value = ''
+  activeLang.value = locale.value === 'fa' ? 'fa' : 'en'
 })
 useSeoMeta({
   title: () => `${t('nav.blog')} — MovtiGroup`,
